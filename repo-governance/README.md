@@ -10,9 +10,9 @@ This directory contains shared repository governance for human contributors and 
 
 ## Directory Index
 
+- [Governance Conventions](conventions/README.md) — shared standards for repository content and practices. Use them when creating or reviewing work covered by a convention.
 - [Development Governance](development/README.md) — policies for code, testing, hooks, Nx, and validation. Use it when changing executable code or tooling.
 - [Documentation Index Policy](documentation-index-policy.md) — README and metadata requirements for repository documents. Use it when adding, moving, or maintaining Markdown under `docs/` or `repo-governance/`.
-- [Markdown Style Policy](markdown-style-policy.md) — source formatting for every repository Markdown file. Use it when creating, editing, or reviewing Markdown.
 - [Governance Principles](principles/README.md) — foundations every policy and workflow must follow. Use them before resolving a governance conflict.
 - [Repository Workflows](workflows/README.md) — repeatable repository procedures. Use the relevant workflow whenever a task has a defined process.
 
@@ -29,6 +29,7 @@ Use focused, descriptive filenames such as:
 
 - `exercise-layout.md` for exercise organization and naming details.
 - `dependency-policy.md` for package review, pinning, and audit procedures.
+- `conventions/` for stable shared standards such as Markdown style and naming.
 - `development/` for code, testing, Nx, hook, and validation policies.
 - `documentation-index-policy.md` for recursive README requirements.
 - `contribution-workflow.md` for branch, pull request, or release practices.

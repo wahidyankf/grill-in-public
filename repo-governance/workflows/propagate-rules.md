@@ -29,6 +29,7 @@ State the proposed rule in one sentence, including its scope, trigger, and requi
 2. Choose one canonical home:
    - Put universal, short requirements in root `AGENTS.md`.
    - Put detailed or conditional policy in `repo-governance/`.
+   - Put stable, cross-cutting standards in `repo-governance/conventions/`.
    - Put repeatable procedures in `repo-governance/workflows/`.
    - Put directory-specific rules in the nearest scoped `AGENTS.md`.
    - Put capability-specific guidance in the relevant `SKILL.md`.
@@ -38,7 +39,7 @@ State the proposed rule in one sentence, including its scope, trigger, and requi
 
 4. Resolve contradictions before writing. Do not silently choose between rules that differ in requirement, scope, priority, or verification. Present the conflicting paths, the relevant text, practical effect, and a recommended resolution to the repository owner. Wait for a decision when the conflict is substantive.
 
-5. Integrate the approved rule using direct, testable language. Link from a concise document to its detailed source instead of copying the same rule. When creating or editing Markdown, follow the [Markdown style policy](../markdown-style-policy.md).
+5. Integrate the approved rule using direct, testable language. Link from a concise document to its detailed source instead of copying the same rule. When creating or editing Markdown, follow the [Markdown style policy](../conventions/markdown-style-policy.md).
 
 ## Verification
 
