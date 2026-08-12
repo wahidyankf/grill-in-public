@@ -18,5 +18,5 @@ health, such as instruction-size and internal Markdown-link validation.
   human-facing usage documentation. Wire it into pre-push only when the check
   must block every push.
 
-See [Badak Mini's README](../apps/badakmini-cli/README.md) for its current command
+See [Badak Mini's README](../../apps/badakmini-cli/README.md) for its current command
 surface and local verification commands.

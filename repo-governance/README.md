@@ -25,12 +25,8 @@ contradiction before accepting lower-level guidance.
 Use focused, descriptive filenames such as:
 
 - `exercise-layout.md` for exercise organization and naming details.
-- `testing-policy.md` for test strategy and quality expectations.
 - `dependency-policy.md` for package review, pinning, and audit procedures.
-- `nx-workspace-policy.md` for the permitted Nx workspace integration.
-- `testing-policy.md` for quick and integration-test responsibilities.
-- `commit-hook-policy.md` for required Git-hook behavior and bypass exceptions.
-- `badakmini-cli-policy.md` for repository-local validation ownership and scope.
+- `development/` for code, testing, Nx, hook, and validation policies.
 - `contribution-workflow.md` for branch, pull request, or release practices.
 - `principles/` for foundational governance rules.
 

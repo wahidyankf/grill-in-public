@@ -54,7 +54,7 @@ command validates every Git-tracked Markdown file and runs during every push.
 
 Before each push, Nx runs cached `test:quick` targets for projects affected
 relative to `origin/main`. See the shared
-[testing policy](../../repo-governance/testing-policy.md) for the target rules.
+[testing policy](../../repo-governance/development/testing-policy.md) for the target rules.
 
 ## Run the Demonstration App
 
@@ -70,5 +70,5 @@ Hello, Wahidyan!
 
 Nx discovers the projects from their `project.json` files. Inspect them with
 `npx nx show projects`. This repository uses only raw Nx command targets; see
-the [Nx workspace policy](../../repo-governance/nx-workspace-policy.md) before
+the [Nx workspace policy](../../repo-governance/development/nx-workspace-policy.md) before
 adding Nx tooling.
