@@ -13,16 +13,30 @@ npm install
 
 ## Build and Test
 
-Build every project, type-check the workspace, and run the app test:
+Build every project, type-check and lint the workspace, then run cached unit
+tests:
 
 ```sh
 npm run build
 npm run typecheck
+npm run lint
 npm test
 ```
 
-The test proves that `apps/dummy-app` consumes the greeting exported by
-`libs/dummy-lib`; it also runs Badak Mini's Go tests.
+`npm test` runs the cacheable `test:quick` targets. They use mocked
+collaborators for units and include Badak Mini's Go tests.
+
+## Run Integration Tests
+
+Run real cross-project checks separately when needed:
+
+```sh
+npm run test:integration
+```
+
+For example, Dummy App's integration test verifies that it consumes the
+greeting exported by `libs/dummy-lib`. Integration tests are not part of the
+pre-push hook.
 
 ## Check Governance Guidance
 
@@ -35,6 +49,10 @@ npm run check:governance
 
 The command uses the [Badak Mini](../../apps/badak-mini/README.md) Go CLI and
 also runs automatically during a push that changes those paths.
+
+Before each push, Nx runs cached `test:quick` targets for projects affected
+relative to `origin/main`. See the shared
+[testing policy](../../repo-governance/testing-policy.md) for the target rules.
 
 ## Run the Demonstration App
 

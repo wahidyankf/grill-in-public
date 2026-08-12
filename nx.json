@@ -6,7 +6,13 @@
     "test": {
       "cache": true
     },
+    "test:quick": {
+      "cache": true
+    },
     "typecheck": {
+      "cache": true
+    },
+    "lint": {
       "cache": true
     }
   }

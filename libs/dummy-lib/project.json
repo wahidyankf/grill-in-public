@@ -8,6 +8,13 @@
       "command": "tsc -p libs/dummy-lib/tsconfig.json",
       "outputs": ["{projectRoot}/dist"]
     },
+    "lint": {
+      "command": "biome lint libs/dummy-lib/src"
+    },
+    "test:quick": {
+      "dependsOn": ["build", "typecheck", "lint"],
+      "command": "node --test libs/dummy-lib/dist/index.test.js"
+    },
     "typecheck": {
       "command": "tsc --noEmit -p libs/dummy-lib/tsconfig.json"
     }

@@ -19,9 +19,17 @@
       "dependsOn": ["build"],
       "command": "node apps/dummy-app/dist/main.js"
     },
-    "test": {
-      "dependsOn": ["build"],
+    "lint": {
+      "command": "biome lint apps/dummy-app/src"
+    },
+    "test:quick": {
+      "dependsOn": ["build", "typecheck", "lint"],
       "command": "node --test apps/dummy-app/dist/index.test.js"
+    },
+    "test:integration": {
+      "cache": false,
+      "dependsOn": ["build"],
+      "command": "node --test apps/dummy-app/dist/index.integration.test.js"
     },
     "typecheck": {
       "dependsOn": [

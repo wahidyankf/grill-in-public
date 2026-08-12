@@ -13,9 +13,12 @@
     "check:governance": "nx run badak-mini:governance",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "lint": "nx run-many -t lint",
     "prepare": "husky",
     "run:dummy": "nx run dummy-app:run",
-    "test": "nx run-many -t test",
+    "test": "npm run test:quick",
+    "test:integration": "nx run-many -t test:integration",
+    "test:quick": "nx run-many -t test:quick",
     "typecheck": "nx run-many -t typecheck"
   },
   "repository": {
@@ -34,6 +37,7 @@
     "brace-expansion": "5.0.9"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.8",
     "@types/node": "24.13.3",
     "@commitlint/cli": "21.2.1",
     "@commitlint/config-conventional": "21.2.0",

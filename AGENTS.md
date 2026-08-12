@@ -35,7 +35,9 @@ that needs them.
 ## Commands
 
 - `npm install` installs exact-pinned dependencies and enables Husky hooks.
-- `npm run build`, `npm run typecheck`, and `npm test` run Nx targets.
+- `npm run build`, `npm run typecheck`, and `npm run lint` run Nx targets.
+- `npm test` runs cached `test:quick` targets; `npm run test:integration` does
+  not run during pre-push.
 - `npm run run:dummy` builds and runs the TypeScript demonstration CLI.
 - `npm run format` and `npm run format:check` apply or verify Prettier.
 - `npm run check:governance` enforces governance-document word limits.
@@ -56,10 +58,11 @@ paths.
 
 ## Testing, Commits, and Pull Requests
 
-Add colocated `*.test.ts` or `*_test.go` coverage for behavior. Use Node's
-built-in test runner for TypeScript unless a change deliberately introduces
-another runner. Cover expected behavior, edge cases, and invalid inputs when
-relevant.
+Each Nx project must define a cacheable `test:quick` target for unit tests,
+type checks, and linting. Mock collaborators in unit tests; put real
+cross-project or external interactions in uncached `test:integration` targets.
+Pre-push runs affected `test:quick` targets against `origin/main`. See the
+[testing policy](repo-governance/testing-policy.md).
 
 Use Conventional Commits, enforced by Husky and commitlint. Split unrelated work
 into thematic commits. Never use `--no-verify` without explicit owner approval;

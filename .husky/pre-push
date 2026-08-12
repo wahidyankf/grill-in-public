@@ -1,14 +1,24 @@
-# Check only when the commits being pushed change governance guidance.
+# Run cached quick quality gates for every project affected since origin/main.
+# Check governance word limits only when the pushed commits change that guidance.
 ZERO_SHA="0000000000000000000000000000000000000000"
 EMPTY_TREE=$(git hash-object -t tree /dev/null)
 SHOULD_CHECK=0
 
-# Git provides: local ref, local SHA, remote ref, and remote SHA for each
-# ref update. Compare each pushed range instead of inspecting the working tree.
+if ! git rev-parse --verify --quiet origin/main >/dev/null; then
+  printf 'ERROR: origin/main is required for affected pre-push checks.\n' >&2
+  printf 'Fetch origin/main, then retry the push.\n' >&2
+  exit 1
+fi
+
+# Git provides: local ref, local SHA, remote ref, and remote SHA for each ref
+# update. Each non-deletion is checked against the mainline baseline, while the
+# governance check remains scoped to its own pushed range.
 while read -r local_ref local_sha remote_ref remote_sha; do
   if [ "$local_sha" = "$ZERO_SHA" ]; then
     continue
   fi
+
+  npm exec nx -- affected -t test:quick --base=origin/main --head="$local_sha"
 
   base_sha="$remote_sha"
   if [ "$remote_sha" = "$ZERO_SHA" ]; then

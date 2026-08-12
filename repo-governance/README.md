@@ -28,6 +28,7 @@ Use focused, descriptive filenames such as:
 - `testing-policy.md` for test strategy and quality expectations.
 - `dependency-policy.md` for package review, pinning, and audit procedures.
 - `nx-workspace-policy.md` for the permitted Nx workspace integration.
+- `testing-policy.md` for quick and integration-test responsibilities.
 - `commit-hook-policy.md` for required Git-hook behavior and bypass exceptions.
 - `contribution-workflow.md` for branch, pull request, or release practices.
 - `principles/` for foundational governance rules.
