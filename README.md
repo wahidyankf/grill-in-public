@@ -3,6 +3,8 @@
 Personal interview-preparation workspace maintained by **Wahidyan Kresna
 Fridayoka**.
 
+[LinkedIn](https://www.linkedin.com/in/wahidyan-kresna-fridayoka/)
+
 This repository is where I practice, review, and document the skills needed for
 software engineering interviews.
 
