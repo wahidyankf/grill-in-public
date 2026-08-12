@@ -8,11 +8,15 @@ export function createApp(createGreetingForName: GreetingCreator): {
   run: () => string;
 } {
   return {
+    // Keep the app's fixed interview-drill input at the composition boundary so
+    // a unit test can replace only the collaboration, not the behavior under test.
     run: () => createGreetingForName("Wahidyan"),
   };
 }
 
 /** Produces the dummy app's output using the workspace library. */
 export function run(): string {
+  // Production composition supplies the real workspace dependency; unit tests
+  // exercise createApp directly with a deterministic test double instead.
   return createApp(createGreeting).run();
 }

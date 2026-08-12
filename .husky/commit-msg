@@ -1,1 +1,3 @@
+# Delegate the staged message file to Commitlint so the hook validates exactly
+# what Git will commit, including messages created by non-interactive commands.
 npx --no -- commitlint --edit "$1"

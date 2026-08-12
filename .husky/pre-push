@@ -2,7 +2,11 @@
 # Validate every local Markdown link, and check governance word limits only when
 # the pushed commits change that guidance.
 ZERO_SHA="0000000000000000000000000000000000000000"
+# Git represents a newly created remote ref with the all-zero object ID. Its
+# empty tree lets git diff evaluate the first push using normal range logic.
 EMPTY_TREE=$(git hash-object -t tree /dev/null)
+# Multiple ref updates can arrive in one hook invocation; defer this shared
+# check until every update has established whether governance changed.
 SHOULD_CHECK=0
 
 if ! git rev-parse --verify --quiet origin/main >/dev/null; then
@@ -16,13 +20,17 @@ fi
 # governance check remains scoped to its own pushed range.
 while read -r local_ref local_sha remote_ref remote_sha; do
   if [ "$local_sha" = "$ZERO_SHA" ]; then
+    # A deletion has no local commit to inspect or validate.
     continue
   fi
 
+  # Always compare with main, rather than the remote ref, so Nx selects every
+  # project affected by the branch's accumulated change set.
   npm exec nx -- affected -t test:quick --base=origin/main --head="$local_sha"
 
   base_sha="$remote_sha"
   if [ "$remote_sha" = "$ZERO_SHA" ]; then
+    # A first push has no remote commit, so diff against the empty tree.
     base_sha="$EMPTY_TREE"
   fi
 
@@ -32,7 +40,10 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 done
 
 if [ "$SHOULD_CHECK" -eq 1 ]; then
+  # Governance limits matter only when their protected documents change.
   npm exec nx -- run badakmini-cli:governance
 fi
 
+# Link targets elsewhere can break when any file is moved or deleted, so this
+# whole-repository check deliberately runs for every push.
 npm exec nx -- run badakmini-cli:markdown-links

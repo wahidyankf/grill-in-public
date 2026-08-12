@@ -1,1 +1,3 @@
+# Format only staged supported files so a commit cannot accidentally include
+# unrelated working-tree formatting changes.
 npx lint-staged

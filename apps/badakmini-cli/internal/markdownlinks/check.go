@@ -15,6 +15,8 @@ import (
 
 const markdownExtension = ".md"
 
+// Reference definitions accept CommonMark's optional indentation and either an
+// angle-bracketed destination or an unbracketed non-whitespace destination.
 var referenceDefinitionPattern = regexp.MustCompile(`^ {0,3}\[([^\]]+)\]:\s*(?:<([^>]+)>|(\S+))`)
 
 // Finding describes an invalid repository-local link.
@@ -35,6 +37,8 @@ type link struct {
 // while still detecting links left dangling by a committed file deletion.
 // External URLs are deliberately ignored.
 func Check(root string) ([]Finding, error) {
+	// Git defines the repository's document set. That avoids traversing ignored
+	// installs and build artifacts while still seeing staged deletions.
 	trackedFiles, err := findTrackedFiles(root)
 	if err != nil {
 		return nil, err
@@ -56,6 +60,8 @@ func Check(root string) ([]Finding, error) {
 		}
 	}
 
+	// Stable ordering makes hook output reproducible and lets a reader repair
+	// findings from top to bottom without nondeterministic map iteration.
 	sort.Slice(findings, func(left, right int) bool {
 		if findings[left].Path != findings[right].Path {
 			return findings[left].Path < findings[right].Path
@@ -70,6 +76,8 @@ func Check(root string) ([]Finding, error) {
 }
 
 func findTrackedFiles(root string) (map[string]struct{}, error) {
+	// NUL delimiters preserve unusual but valid filenames that contain spaces or
+	// newlines; splitting ordinary line output would corrupt those paths.
 	output, err := exec.Command("git", "-C", root, "ls-files", "-z").Output()
 	if err != nil {
 		return nil, fmt.Errorf("list tracked repository files: %w", err)
@@ -87,6 +95,8 @@ func findTrackedFiles(root string) (map[string]struct{}, error) {
 func filterMarkdownFiles(trackedFiles map[string]struct{}) []string {
 	files := make([]string, 0)
 	for path := range trackedFiles {
+		// Extension comparison is case-insensitive so the validator's scope is not
+		// accidentally changed by a filename's casing.
 		if strings.EqualFold(filepath.Ext(path), markdownExtension) {
 			files = append(files, path)
 		}
@@ -99,6 +109,8 @@ func extractLinks(contents string) []link {
 	lines := strings.Split(contents, "\n")
 	references := make(map[string]string)
 	insideFence := false
+	// Resolve definitions first because CommonMark permits a reference definition
+	// to appear after the link that uses it.
 	for _, line := range lines {
 		if isFence(line) {
 			insideFence = !insideFence
@@ -120,6 +132,8 @@ func extractLinks(contents string) []link {
 
 	links := make([]link, 0)
 	insideFence = false
+	// A second pass records actual links with their source line after the complete
+	// definition table is available.
 	for index, line := range lines {
 		if isFence(line) {
 			insideFence = !insideFence
@@ -134,6 +148,7 @@ func extractLinks(contents string) []link {
 }
 
 func isFence(line string) bool {
+	// Links in examples should remain literal teaching text, not validation input.
 	trimmed := strings.TrimLeft(line, " ")
 	return strings.HasPrefix(trimmed, "```") || strings.HasPrefix(trimmed, "~~~")
 }
@@ -142,6 +157,8 @@ func extractLineLinks(line string, lineNumber int, references map[string]string)
 	links := make([]link, 0)
 	insideCode := false
 	for position := 0; position < len(line); position++ {
+		// Inline code can legitimately contain Markdown-looking characters. Track
+		// the delimiter state instead of trying to remove code before parsing.
 		if line[position] == '`' && !isEscaped(line, position) {
 			insideCode = !insideCode
 			continue
@@ -165,6 +182,8 @@ func extractLineLinks(line string, lineNumber int, references map[string]string)
 			continue
 		}
 
+		// A non-inline link can be a full, collapsed, or shortcut reference. The
+		// normalized definition map determines whether it is a link at all.
 		reference := ""
 		if next < len(line) && line[next] == '[' {
 			referenceEnd, ok := matchingBracket(line, next)
@@ -187,6 +206,8 @@ func extractLineLinks(line string, lineNumber int, references map[string]string)
 }
 
 func matchingBracket(value string, start int) (int, bool) {
+	// Labels may contain nested brackets. A depth counter finds the matching
+	// closer without mistaking an escaped bracket for syntax.
 	depth := 0
 	for index := start; index < len(value); index++ {
 		if isEscaped(value, index) {
@@ -214,6 +235,8 @@ func inlineDestination(value string, openingParenthesis int) (string, int, bool)
 		return "", 0, false
 	}
 	if value[position] == '<' {
+		// Angle-bracket destinations may contain spaces; their closing angle bracket
+		// is the delimiter rather than the first whitespace character.
 		end := strings.IndexByte(value[position+1:], '>')
 		if end < 0 {
 			return "", 0, false
@@ -242,6 +265,8 @@ func inlineDestination(value string, openingParenthesis int) (string, int, bool)
 			depth--
 		case ' ', '\t':
 			if depth == 0 {
+				// A title follows an unbracketed destination after whitespace. Return
+				// only the destination but skip through the closing parenthesis.
 				destinationEnd := position
 				for position < len(value) && value[position] != ')' {
 					position++
@@ -256,6 +281,8 @@ func inlineDestination(value string, openingParenthesis int) (string, int, bool)
 }
 
 func checkLink(root string, sourcePath string, candidate link) *Finding {
+	// Network validation would make pre-push slow and nondeterministic; this
+	// checker owns only repository-local references.
 	if isExternal(candidate.destination) {
 		return nil
 	}
@@ -264,6 +291,8 @@ func checkLink(root string, sourcePath string, candidate link) *Finding {
 	if err != nil {
 		return finding(sourcePath, candidate, "has an invalid URL")
 	}
+	// Parse URL structure before mapping to disk so #fragment and percent escapes
+	// cannot be confused with literal filename characters.
 	path, err := url.PathUnescape(parsed.EscapedPath())
 	if err != nil {
 		return finding(sourcePath, candidate, "has an invalid escaped path")
@@ -273,6 +302,8 @@ func checkLink(root string, sourcePath string, candidate link) *Finding {
 		return finding(sourcePath, candidate, "has an invalid escaped fragment")
 	}
 
+	// Start at the source document: Markdown relative links are not relative to
+	// the repository root. A leading slash is intentionally repository-relative.
 	targetPath := filepath.Join(root, filepath.FromSlash(sourcePath))
 	if path == "" {
 		targetPath = filepath.Join(root, filepath.FromSlash(sourcePath))
@@ -282,6 +313,8 @@ func checkLink(root string, sourcePath string, candidate link) *Finding {
 		targetPath = filepath.Join(filepath.Dir(targetPath), filepath.FromSlash(path))
 	}
 	targetPath = filepath.Clean(targetPath)
+	// Reject lexical traversal before touching the filesystem; this also produces
+	// a clearer diagnostic than a later failed stat.
 	if !isWithin(root, targetPath) {
 		return finding(sourcePath, candidate, "points outside this repository")
 	}
@@ -293,6 +326,8 @@ func checkLink(root string, sourcePath string, candidate link) *Finding {
 		}
 		return finding(sourcePath, candidate, "cannot inspect its target")
 	}
+	// Lexical containment is not enough: a symlink inside the repository could
+	// resolve outside it, so validate both the root and target after resolution.
 	resolvedRoot, err := filepath.EvalSymlinks(root)
 	if err != nil {
 		return finding(sourcePath, candidate, "cannot resolve the repository root")
@@ -305,9 +340,13 @@ func checkLink(root string, sourcePath string, candidate link) *Finding {
 		return finding(sourcePath, candidate, "resolves outside this repository")
 	}
 	if fragment == "" {
+		// Existing local files are sufficient when the link does not promise a
+		// particular document location.
 		return nil
 	}
 	if info.IsDir() {
+		// Repository directory links conventionally render README.md; use that same
+		// target when checking a fragment supplied on a directory link.
 		targetPath = filepath.Join(targetPath, "README.md")
 		info, err = os.Stat(targetPath)
 		if err != nil {
@@ -335,11 +374,15 @@ func checkLink(root string, sourcePath string, candidate link) *Finding {
 }
 
 func isExternal(destination string) bool {
+	// Schemed and protocol-relative destinations are owned by external services,
+	// including mailto links; only unqualified paths are repository-local.
 	parsed, err := url.Parse(destination)
 	return err == nil && (parsed.Scheme != "" || parsed.Host != "" || strings.HasPrefix(destination, "//"))
 }
 
 func isWithin(root string, target string) bool {
+	// filepath.Rel is platform-aware, unlike string-prefix checks that would
+	// incorrectly accept siblings such as /repo-copy when root is /repo.
 	relativePath, err := filepath.Rel(root, target)
 	return err == nil && relativePath != ".." && !strings.HasPrefix(relativePath, ".."+string(filepath.Separator))
 }
@@ -357,6 +400,8 @@ func hasAnchor(contents string, fragment string) bool {
 		if insideFence {
 			continue
 		}
+		// GitHub accepts both # ATX and underlined Setext headings, so mirror both
+		// forms when constructing the target's anchor set.
 		heading, isHeading := atxHeading(line)
 		if !isHeading && index+1 < len(lines) && isSetextUnderline(lines[index+1]) {
 			heading = strings.TrimSpace(line)
@@ -369,6 +414,8 @@ func hasAnchor(contents string, fragment string) bool {
 		if anchor == "" {
 			continue
 		}
+		// GitHub disambiguates repeated headings with a zero-based suffix. Count the
+		// base anchor before storing its first or subsequent generated form.
 		count := counts[anchor]
 		counts[anchor]++
 		if count > 0 {
@@ -381,6 +428,8 @@ func hasAnchor(contents string, fragment string) bool {
 }
 
 func atxHeading(line string) (string, bool) {
+	// Markdown permits up to six leading # markers and requires whitespace after
+	// them, which prevents ordinary text such as #hashtag from becoming a heading.
 	trimmed := strings.TrimLeft(line, " ")
 	headingLevel := 0
 	for headingLevel < len(trimmed) && trimmed[headingLevel] == '#' {
@@ -393,6 +442,8 @@ func atxHeading(line string) (string, bool) {
 }
 
 func isSetextUnderline(line string) bool {
+	// A Setext underline contains only one repeated marker: '=' for level one or
+	// '-' for level two. Other punctuation remains ordinary paragraph text.
 	trimmed := strings.TrimSpace(line)
 	if len(trimmed) == 0 {
 		return false
@@ -410,6 +461,8 @@ func isSetextUnderline(line string) bool {
 }
 
 func githubAnchor(value string) string {
+	// This intentionally models the subset of GitHub's slug behavior relevant to
+	// repository headings: lowercase letters/numbers, preserved -/_, and spaces.
 	var builder strings.Builder
 	lastWasDash := false
 	for _, character := range strings.ToLower(strings.TrimSpace(value)) {
@@ -428,10 +481,14 @@ func githubAnchor(value string) string {
 }
 
 func normalizeReference(value string) string {
+	// Reference labels are case-insensitive and collapse internal whitespace in
+	// CommonMark, so definitions and uses compare on the same representation.
 	return strings.Join(strings.Fields(strings.ToLower(value)), " ")
 }
 
 func isEscaped(value string, index int) bool {
+	// An odd run of backslashes escapes the next character; an even run represents
+	// literal backslashes and leaves that character as Markdown syntax.
 	backslashes := 0
 	for index > 0 && value[index-1] == '\\' {
 		backslashes++

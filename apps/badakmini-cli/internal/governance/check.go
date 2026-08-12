@@ -26,6 +26,8 @@ type Finding struct {
 // root. It returns every over-limit document so contributors can fix all of
 // them in one pass.
 func Check(root string) ([]Finding, error) {
+	// Fail fast for the two repository structures this policy promises to govern;
+	// a missing structure is a setup error, not a zero-word success.
 	if err := requireFile(filepath.Join(root, agentsFile), agentsFile); err != nil {
 		return nil, err
 	}
@@ -39,6 +41,8 @@ func Check(root string) ([]Finding, error) {
 	}
 
 	governancePath := filepath.Join(root, governanceDirectory)
+	// Walk recursively because progressive disclosure permits nested, focused
+	// policies. Restricting the scan to Markdown leaves code and data untouched.
 	err = filepath.WalkDir(governancePath, func(path string, entry os.DirEntry, walkErr error) error {
 		if walkErr != nil {
 			return walkErr
@@ -75,6 +79,7 @@ func requireFile(path string, displayPath string) error {
 		return fmt.Errorf("inspect %s: %w", displayPath, err)
 	}
 	if !info.Mode().IsRegular() {
+		// A directory with the expected name must not silently pass as a document.
 		return fmt.Errorf("required file is not regular: %s", displayPath)
 	}
 	return nil
@@ -89,6 +94,7 @@ func requireDirectory(path string, displayPath string) error {
 		return fmt.Errorf("inspect %s: %w", displayPath, err)
 	}
 	if !info.IsDir() {
+		// Likewise, a file cannot serve as the recursive governance namespace.
 		return fmt.Errorf("required path is not a directory: %s", displayPath)
 	}
 	return nil
@@ -100,6 +106,8 @@ func checkFile(root string, relativePath string) ([]Finding, error) {
 		return nil, fmt.Errorf("read %s: %w", relativePath, err)
 	}
 
+	// Fields mirrors the previous shell check's whitespace-based definition of a
+	// word and treats Markdown syntax as part of the concise-document budget.
 	wordCount := len(strings.Fields(string(contents)))
 	if wordCount <= MaxWords {
 		return nil, nil

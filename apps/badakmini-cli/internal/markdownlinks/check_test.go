@@ -9,6 +9,8 @@ import (
 
 func TestCheckAcceptsValidLocalLinksAndIgnoresExternalLinks(t *testing.T) {
 	root := newRepository(t)
+	// Cover the supported local-link forms together and prove that network links
+	// and fenced examples stay outside this deterministic checker.
 	writeMarkdown(t, root, "README.md", `
 [Guide](docs/guide.md)
 [Guide section](docs/guide.md#getting-started)
@@ -47,6 +49,8 @@ func TestCheckReportsMissingTargetsAndAnchors(t *testing.T) {
 `)
 	writeMarkdown(t, root, "docs/guide.md", "# Present\n")
 	writeMarkdown(t, externalRoot, "external.md", "# External\n")
+	// The symlink turns an apparently local path into an escape attempt, which
+	// requires a distinct check after normal lexical path validation.
 	if err := os.Symlink(filepath.Join(externalRoot, "external.md"), filepath.Join(root, "docs", "external.md")); err != nil {
 		t.Fatalf("create external symlink: %v", err)
 	}
@@ -81,6 +85,7 @@ func TestCheckSupportsReferencesPercentEncodingAndDuplicateAnchors(t *testing.T)
 
 [guide]: docs/guide%20file.md
 `)
+	// The final fragment uses GitHub's -1 suffix for the second repeated heading.
 	writeMarkdown(t, root, "docs/README.md", "# First Heading\n# Second Heading\n# Second Heading\n")
 	writeMarkdown(t, root, "docs/guide file.md", "# Guide\n")
 	stageAll(t, root)
@@ -100,6 +105,8 @@ func TestCheckIgnoresRepositoryMetadataAndBuildOutputs(t *testing.T) {
 	writeMarkdown(t, root, ".git/ignored.md", "[Broken](missing.md)\n")
 	writeMarkdown(t, root, "node_modules/package/ignored.md", "[Broken](missing.md)\n")
 	writeMarkdown(t, root, "apps/example/dist/ignored.md", "[Broken](missing.md)\n")
+	// Only README.md enters the Git index; the three broken ignored files prove
+	// the source scan follows Git rather than recursively walking the filesystem.
 	stage(t, root, "README.md")
 
 	findings, err := Check(root)
@@ -131,6 +138,8 @@ func TestCheckReportsTargetsDeletedFromTheGitTree(t *testing.T) {
 	writeMarkdown(t, root, "README.md", "[Guide](docs/guide.md)\n")
 	writeMarkdown(t, root, "docs/guide.md", "# Guide\n")
 	stageAll(t, root)
+	// Stage a deletion while keeping the source link. This models the regression
+	// that the pre-push check is meant to catch after a document move or removal.
 	command := exec.Command("git", "-C", root, "rm", "--quiet", "--force", "docs/guide.md")
 	if output, err := command.CombinedOutput(); err != nil {
 		t.Fatalf("delete staged target: %s: %v", output, err)
@@ -148,6 +157,8 @@ func TestCheckReportsTargetsDeletedFromTheGitTree(t *testing.T) {
 func newRepository(t *testing.T) string {
 	t.Helper()
 	root := t.TempDir()
+	// Markdown source selection calls git ls-files, so each fixture must be a
+	// genuine repository rather than only a temporary directory.
 	command := exec.Command("git", "init", "--quiet", root)
 	if output, err := command.CombinedOutput(); err != nil {
 		t.Fatalf("initialize test repository: %s: %v", output, err)
@@ -162,6 +173,8 @@ func stageAll(t *testing.T, root string) {
 
 func stage(t *testing.T, root string, paths ...string) {
 	t.Helper()
+	// The -- separator makes a test filename beginning with '-' a path, not a
+	// Git option, mirroring the production command's filename safety.
 	arguments := append([]string{"-C", root, "add", "--"}, paths...)
 	command := exec.Command("git", arguments...)
 	if output, err := command.CombinedOutput(); err != nil {

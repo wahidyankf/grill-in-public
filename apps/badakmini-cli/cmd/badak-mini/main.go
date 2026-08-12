@@ -21,6 +21,8 @@ Validate governance Markdown word limits or repository-local Markdown links.
 `
 
 func main() {
+	// Keep run independent from process globals so command parsing and exit
+	// behavior can be tested without spawning a subprocess.
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr, findRepositoryRoot))
 }
 
@@ -30,12 +32,15 @@ func run(
 	stderr io.Writer,
 	rootFinder func() (string, error),
 ) int {
+	// Help is successful even outside a repository because it does not need to
+	// inspect files; validation commands must establish the repository boundary.
 	if len(args) == 1 && (args[0] == "--help" || args[0] == "-h") {
 		fmt.Fprint(stdout, usage)
 		return 0
 	}
 
 	if !matchesCommand(args) {
+		// Exit status 2 distinguishes an invalid invocation from a failed check.
 		fmt.Fprint(stderr, usage)
 		return 2
 	}
@@ -46,6 +51,8 @@ func run(
 		return 1
 	}
 
+	// Command matching stays explicit while the CLI has two narrowly scoped
+	// workflows. Add a dedicated branch when a future command needs new output.
 	if matchesInstructionSizeCommand(args) {
 		return validateInstructionSize(root, stdout, stderr)
 	}
@@ -63,6 +70,8 @@ func validateInstructionSize(root string, stdout io.Writer, stderr io.Writer) in
 		return 0
 	}
 	for _, finding := range findings {
+		// Report every over-limit document in one run so a contributor can repair
+		// the complete guidance set before retrying the hook.
 		fmt.Fprintf(stderr, "ERROR: %s contains %d words; the limit is %d.\n", finding.Path, finding.WordCount, governance.MaxWords)
 	}
 	fmt.Fprintln(stderr, "Use progressive disclosure: split detailed guidance into focused files.")
@@ -80,6 +89,8 @@ func validateMarkdownLinks(root string, stdout io.Writer, stderr io.Writer) int 
 		return 0
 	}
 	for _, finding := range findings {
+		// Source path and one-based line number make a hook failure actionable in
+		// a terminal or CI log without requiring a separate report file.
 		fmt.Fprintf(stderr, "ERROR: %s:%d: %q %s.\n", finding.Path, finding.Line, finding.Destination, finding.Problem)
 	}
 	return 1
@@ -95,6 +106,8 @@ func matchesCommand(args []string) bool {
 }
 
 func findRepositoryRoot() (string, error) {
+	// Git, rather than the current directory, defines the validation boundary:
+	// callers may run Badak Mini from any nested path in this repository.
 	output, err := exec.Command("git", "rev-parse", "--show-toplevel").Output()
 	if err != nil {
 		return "", errors.New("run this command from inside a Git repository")

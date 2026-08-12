@@ -11,6 +11,7 @@ func TestRunPrintsHelp(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
+	// A failing finder proves help returns before it tries to locate Git.
 	exitCode := run([]string{"--help"}, &stdout, &stderr, func() (string, error) {
 		return "", errors.New("root lookup should not run")
 	})
@@ -30,6 +31,7 @@ func TestRunRejectsUnsupportedCommands(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
+	// The same injected failure keeps this test focused on argument validation.
 	exitCode := run([]string{"check-governance"}, &stdout, &stderr, func() (string, error) {
 		return "", errors.New("root lookup should not run")
 	})

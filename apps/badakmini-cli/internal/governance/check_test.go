@@ -8,6 +8,8 @@ import (
 )
 
 func TestCheckAcceptsDocumentsAtTheWordLimit(t *testing.T) {
+	// The boundary is inclusive: a document is only overlong once it exceeds the
+	// progressive-disclosure limit, not when it reaches it.
 	root := newRepositoryFixture(t)
 	writeFile(t, filepath.Join(root, agentsFile), words(MaxWords))
 	writeFile(t, filepath.Join(root, governanceDirectory, "policy.md"), words(MaxWords))
@@ -25,6 +27,7 @@ func TestCheckReportsDocumentsOverTheWordLimit(t *testing.T) {
 	root := newRepositoryFixture(t)
 	writeFile(t, filepath.Join(root, agentsFile), words(MaxWords+1))
 	writeFile(t, filepath.Join(root, governanceDirectory, "nested", "policy.md"), words(MaxWords+1))
+	// Non-Markdown material may be long without being repository guidance.
 	writeFile(t, filepath.Join(root, governanceDirectory, "nested", "ignored.txt"), words(MaxWords+1))
 
 	findings, err := Check(root)
@@ -63,6 +66,8 @@ func TestCheckRequiresGovernanceDirectory(t *testing.T) {
 
 func newRepositoryFixture(t *testing.T) string {
 	t.Helper()
+	// Fixtures create only the minimum valid repository shape so individual
+	// tests can remove or alter one prerequisite deliberately.
 	root := t.TempDir()
 	if err := os.Mkdir(filepath.Join(root, governanceDirectory), 0o755); err != nil {
 		t.Fatalf("create governance directory: %v", err)
