@@ -1,9 +1,10 @@
 # Documentation
 
 This directory contains human-facing documentation for SWE Grilling: interview
-preparation material, exercise guidance, and project concepts. Repository rules,
-agent instructions, and repeatable governance procedures belong in
-[`repo-governance/`](../repo-governance/), not here.
+preparation material, exercise guidance, and project concepts. AI-agent
+instructions belong in [`AGENTS.md`](../AGENTS.md) and related instruction
+files. Shared rules and governance procedures apply to people and agents, and
+belong in [`repo-governance/`](../repo-governance/).
 
 ## Diátaxis
 

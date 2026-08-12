@@ -1,16 +1,17 @@
 # Repository Governance
 
-This directory contains detailed repository guidance that supplements the
-root-level [`AGENTS.md`](../AGENTS.md). It supports progressive disclosure:
-agents and contributors should start with `AGENTS.md`, then read only the
-governance document relevant to the work at hand.
+This directory contains shared repository governance for human contributors and
+AI agents. It supplements human-facing [`README.md`](../README.md) and
+[`docs/`](../docs/), plus AI-agent guidance such as
+[`AGENTS.md`](../AGENTS.md). Both audiences read only the governance document
+relevant to their work.
 
 ## How to Use This Directory
 
-- Keep `AGENTS.md` as the concise, always-read guide for repository-wide rules.
-- Put longer explanations, workflows, and specialized policies here.
-- Link to a governance document from `AGENTS.md` when it becomes required for a
-  recurring task or a specific area of the repository.
+- Keep `AGENTS.md` concise and link it to shared governance that agents need.
+- Put detailed shared rules, workflows, and specialized policies here.
+- Link to a governance document from the appropriate human or agent entry point
+  when it becomes required for a recurring task or a specific area.
 - Read the smallest relevant set of documents; do not load unrelated guidance.
 
 ## Document Conventions
@@ -29,5 +30,5 @@ rules there and move only extended context here.
 ## Maintaining the Guidance
 
 Update the relevant document when a practice changes. If a detailed rule becomes
-universal or essential for every task, summarize it in `AGENTS.md` and retain
-the full rationale here.
+universal or essential for every agent task, summarize it in `AGENTS.md` and
+retain the full shared rationale here.
