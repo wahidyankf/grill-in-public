@@ -1,0 +1,6 @@
+# Progressive Disclosure
+
+Keep always-read guidance concise and place detailed, conditional, or
+specialized information in focused documents. Link to the smallest relevant
+document rather than duplicating content or loading unrelated guidance. Split a
+document when its length or scope obscures the rules that matter to the task.

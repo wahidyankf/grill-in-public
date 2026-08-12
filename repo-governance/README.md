@@ -6,6 +6,12 @@ AI agents. It supplements human-facing [`README.md`](../README.md) and
 [`AGENTS.md`](../AGENTS.md). Both audiences read only the governance document
 relevant to their work.
 
+## Foundations
+
+[`principles/`](principles/README.md) contains the foundational rules for this
+directory. All policies and workflows here must follow them; resolve any
+contradiction before accepting lower-level guidance.
+
 ## How to Use This Directory
 
 - Keep `AGENTS.md` concise and link it to shared governance that agents need.
@@ -23,6 +29,7 @@ Use focused, descriptive filenames such as:
 - `dependency-policy.md` for package review, pinning, and audit procedures.
 - `commit-hook-policy.md` for required Git-hook behavior and bypass exceptions.
 - `contribution-workflow.md` for branch, pull request, or release practices.
+- `principles/` for foundational governance rules.
 
 Each document should state its scope, give actionable rules, and link to any
 source-of-truth files or commands. Avoid duplicating `AGENTS.md`; keep shared

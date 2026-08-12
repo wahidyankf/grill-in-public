@@ -20,8 +20,9 @@ exists.
 
 ## Steps
 
-1. Inventory applicable guidance before editing. Start with `AGENTS.md` and
-   `repo-governance/`; also search for agent and skill files, for example:
+1. Inventory applicable guidance before editing. Start with `AGENTS.md`,
+   `repo-governance/`, and its `principles/`; also search for agent and skill
+   files, for example:
 
    ```sh
    rg --files -g 'AGENTS.md' -g 'SKILL.md' -g 'CLAUDE.md' -g 'GEMINI.md' \
