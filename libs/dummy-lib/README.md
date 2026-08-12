@@ -1,8 +1,6 @@
 # Dummy Library
 
-`@swe-grilling/dummy-lib` is a small TypeScript library that exports
-`createGreeting(name)`. It provides the reusable dependency consumed by
-[Dummy App](../../apps/dummy-app/README.md).
+`@swe-grilling/dummy-lib` is a small TypeScript library that exports `createGreeting(name)`. It provides the reusable dependency consumed by [Dummy App](../../apps/dummy-app/README.md).
 
 ## Use
 
@@ -22,5 +20,4 @@ From the repository root, run the cacheable unit, type-check, and lint suite:
 npx nx run dummy-lib:test:quick
 ```
 
-See [Run the Nx Workspace](../../docs/how-to/run-nx-workspace.md) for shared
-setup and workspace commands.
+See [Run the Nx Workspace](../../docs/how-to/run-nx-workspace.md) for shared setup and workspace commands.

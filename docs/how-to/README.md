@@ -5,12 +5,9 @@ when_to_use: "Use when documenting or following direct steps to achieve a specif
 
 # How-to Guides
 
-How-to guides are goal-oriented directions for readers who already understand
-the basics. They help someone complete a specific task reliably.
+How-to guides are goal-oriented directions for readers who already understand the basics. They help someone complete a specific task reliably.
 
-Write a how-to guide when the reader asks, “How do I do this?” Use a descriptive
-task title, prerequisites, direct steps, verification, and recovery guidance
-when relevant. Keep foundational learning in [`../tutorials/`](../tutorials/).
+Write a how-to guide when the reader asks, “How do I do this?” Use a descriptive task title, prerequisites, direct steps, verification, and recovery guidance when relevant. Keep foundational learning in [`../tutorials/`](../tutorials/).
 
 ## Available Guides
 

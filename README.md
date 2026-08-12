@@ -1,26 +1,18 @@
 # SWE Grilling
 
-Personal interview-preparation workspace maintained by **Wahidyan Kresna
-Fridayoka**.
+Personal interview-preparation workspace maintained by **Wahidyan Kresna Fridayoka**.
 
 [LinkedIn](https://www.linkedin.com/in/wahidyan-kresna-fridayoka/)
 
-This repository is where I practice, review, and document the skills needed for
-software engineering interviews.
+This repository is where I practice, review, and document the skills needed for software engineering interviews.
 
-This README and [`docs/`](docs/README.md) are for people. AI agents use
-[`AGENTS.md`](AGENTS.md) and related instruction files; shared repository
-governance in [`repo-governance/`](repo-governance/README.md) applies to both.
+This README and [`docs/`](docs/README.md) are for people. AI agents use [`AGENTS.md`](AGENTS.md) and related instruction files; shared repository governance in [`repo-governance/`](repo-governance/README.md) applies to both.
 
 ## Hands-On by Design
 
-Unlike my `ose-*` repositories, this repository is intentionally not fully
-automation-first. I will complete parts of the work by hand—especially coding
-exercises and drills—to build muscle memory, reinforce the fundamentals, and
-practice recalling and communicating solutions under interview conditions.
+Unlike my `ose-*` repositories, this repository is intentionally not fully automation-first. I will complete parts of the work by hand—especially coding exercises and drills—to build muscle memory, reinforce the fundamentals, and practice recalling and communicating solutions under interview conditions.
 
-Tools can support review and feedback, but they should not replace the hands-on
-practice at the heart of this repository.
+Tools can support review and feedback, but they should not replace the hands-on practice at the heart of this repository.
 
 ## Focus Areas
 
@@ -41,8 +33,7 @@ practice at the heart of this repository.
 
 ## Goal
 
-Build strong fundamentals, communicate solutions clearly, and become more
-confident and consistent in software engineering interviews.
+Build strong fundamentals, communicate solutions clearly, and become more confident and consistent in software engineering interviews.
 
 ## Nx Workspace
 
@@ -51,21 +42,10 @@ The repository uses Nx as a raw task runner for its npm workspaces:
 - `apps/` holds runnable applications.
 - `libs/` holds reusable packages consumed by applications.
 
-The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes
-[`@swe-grilling/dummy-lib`](libs/dummy-lib/README.md). Run it with
-`npm run run:dummy`; build all projects with `npm run build`; and run quick
-checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md)
-for the full workflow. This workspace deliberately does not use framework or
-language-specific Nx plugins. TypeScript projects use project-local ESLint
-commentary checks alongside Biome; passing lint complements, but does not
-replace human review of explanatory comments.
+The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes [`@swe-grilling/dummy-lib`](libs/dummy-lib/README.md). Run it with `npm run run:dummy`; build all projects with `npm run build`; and run quick checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md) for the full workflow. This workspace deliberately does not use framework or language-specific Nx plugins. TypeScript projects use project-local ESLint commentary checks alongside Biome; passing lint complements, but does not replace human review of explanatory comments.
 
-[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI that checks
-governance-document word limits and repository-local Markdown links. Run
-`npm run check:governance` or `npm run check:markdown-links`.
+[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI that checks governance-document word limits and repository-local Markdown links. Run `npm run check:governance` or `npm run check:markdown-links`.
 
 ## Documentation
 
-Human-facing project documentation is organized with the
-[Diátaxis framework](docs/README.md). Repository and agent rules are maintained
-separately in [`repo-governance/`](repo-governance/README.md).
+Human-facing project documentation is organized with the [Diátaxis framework](docs/README.md). Repository and agent rules are maintained separately in [`repo-governance/`](repo-governance/README.md).

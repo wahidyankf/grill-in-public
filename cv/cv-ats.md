@@ -6,12 +6,7 @@ Jakarta, Indonesia · [wahidyankf@gmail.com](mailto:wahidyankf@gmail.com) · [Li
 
 ## Executive Profile
 
-Engineering leader with nearly nine years of experience delivering and modernising mission-critical digital
-products, including more than three years in Indonesia's regulated digital banking, Islamic
-(Sharia-compliant) financial services, and peer-to-peer (P2P) lending sectors. Leads
-cross-functional teams across backend, frontend, mobile, QA, platform, data, security, and IT
-governance. Combines technical strategy, regulatory delivery, cost discipline, and people
-leadership to improve customer outcomes and operating performance.
+Engineering leader with nearly nine years of experience delivering and modernising mission-critical digital products, including more than three years in Indonesia's regulated digital banking, Islamic (Sharia-compliant) financial services, and peer-to-peer (P2P) lending sectors. Leads cross-functional teams across backend, frontend, mobile, QA, platform, data, security, and IT governance. Combines technical strategy, regulatory delivery, cost discipline, and people leadership to improve customer outcomes and operating performance.
 
 ## Selected Impact
 
@@ -85,6 +80,4 @@ Institut Teknologi Bandung | July 2005 – July 2011 | GPA: 3.0
 
 ## Core Competencies
 
-Engineering leadership · Digital banking · Core-banking migration · Financial-product engineering ·
-Regulatory IT governance · ISO 27001 · Information security · Systems design · Developer productivity ·
-Quality engineering · CI/CD · Platform modernisation · React/React Native
+Engineering leadership · Digital banking · Core-banking migration · Financial-product engineering · Regulatory IT governance · ISO 27001 · Information security · Systems design · Developer productivity · Quality engineering · CI/CD · Platform modernisation · React/React Native

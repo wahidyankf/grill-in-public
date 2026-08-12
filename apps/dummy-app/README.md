@@ -1,9 +1,6 @@
 # Dummy App
 
-Dummy App is a small TypeScript command-line application used to practice the
-raw-Nx workspace setup. It consumes
-[`@swe-grilling/dummy-lib`](../../libs/dummy-lib/README.md) and prints a
-deterministic greeting.
+Dummy App is a small TypeScript command-line application used to practice the raw-Nx workspace setup. It consumes [`@swe-grilling/dummy-lib`](../../libs/dummy-lib/README.md) and prints a deterministic greeting.
 
 ## Run
 
@@ -33,5 +30,4 @@ The separate integration suite verifies the real app-to-library boundary:
 npx nx run dummy-app:test:integration
 ```
 
-See [Run the Nx Workspace](../../docs/how-to/run-nx-workspace.md) for shared
-setup and workspace commands.
+See [Run the Nx Workspace](../../docs/how-to/run-nx-workspace.md) for shared setup and workspace commands.

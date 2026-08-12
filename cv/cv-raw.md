@@ -1,8 +1,6 @@
 # CV Raw Evidence and Source Notes
 
-This file is the evidence base for [`cv-linkedin.md`](./cv-linkedin.md) and
-[`cv-ats.md`](./cv-ats.md). Preserve source wording, dates, metrics, and context here before
-turning them into copy-ready CV or LinkedIn content.
+This file is the evidence base for [`cv-linkedin.md`](./cv-linkedin.md) and [`cv-ats.md`](./cv-ats.md). Preserve source wording, dates, metrics, and context here before turning them into copy-ready CV or LinkedIn content.
 
 ## Source Files
 
@@ -11,17 +9,17 @@ turning them into copy-ready CV or LinkedIn content.
 
 ## Career Timeline
 
-| Employer                                   | Role                     | Dates                         |
-| ------------------------------------------ | ------------------------ | ----------------------------- |
-| Hijra Bank                                 | Head of Engineering      | March 2025 – July 2026        |
-| Hijra Bank                                 | Engineering Manager      | July 2024 – February 2025     |
-| Alami P2P Lending and Hijra Bank Financing | Engineering Manager      | December 2022 – July 2024     |
-| GudangAda                                  | Engineering Manager      | July 2022 – December 2022     |
-| Ruangguru                                  | Engineering Manager      | November 2021 – July 2022     |
-| Ruangguru                                  | Technical Lead           | August 2021 – October 2021    |
-| Ruangguru                                  | Senior Frontend Engineer | September 2019 – October 2021 |
-| Ruangguru                                  | Frontend Engineer        | January 2018 – August 2019    |
-| Ruangguru                                  | Junior Frontend Engineer | October 2017 – December 2017  |
+| Employer | Role | Dates |
+| --- | --- | --- |
+| Hijra Bank | Head of Engineering | March 2025 – July 2026 |
+| Hijra Bank | Engineering Manager | July 2024 – February 2025 |
+| Alami P2P Lending and Hijra Bank Financing | Engineering Manager | December 2022 – July 2024 |
+| GudangAda | Engineering Manager | July 2022 – December 2022 |
+| Ruangguru | Engineering Manager | November 2021 – July 2022 |
+| Ruangguru | Technical Lead | August 2021 – October 2021 |
+| Ruangguru | Senior Frontend Engineer | September 2019 – October 2021 |
+| Ruangguru | Frontend Engineer | January 2018 – August 2019 |
+| Ruangguru | Junior Frontend Engineer | October 2017 – December 2017 |
 
 Documented professional experience spans October 2017 through July 2026: 8 years and 10 months, presented publicly as "nearly nine years of experience."
 

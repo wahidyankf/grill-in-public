@@ -2,8 +2,7 @@
 
 **Engineering Leader | Sharia-Compliant Digital Banking, Fintech & RegTech**
 
-Jakarta, Indonesia<br>
-[LinkedIn](https://www.linkedin.com/in/wahidyan-kresna-fridayoka/) · [Personal website](https://wahidyankf.com) · [AyoKoding](https://ayokoding.com)
+Jakarta, Indonesia<br> [LinkedIn](https://www.linkedin.com/in/wahidyan-kresna-fridayoka/) · [Personal website](https://wahidyankf.com) · [AyoKoding](https://ayokoding.com)
 
 ## About
 
@@ -21,8 +20,7 @@ My work bridges technical architecture and business strategy: from cyber-securit
 
 #### Head of Engineering — Hijra Bank
 
-**March 2025 – July 2026 · 1 year 5 months**<br>
-Jakarta, Indonesia · Hybrid
+**March 2025 – July 2026 · 1 year 5 months**<br> Jakarta, Indonesia · Hybrid
 
 - Led technical strategy for core banking, payments, and financing across Product, Platform, Mobile, SEIT, Data Engineering, InfoSec, and IT GRC; owned IT/Engineering compliance, board reporting, and audit outcomes.
 - Pushed the Direct Switching initiative from inception through UAT; its production release is pending. Open Banking/API capabilities and additional cash-in and cash-out channels remained in planning and initial development.
@@ -37,8 +35,7 @@ LinkedIn skills: Engineering Management, Systems Design, and 16 additional skill
 
 #### Engineering Manager — Hijra Bank
 
-**July 2024 – February 2025 · 8 months**<br>
-Indonesia · Hybrid
+**July 2024 – February 2025 · 8 months**<br> Indonesia · Hybrid
 
 - Led a team of up to 24 engineers across Backend, Frontend, Mobile/React Native, SEIT, and SQA within Hijra Group's Bank domain, encompassing core banking, transactions, consumer lifecycle, financing, data engineering, and release management. Maintained 0% voluntary turnover. Served as IT Executive Officer for Hijra Bank, responsible for regulatory reporting, ISO 27001:2022 certification audits, and internal IT governance compliance.
 - Led Hijra Bank's high-priority core-banking migration from Mambu to IBA, achieving a 95% reduction in core-banking operational costs—equivalent to 30% of Hijra Group's monthly revenue—in under six months. The implementation covered product requirements, document finalization, development, testing, and Hijra Bank's first serious automation-testing process.
@@ -49,8 +46,7 @@ LinkedIn skills: Engineering Management, Systems Design, and 16 additional skill
 
 #### Engineering Manager — Alami P2P Lending and Hijra Bank Financing
 
-**December 2022 – July 2024 · 1 year 8 months**<br>
-Indonesia · Remote
+**December 2022 – July 2024 · 1 year 8 months**<br> Indonesia · Remote
 
 - Led Hijra Group's Financing domain (Bank and Alami P2P Lending), Risk Management & Reporting, and Data Engineering teams of up to 25 engineers across backend, frontend, mobile/React Native, SEIT, SQA, and data engineering. Maintained an 8% voluntary-turnover rate (2 of 25 team members) and stabilized the team through strategic reprioritization after organizational restructuring.
 - Managed performance through fair and lawful PIP processes, with only one employee not successfully completing the plan.
@@ -68,8 +64,7 @@ LinkedIn skills: Engineering Management, Systems Design, and 15 additional skill
 
 #### Engineering Manager
 
-**Full-time · July 2022 – December 2022 · 6 months**
-Remote
+**Full-time · July 2022 – December 2022 · 6 months** Remote
 
 - Led GudangAda's 11-member multinational distributed engineering team responsible for the Warehouse Management System (WMS).
 - Launched bin-related WMS features for internally operated warehouses, improving inventory organization and enabling more effective inbound and outbound operations, including First Expired First Out (FEFO) recommendations.
@@ -86,8 +81,7 @@ LinkedIn skills: Django, Engineering Management, and 11 additional skills.
 
 #### Engineering Manager
 
-**November 2021 – July 2022 · 9 months**<br>
-Remote
+**November 2021 – July 2022 · 9 months**<br> Remote
 
 - Led Skill Academy's 14-member distributed engineering team for the Payment, Promotion, and Discovery stream (SA-PPD). Mentored and promoted two engineers to senior roles.
 - Spearheaded development and launch of a user-reward and OTP system that contributed to more than 50% of Skill Academy's total transactions, with a 99% disbursement-success rate; the remaining 1% was attributed to user-input errors.
@@ -102,8 +96,7 @@ LinkedIn skills: Engineering Management, Systems Design, and 11 additional skill
 
 #### Technical Lead
 
-**August 2021 – October 2021 · 3 months**<br>
-Jakarta, Indonesia · Remote
+**August 2021 – October 2021 · 3 months**<br> Jakarta, Indonesia · Remote
 
 - Led Skill Academy's six-member distributed SA-PPD engineering team, including stakeholder alignment and backend and frontend engineers' Career Development Plans (CDP), with a focus on skills and career growth.
 - Spearheaded technical direction for the Skill Academy frontend team, establishing the roadmap and alignment with SA streams—such as SA-PPD and SA-Learning—and Ruangguru's frontend platform team. This supported business growth and adoption of engineering-excellence practices, including web SEO and performance improvements and learning-journey stabilization.
@@ -114,8 +107,7 @@ LinkedIn skills: Cascading Style Sheets (CSS), Engineering Management, and 12 ad
 
 #### Senior Frontend Engineer
 
-**September 2019 – October 2021 · 2 years 2 months**<br>
-Jakarta Metropolitan Area, Indonesia · Hybrid
+**September 2019 – October 2021 · 2 years 2 months**<br> Jakarta Metropolitan Area, Indonesia · Hybrid
 
 - Developed most of Skill Academy's learning journey in ReasonML and CMS modules in React.js during the initial launch phase, delivering on time in eight weeks and into a stable, error-free production environment.
 - Led Skill Academy's seven-person frontend team across Web, Mobile, and CMS platforms built with ReasonML, TypeScript, Flow, JavaScript, Cordova, React, React Native, and Next.js. Fostered team growth and well-being while meeting business goals and addressing technical debt.
@@ -128,8 +120,7 @@ LinkedIn skills: JavaScript, Systems Design, and 10 additional skills.
 
 #### Frontend Engineer
 
-**January 2018 – August 2019 · 1 year 8 months**<br>
-Greater Jakarta Area, Indonesia · Hybrid
+**January 2018 – August 2019 · 1 year 8 months**<br> Greater Jakarta Area, Indonesia · Hybrid
 
 - Pioneered Ruang Belajar's desktop-application development using ReasonML, ReasonReact, and Electron; contributed more than 50% of its core and primitive UI components and routing design. Mentored mobile engineers in React and web technologies, enabling the first joint Frontend and Mobile project and faster application development.
 - Participated in frontend hiring, evaluating candidates' computational thinking and React.js problem-solving through coding challenges, improving selection quality and efficiency.
@@ -142,8 +133,7 @@ LinkedIn skills: Cascading Style Sheets (CSS), JavaScript, and 8 additional skil
 
 #### Junior Frontend Engineer
 
-**October 2017 – December 2017 · 3 months**<br>
-Greater Jakarta Area, Indonesia · Hybrid
+**October 2017 – December 2017 · 3 months**<br> Greater Jakarta Area, Indonesia · Hybrid
 
 - Led frontend developers optimizing Ruang Uji's React application and deployment. Compared with the original AngularJS application on a 2G connection (280/256 kbps and 800 ms RTT), reduced initial download size by 53.86% and requests by 9.52%, while improving finish time by 46.72%, DOMContentLoad by 137.10%, and load time by 62.49%. Further optimization included aggressive code splitting and image lazy loading.
 - Refactored ruangguru.com assets and codebase using IMGIX, AWS S3, and Fastly CDN, improving load time by 300%—from more than 12 seconds to under 3 seconds—and raising the average WebPageTest score from B to A without reducing asset quality.
