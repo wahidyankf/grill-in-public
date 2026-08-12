@@ -9,22 +9,21 @@ agent instructions, and repeatable governance procedures belong in
 
 Organize documentation by the reader's need, using the four Diátaxis forms:
 
-| Form         | Reader need       | Use for                            | Future location |
-| ------------ | ----------------- | ---------------------------------- | --------------- |
-| Tutorial     | Learning          | A guided first experience          | `tutorials/`    |
-| How-to guide | Completing a task | Goal-oriented directions           | `how-to/`       |
-| Reference    | Looking up facts  | Accurate conventions and facts     | `reference/`    |
-| Explanation  | Understanding     | Rationale, trade-offs, and context | `explanation/`  |
+| Form         | Reader need       | Use for                            | Location       |
+| ------------ | ----------------- | ---------------------------------- | -------------- |
+| Tutorial     | Learning          | A guided first experience          | `tutorials/`   |
+| How-to guide | Completing a task | Goal-oriented directions           | `how-to/`      |
+| Reference    | Looking up facts  | Accurate conventions and facts     | `reference/`   |
+| Explanation  | Understanding     | Rationale, trade-offs, and context | `explanation/` |
 
 For example, a lesson that teaches a problem-solving pattern is a tutorial;
 instructions for recording a drill are a how-to guide; an exercise directory
 convention is reference; and the reasoning behind hands-on practice is
 explanation.
 
-Create a section directory only when it receives its first document. Do not
-force content into a category or create empty structure: choose the form that
-best answers the reader's question, then link new documents from this index as
-the collection grows.
+Each section includes a README that defines its purpose. Add new documents to
+the section that best answers the reader's question, and link them from this
+index as the collection grows.
 
 Learn more in the official [Diátaxis overview](https://diataxis.fr/) and its
 [four-part map](https://diataxis.fr/map/).
