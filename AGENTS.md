@@ -25,6 +25,7 @@ when an exercise needs them; keep them within that exercise directory.
 - `npm install` installs the pinned dependencies and enables Husky hooks.
 - `npm run format` applies Prettier to supported project files.
 - `npm run format:check` verifies formatting without changing files.
+- `npm run check:governance` enforces governance-document word limits.
 - `npm audit` checks the locked dependency tree for known vulnerabilities.
 
 `npm test` is currently a placeholder and intentionally fails. When adding the
