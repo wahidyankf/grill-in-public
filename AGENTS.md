@@ -13,6 +13,11 @@ Use [ose-public](https://github.com/wahidyankf/ose-public) and
 [ose-primer](https://github.com/wahidyankf/ose-primer) as optional, read-only
 references. Local guidance remains authoritative.
 
+## Rule Changes
+
+Before changing repository rules, immediately read and follow the
+[`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md).
+
 ## Project Structure and Module Organization
 
 The repository is intentionally small:
