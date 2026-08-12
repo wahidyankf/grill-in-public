@@ -37,3 +37,9 @@ practice at the heart of this repository.
 
 Build strong fundamentals, communicate solutions clearly, and become more
 confident and consistent in software engineering interviews.
+
+## Documentation
+
+Human-facing project documentation is organized with the
+[Diátaxis framework](docs/README.md). Repository and agent rules are maintained
+separately in [`repo-governance/`](repo-governance/README.md).
