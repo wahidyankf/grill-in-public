@@ -1,0 +1,15 @@
+{
+  "name": "dummy-lib",
+  "projectType": "library",
+  "root": "libs/dummy-lib",
+  "sourceRoot": "libs/dummy-lib/src",
+  "targets": {
+    "build": {
+      "command": "tsc -p libs/dummy-lib/tsconfig.json",
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/dummy-lib/tsconfig.json"
+    }
+  }
+}

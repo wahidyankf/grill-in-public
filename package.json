@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "Personal interview-preparation workspace maintained by **Wahidyan Kresna Fridayoka**.",
   "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "nx run-many -t build",
     "check:governance": "./scripts/check-governance-word-count.sh",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "run:dummy": "nx run dummy-app:run",
+    "test": "nx run dummy-app:test",
+    "typecheck": "nx run-many -t typecheck"
   },
   "repository": {
     "type": "git",
@@ -22,12 +30,18 @@
     "url": "https://github.com/wahidyankf/swe-grilling/issues"
   },
   "homepage": "https://github.com/wahidyankf/swe-grilling#readme",
+  "overrides": {
+    "brace-expansion": "5.0.9"
+  },
   "devDependencies": {
+    "@types/node": "24.13.3",
     "@commitlint/cli": "21.2.1",
     "@commitlint/config-conventional": "21.2.0",
     "husky": "9.1.7",
     "lint-staged": "17.3.0",
-    "prettier": "3.9.6"
+    "nx": "23.1.1",
+    "prettier": "3.9.6",
+    "typescript": "7.0.2"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,json,jsonc,css,scss,md,mdx,yaml,yml,html}": "prettier --write"

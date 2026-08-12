@@ -1,0 +1,8 @@
+{
+  "name": "dummy-app",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@swe-grilling/dummy-lib": "0.0.0"
+  }
+}

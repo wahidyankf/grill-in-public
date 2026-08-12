@@ -5,7 +5,7 @@
 SWE Grilling is a personal workspace for software-engineering interview
 preparation. Favor deliberate, hands-on problem solving: complete coding drills
 yourself before using tools for review, formatting, or feedback. Keep each
-exercise focused on one skill and record reasoning where it adds value.
+exercise focused on one skill and record reasoning when it adds value.
 
 ## Reference Repositories
 
@@ -13,73 +13,55 @@ Use [ose-public](https://github.com/wahidyankf/ose-public) and
 [ose-primer](https://github.com/wahidyankf/ose-primer) as read-only references;
 local rules govern. For CV work, read [cv/README.md](cv/README.md).
 
-## Rule Changes
+## Rule Changes and Audience
 
-Before changing repository rules, immediately read and follow the
+Before changing repository rules, read and follow the
 [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md).
-
-## Audience
-
 `README.md` and `docs/` serve people; this and related instruction files serve
 AI agents. `repo-governance/` applies to both.
 
-## Project Structure and Module Organization
+## Project Structure
 
-The repository is intentionally small:
+- `apps/` contains runnable workspace applications.
+- `libs/` contains reusable workspace packages consumed by apps.
+- `docs/` contains human-facing Diátaxis documentation.
+- `repo-governance/` contains shared policies and workflows.
+- Root `package.json`, `nx.json`, and `tsconfig.base.json` configure tooling.
 
-- `README.md` explains the preparation goals and workflow.
-- `package.json` defines local tooling; `package-lock.json` locks exact versions.
-- `.husky/` contains Git hooks; `commitlint.config.cjs` defines commit rules.
+Keep implementation and tests together under `src/`; use focused,
+lowercase-hyphenated project directories. Add assets only within the project
+that needs them.
 
-As exercises are added, group them under `exercises/<topic>/<problem>/`. Keep
-the implementation and its tests together, for example
-`exercises/arrays/two-sum/solution.js` and `solution.test.js`. Add assets only
-when an exercise needs them; keep them within that exercise directory.
+## Commands
 
-## Build, Test, and Development Commands
-
-- `npm install` installs the pinned dependencies and enables Husky hooks.
-- `npm run format` applies Prettier to supported project files.
-- `npm run format:check` verifies formatting without changing files.
+- `npm install` installs exact-pinned dependencies and enables Husky hooks.
+- `npm run build`, `npm run typecheck`, and `npm test` run Nx targets.
+- `npm run run:dummy` builds and runs the TypeScript demonstration CLI.
+- `npm run format` and `npm run format:check` apply or verify Prettier.
 - `npm run check:governance` enforces governance-document word limits.
-- `npm audit` checks the locked dependency tree for known vulnerabilities.
+- `npm audit --audit-level=low` checks the locked dependency tree.
 
-`npm test` is currently a placeholder and intentionally fails. When adding the
-first automated test, configure a test runner and replace that script in the
-same change.
+## Nx and Coding Conventions
 
-## Coding Style and Naming Conventions
+Use Nx only as a raw task runner with `command` targets. Do not add Nx plugins,
+plugin-specific executors, or generators without explicit owner direction; see
+the [Nx workspace policy](repo-governance/nx-workspace-policy.md).
 
-Use CommonJS unless a change deliberately introduces another module system.
-Prettier is the source of truth for formatting; use its default two-space
-indentation and run `npm run format` before committing. Prefer clear,
-lowercase-hyphenated directory names, `camelCase` for variables and functions,
-and `PascalCase` for classes. Name files after the problem or responsibility,
-not generic terms such as `helpers`.
+Use strict TypeScript for workspace code and CommonJS-compatible Node output.
+Prettier is the formatting source of truth. Use two-space indentation,
+`camelCase` variables and functions, `PascalCase` classes, and descriptive file
+names. Import internal libraries by package name, not relative cross-project
+paths.
 
-## Testing Guidelines
+## Testing, Commits, and Pull Requests
 
-Add a colocated `*.test.js` file for each exercise once test tooling is
-introduced. Cover the expected solution, edge cases, and invalid or empty
-inputs when relevant. A change that introduces behavior should include its
-test command and result in the pull request description. No coverage threshold
-exists yet; prioritize meaningful cases over a percentage target.
+Add colocated `*.test.ts` coverage for behavior. Use Node's built-in test runner
+unless a change deliberately introduces another runner. Cover expected behavior,
+edge cases, and invalid inputs when relevant.
 
-## Commit and Pull Request Guidelines
-
-Use Conventional Commits, enforced by the Husky `commit-msg` hook and
-commitlint. Examples: `feat(arrays): add two-sum drill` and
-`docs: clarify practice workflow`. Valid types include `feat`, `fix`, `docs`,
-`test`, `refactor`, `chore`, `build`, `ci`, `perf`, `style`, and `revert`.
-
-Never bypass hooks with `--no-verify` without explicit owner approval; see the
-[commit hook policy](repo-governance/commit-hook-policy.md).
-
-Split unrelated work into separate, thematic commits whenever practical. A
-commit may include every file needed for one coherent change; do not bundle
-independent changes merely for convenience.
-
-Keep pull requests focused. Include a concise summary, the motivation, commands
-run, and linked issues when applicable. Include screenshots only for visual
-changes. Do not commit secrets, `node_modules/`, or unreviewed dependency
-updates; retain exact dependency versions and run `npm audit` after changes.
+Use Conventional Commits, enforced by Husky and commitlint. Split unrelated work
+into thematic commits. Never use `--no-verify` without explicit owner approval;
+see the [commit hook policy](repo-governance/commit-hook-policy.md). Keep pull
+requests focused and include motivation, commands run, linked issues when
+applicable, and screenshots only for visual changes. Do not commit secrets,
+`node_modules/`, or unreviewed dependency updates.

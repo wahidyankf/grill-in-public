@@ -6,3 +6,7 @@ the basics. They help someone complete a specific task reliably.
 Write a how-to guide when the reader asks, “How do I do this?” Use a descriptive
 task title, prerequisites, direct steps, verification, and recovery guidance
 when relevant. Keep foundational learning in [`../tutorials/`](../tutorials/).
+
+## Available Guides
+
+- [Run the Nx Workspace](run-nx-workspace.md)

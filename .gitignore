@@ -1,1 +1,4 @@
 node_modules/
+.nx/
+apps/*/dist/
+libs/*/dist/

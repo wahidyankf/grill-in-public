@@ -26,5 +26,10 @@ Each section includes a README that defines its purpose. Add new documents to
 the section that best answers the reader's question, and link them from this
 index as the collection grows.
 
+## Available Guides
+
+- [Run the Nx Workspace](how-to/run-nx-workspace.md) explains how to build,
+  test, and run the workspace's TypeScript demonstration app.
+
 Learn more in the official [Diátaxis overview](https://diataxis.fr/) and its
 [four-part map](https://diataxis.fr/map/).

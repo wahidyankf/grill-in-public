@@ -44,6 +44,19 @@ practice at the heart of this repository.
 Build strong fundamentals, communicate solutions clearly, and become more
 confident and consistent in software engineering interviews.
 
+## Nx Workspace
+
+The repository uses Nx as a raw task runner for its npm workspaces:
+
+- `apps/` holds runnable applications.
+- `libs/` holds reusable packages consumed by applications.
+
+The starter TypeScript CLI consumes `@swe-grilling/dummy-lib`. Run it with
+`npm run run:dummy`; build all projects with `npm run build`; and run its test
+with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md)
+for the full workflow. This workspace deliberately does not use framework or
+language-specific Nx plugins.
+
 ## Documentation
 
 Human-facing project documentation is organized with the

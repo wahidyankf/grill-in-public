@@ -1,0 +1,37 @@
+{
+  "name": "dummy-app",
+  "projectType": "application",
+  "root": "apps/dummy-app",
+  "sourceRoot": "apps/dummy-app/src",
+  "targets": {
+    "build": {
+      "dependsOn": [
+        {
+          "projects": ["dummy-lib"],
+          "target": "build",
+          "params": "ignore"
+        }
+      ],
+      "command": "tsc -p apps/dummy-app/tsconfig.json",
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "run": {
+      "dependsOn": ["build"],
+      "command": "node apps/dummy-app/dist/main.js"
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "command": "node --test apps/dummy-app/dist/index.test.js"
+    },
+    "typecheck": {
+      "dependsOn": [
+        {
+          "projects": ["dummy-lib"],
+          "target": "build",
+          "params": "ignore"
+        }
+      ],
+      "command": "tsc --noEmit -p apps/dummy-app/tsconfig.json"
+    }
+  }
+}
