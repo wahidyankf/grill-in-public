@@ -51,13 +51,14 @@ The repository uses Nx as a raw task runner for its npm workspaces:
 - `apps/` holds runnable applications.
 - `libs/` holds reusable packages consumed by applications.
 
-The starter TypeScript CLI consumes `@swe-grilling/dummy-lib`. Run it with
-`npm run run:dummy`; build all projects with `npm run build`; and run its test
-with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md)
+The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes
+[`@swe-grilling/dummy-lib`](libs/dummy-lib/README.md). Run it with
+`npm run run:dummy`; build all projects with `npm run build`; and run quick
+checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md)
 for the full workflow. This workspace deliberately does not use framework or
 language-specific Nx plugins. TypeScript projects use project-local ESLint
 commentary checks alongside Biome; passing lint complements, but does not
-replace, human review of explanatory comments.
+replace human review of explanatory comments.
 
 [Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI that checks
 governance-document word limits and repository-local Markdown links. Run

@@ -20,6 +20,8 @@ duplicating it.
 
 - [Propagate Rules](propagate-rules.md) integrates changed repository rules
   without duplication or contradictions.
+- [Refresh READMEs](refresh-readmes.md) keeps root, project, documentation, and
+  governance READMEs accurate before a thematic commit.
 
 ## Workflow Template
 

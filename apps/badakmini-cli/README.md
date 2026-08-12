@@ -12,8 +12,8 @@ badak-mini harness instruction-size validate
 badak-mini harness markdown-links validate
 ```
 
-The command finds the Git repository root and ensures that `AGENTS.md` plus
-every recursive Markdown file in `repo-governance/` contains at most 500 words.
+The command finds the Git repository root and ensures that `AGENTS.md` and
+every recursive Markdown file in `repo-governance/` contain at most 500 words.
 It ignores non-Markdown files and reports each violation with a
 progressive-disclosure remediation.
 
