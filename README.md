@@ -8,6 +8,10 @@ Fridayoka**.
 This repository is where I practice, review, and document the skills needed for
 software engineering interviews.
 
+This README and [`docs/`](docs/README.md) are for people. AI agents use
+[`AGENTS.md`](AGENTS.md) and related instruction files; shared repository
+governance in [`repo-governance/`](repo-governance/README.md) applies to both.
+
 ## Hands-On by Design
 
 Unlike my `ose-*` repositories, this repository is intentionally not fully
