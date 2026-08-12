@@ -1,0 +1,39 @@
+# SWE Grilling
+
+Personal interview-preparation workspace maintained by **Wahidyan Kresna
+Fridayoka**.
+
+This repository is where I practice, review, and document the skills needed for
+software engineering interviews.
+
+## Hands-On by Design
+
+Unlike my `ose-*` repositories, this repository is intentionally not fully
+automation-first. I will complete parts of the work by hand—especially coding
+exercises and drills—to build muscle memory, reinforce the fundamentals, and
+practice recalling and communicating solutions under interview conditions.
+
+Tools can support review and feedback, but they should not replace the hands-on
+practice at the heart of this repository.
+
+## Focus Areas
+
+- Data structures and algorithms
+- Coding exercises and problem-solving patterns
+- System design
+- Computer science and software engineering fundamentals
+- Behavioral interview preparation
+- Mock interviews and retrospective notes
+
+## Practice Workflow
+
+1. Choose a topic or interview question.
+2. Work through it by hand under realistic interview constraints.
+3. Record the solution and reasoning.
+4. Review trade-offs, mistakes, and possible improvements.
+5. Revisit the exercise until the approach is clear and repeatable.
+
+## Goal
+
+Build strong fundamentals, communicate solutions clearly, and become more
+confident and consistent in software engineering interviews.
