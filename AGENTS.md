@@ -72,6 +72,10 @@ commitlint. Examples: `feat(arrays): add two-sum drill` and
 `docs: clarify practice workflow`. Valid types include `feat`, `fix`, `docs`,
 `test`, `refactor`, `chore`, `build`, `ci`, `perf`, `style`, and `revert`.
 
+Split unrelated work into separate, thematic commits whenever practical. A
+commit may include every file needed for one coherent change; do not bundle
+independent changes merely for convenience.
+
 Keep pull requests focused. Include a concise summary, the motivation, commands
 run, and linked issues when applicable. Include screenshots only for visual
 changes. Do not commit secrets, `node_modules/`, or unreviewed dependency
