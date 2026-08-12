@@ -20,8 +20,8 @@ Before changing repository rules, immediately read and follow the
 
 ## Audience
 
-`README.md` and `docs/` serve people. This file and related agent-instruction
-files serve AI agents. Shared governance in `repo-governance/` applies to both.
+`README.md` and `docs/` serve people; this and related instruction files serve
+AI agents. `repo-governance/` applies to both.
 
 ## Project Structure and Module Organization
 
