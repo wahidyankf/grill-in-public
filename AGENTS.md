@@ -72,6 +72,9 @@ commitlint. Examples: `feat(arrays): add two-sum drill` and
 `docs: clarify practice workflow`. Valid types include `feat`, `fix`, `docs`,
 `test`, `refactor`, `chore`, `build`, `ci`, `perf`, `style`, and `revert`.
 
+Never bypass hooks with `--no-verify` without explicit owner approval; see the
+[commit hook policy](repo-governance/commit-hook-policy.md).
+
 Split unrelated work into separate, thematic commits whenever practical. A
 commit may include every file needed for one coherent change; do not bundle
 independent changes merely for convenience.
