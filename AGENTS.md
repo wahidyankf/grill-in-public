@@ -7,6 +7,12 @@ preparation. Favor deliberate, hands-on problem solving: complete coding drills
 yourself before using tools for review, formatting, or feedback. Keep each
 exercise focused on one skill and record reasoning where it adds value.
 
+## Reference Repositories
+
+Use [ose-public](https://github.com/wahidyankf/ose-public) and
+[ose-primer](https://github.com/wahidyankf/ose-primer) as optional, read-only
+references. Local guidance remains authoritative.
+
 ## Project Structure and Module Organization
 
 The repository is intentionally small:
