@@ -10,8 +10,8 @@ exercise focused on one skill and record reasoning where it adds value.
 ## Reference Repositories
 
 Use [ose-public](https://github.com/wahidyankf/ose-public) and
-[ose-primer](https://github.com/wahidyankf/ose-primer) as optional, read-only
-references. Local guidance remains authoritative.
+[ose-primer](https://github.com/wahidyankf/ose-primer) as read-only references;
+local rules govern. For CV work, read [cv/README.md](cv/README.md).
 
 ## Rule Changes
 
