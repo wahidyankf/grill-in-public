@@ -1,6 +1,1 @@
 npx lint-staged
-
-# Only evaluate governance documents when this commit changes their scope.
-if ! git diff --cached --quiet -- AGENTS.md repo-governance; then
-  ./scripts/check-governance-word-count.sh
-fi

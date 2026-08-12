@@ -1,0 +1,25 @@
+# Check only when the commits being pushed change governance guidance.
+ZERO_SHA="0000000000000000000000000000000000000000"
+EMPTY_TREE=$(git hash-object -t tree /dev/null)
+SHOULD_CHECK=0
+
+# Git provides: local ref, local SHA, remote ref, and remote SHA for each
+# ref update. Compare each pushed range instead of inspecting the working tree.
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$local_sha" = "$ZERO_SHA" ]; then
+    continue
+  fi
+
+  base_sha="$remote_sha"
+  if [ "$remote_sha" = "$ZERO_SHA" ]; then
+    base_sha="$EMPTY_TREE"
+  fi
+
+  if ! git diff --quiet "$base_sha" "$local_sha" -- AGENTS.md repo-governance; then
+    SHOULD_CHECK=1
+  fi
+done
+
+if [ "$SHOULD_CHECK" -eq 1 ]; then
+  ./scripts/check-governance-word-count.sh
+fi
