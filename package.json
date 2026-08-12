@@ -10,12 +10,12 @@
   ],
   "scripts": {
     "build": "nx run-many -t build",
-    "check:governance": "./scripts/check-governance-word-count.sh",
+    "check:governance": "nx run badak-mini:governance",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
     "run:dummy": "nx run dummy-app:run",
-    "test": "nx run dummy-app:test",
+    "test": "nx run-many -t test",
     "typecheck": "nx run-many -t typecheck"
   },
   "repository": {

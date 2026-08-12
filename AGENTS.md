@@ -47,17 +47,19 @@ Use Nx only as a raw task runner with `command` targets. Do not add Nx plugins,
 plugin-specific executors, or generators without explicit owner direction; see
 the [Nx workspace policy](repo-governance/nx-workspace-policy.md).
 
-Use strict TypeScript for workspace code and CommonJS-compatible Node output.
-Prettier is the formatting source of truth. Use two-space indentation,
+Use strict TypeScript and CommonJS-compatible Node output for TypeScript code.
+Badak Mini uses its pinned Go toolchain and standard library; do not add Go
+dependencies without owner direction. Prettier is the formatting source of truth. Use two-space indentation,
 `camelCase` variables and functions, `PascalCase` classes, and descriptive file
 names. Import internal libraries by package name, not relative cross-project
 paths.
 
 ## Testing, Commits, and Pull Requests
 
-Add colocated `*.test.ts` coverage for behavior. Use Node's built-in test runner
-unless a change deliberately introduces another runner. Cover expected behavior,
-edge cases, and invalid inputs when relevant.
+Add colocated `*.test.ts` or `*_test.go` coverage for behavior. Use Node's
+built-in test runner for TypeScript unless a change deliberately introduces
+another runner. Cover expected behavior, edge cases, and invalid inputs when
+relevant.
 
 Use Conventional Commits, enforced by Husky and commitlint. Split unrelated work
 into thematic commits. Never use `--no-verify` without explicit owner approval;

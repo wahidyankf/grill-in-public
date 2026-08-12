@@ -22,7 +22,19 @@ npm test
 ```
 
 The test proves that `apps/dummy-app` consumes the greeting exported by
-`libs/dummy-lib`.
+`libs/dummy-lib`; it also runs Badak Mini's Go tests.
+
+## Check Governance Guidance
+
+Run the governance check after changing `AGENTS.md` or Markdown files under
+`repo-governance/`:
+
+```sh
+npm run check:governance
+```
+
+The command uses the [Badak Mini](../../apps/badak-mini/README.md) Go CLI and
+also runs automatically during a push that changes those paths.
 
 ## Run the Demonstration App
 

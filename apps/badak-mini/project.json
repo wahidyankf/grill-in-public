@@ -1,0 +1,22 @@
+{
+  "name": "badak-mini",
+  "projectType": "application",
+  "root": "apps/badak-mini",
+  "sourceRoot": "apps/badak-mini",
+  "targets": {
+    "build": {
+      "command": "go -C apps/badak-mini build -o dist/badak-mini ./cmd/badak-mini",
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "governance": {
+      "cache": false,
+      "command": "go -C apps/badak-mini run ./cmd/badak-mini harness instruction-size validate"
+    },
+    "test": {
+      "command": "go -C apps/badak-mini test ./..."
+    },
+    "typecheck": {
+      "command": "go -C apps/badak-mini vet ./..."
+    }
+  }
+}

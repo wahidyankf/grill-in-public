@@ -21,5 +21,5 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 done
 
 if [ "$SHOULD_CHECK" -eq 1 ]; then
-  ./scripts/check-governance-word-count.sh
+  npm exec nx -- run badak-mini:governance
 fi
