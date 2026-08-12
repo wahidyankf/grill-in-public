@@ -18,6 +18,11 @@ references. Local guidance remains authoritative.
 Before changing repository rules, immediately read and follow the
 [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md).
 
+## Audience
+
+`README.md` and `docs/` serve people. This file and related agent-instruction
+files serve AI agents. Shared governance in `repo-governance/` applies to both.
+
 ## Project Structure and Module Organization
 
 The repository is intentionally small:
