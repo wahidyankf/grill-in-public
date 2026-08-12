@@ -1,0 +1,28 @@
+# Keep Badak Mini's developer tooling explicit and local to the Go project.
+version: "2"
+
+formatters:
+  enable:
+    - gofmt
+
+linters:
+  default: standard
+  enable:
+    - nolintlint
+    - revive
+  settings:
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+    revive:
+      # Keep Revive's ordinary defaults while making exported documentation a
+      # hard failure instead of its default warning-level feedback.
+      enable-default-rules: true
+      severity: error
+      rules:
+        - name: exported
+          severity: error
+
+run:
+  modules-download-mode: readonly
+  relative-path-mode: gomod

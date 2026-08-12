@@ -35,19 +35,25 @@ func run(
 	// Help is successful even outside a repository because it does not need to
 	// inspect files; validation commands must establish the repository boundary.
 	if len(args) == 1 && (args[0] == "--help" || args[0] == "-h") {
-		fmt.Fprint(stdout, usage)
+		if err := writef(stdout, usage); err != nil {
+			return 1
+		}
 		return 0
 	}
 
 	if !matchesCommand(args) {
 		// Exit status 2 distinguishes an invalid invocation from a failed check.
-		fmt.Fprint(stderr, usage)
+		if err := writef(stderr, usage); err != nil {
+			return 1
+		}
 		return 2
 	}
 
 	root, err := rootFinder()
 	if err != nil {
-		fmt.Fprintf(stderr, "ERROR: could not find the Git repository root: %v\n", err)
+		if writeErr := writef(stderr, "ERROR: could not find the Git repository root: %v\n", err); writeErr != nil {
+			return 1
+		}
 		return 1
 	}
 
@@ -62,38 +68,59 @@ func run(
 func validateInstructionSize(root string, stdout io.Writer, stderr io.Writer) int {
 	findings, err := governance.Check(root)
 	if err != nil {
-		fmt.Fprintf(stderr, "ERROR: %v\n", err)
+		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+			return 1
+		}
 		return 1
 	}
 	if len(findings) == 0 {
-		fmt.Fprintf(stdout, "Governance word counts are within the %d-word limit.\n", governance.MaxWords)
+		if err := writef(stdout, "Governance word counts are within the %d-word limit.\n", governance.MaxWords); err != nil {
+			return 1
+		}
 		return 0
 	}
 	for _, finding := range findings {
 		// Report every over-limit document in one run so a contributor can repair
 		// the complete guidance set before retrying the hook.
-		fmt.Fprintf(stderr, "ERROR: %s contains %d words; the limit is %d.\n", finding.Path, finding.WordCount, governance.MaxWords)
+		if err := writef(stderr, "ERROR: %s contains %d words; the limit is %d.\n", finding.Path, finding.WordCount, governance.MaxWords); err != nil {
+			return 1
+		}
 	}
-	fmt.Fprintln(stderr, "Use progressive disclosure: split detailed guidance into focused files.")
+	if err := writef(stderr, "Use progressive disclosure: split detailed guidance into focused files.\n"); err != nil {
+		return 1
+	}
 	return 1
 }
 
 func validateMarkdownLinks(root string, stdout io.Writer, stderr io.Writer) int {
 	findings, err := markdownlinks.Check(root)
 	if err != nil {
-		fmt.Fprintf(stderr, "ERROR: %v\n", err)
+		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+			return 1
+		}
 		return 1
 	}
 	if len(findings) == 0 {
-		fmt.Fprintln(stdout, "Repository-local Markdown links are valid.")
+		if err := writef(stdout, "Repository-local Markdown links are valid.\n"); err != nil {
+			return 1
+		}
 		return 0
 	}
 	for _, finding := range findings {
 		// Source path and one-based line number make a hook failure actionable in
 		// a terminal or CI log without requiring a separate report file.
-		fmt.Fprintf(stderr, "ERROR: %s:%d: %q %s.\n", finding.Path, finding.Line, finding.Destination, finding.Problem)
+		if err := writef(stderr, "ERROR: %s:%d: %q %s.\n", finding.Path, finding.Line, finding.Destination, finding.Problem); err != nil {
+			return 1
+		}
 	}
 	return 1
+}
+
+// writef propagates output failures so commands do not report success when a
+// caller cannot receive their validation result.
+func writef(writer io.Writer, format string, arguments ...any) error {
+	_, err := fmt.Fprintf(writer, format, arguments...)
+	return err
 }
 
 func matchesInstructionSizeCommand(args []string) bool {

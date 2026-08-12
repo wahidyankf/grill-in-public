@@ -17,7 +17,7 @@
       "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness markdown-links validate"
     },
     "lint": {
-      "command": "unformatted=$(gofmt -l apps/badakmini-cli/cmd apps/badakmini-cli/internal); test -z \"$unformatted\""
+      "command": "go -C apps/badakmini-cli tool golangci-lint run"
     },
     "test:quick": {
       "dependsOn": ["typecheck", "lint"],

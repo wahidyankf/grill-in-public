@@ -30,10 +30,12 @@ From the repository root:
 ```sh
 npm run check:governance
 npm run check:markdown-links
+npm run check:go-vulnerabilities
 npx nx run badakmini-cli:build
 npx nx run badakmini-cli:test:quick
 ```
 
-Badak Mini is a standard-library-only Go module pinned to Go 1.26.1. It is an
-intentional replacement for the former shell governance checker, not a general
-Rhino CLI port.
+Badak Mini's application code is standard-library-only and pinned to Go 1.26.5.
+Its development module also pins golangci-lint and govulncheck; run them through
+`go -C apps/badakmini-cli tool <name>`. It is an intentional replacement for
+the former shell governance checker, not a general Rhino CLI port.

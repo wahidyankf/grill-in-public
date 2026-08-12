@@ -9,7 +9,7 @@
       "outputs": ["{projectRoot}/dist"]
     },
     "lint": {
-      "command": "biome lint libs/dummy-lib/src"
+      "command": "biome lint libs/dummy-lib/src && eslint --config libs/dummy-lib/eslint.config.mjs libs/dummy-lib/src"
     },
     "test:quick": {
       "dependsOn": ["build", "typecheck", "lint"],

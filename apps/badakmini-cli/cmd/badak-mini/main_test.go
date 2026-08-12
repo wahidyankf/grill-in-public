@@ -43,3 +43,23 @@ func TestRunRejectsUnsupportedCommands(t *testing.T) {
 		t.Fatalf("expected usage output, got %q", stderr.String())
 	}
 }
+
+func TestRunFailsWhenHelpCannotBeWritten(t *testing.T) {
+	var stderr bytes.Buffer
+
+	// A failing writer proves a successful command never masks the fact that it
+	// could not deliver its result to the caller.
+	exitCode := run([]string{"--help"}, writeFailure{}, &stderr, func() (string, error) {
+		return "", errors.New("root lookup should not run")
+	})
+
+	if exitCode != 1 {
+		t.Fatalf("expected output failure exit, got %d", exitCode)
+	}
+}
+
+type writeFailure struct{}
+
+func (writeFailure) Write([]byte) (int, error) {
+	return 0, errors.New("write failed")
+}

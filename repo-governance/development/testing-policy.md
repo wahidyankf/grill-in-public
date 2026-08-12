@@ -29,9 +29,10 @@ npm run test:integration
 
 ## Tooling
 
-TypeScript projects use `tsc --noEmit` plus Biome linting. Go projects use
-`go vet` and fail when `gofmt -l` reports an unformatted source file. Keep
-dependency versions exact and audit any added npm dependency.
+TypeScript projects use TypeScript 6's `tsc --noEmit`, Biome, and project-local
+ESLint commentary checks. Go projects use `go vet` plus the Go-module-pinned
+golangci-lint, which runs `gofmt`, Revive, and `nolintlint`. Keep dependency
+versions exact; audit npm dependencies and scan Go module dependencies.
 
 ## Verification
 
