@@ -1,5 +1,6 @@
 # Run cached quick quality gates for every project affected since origin/main.
-# Check governance word limits only when the pushed commits change that guidance.
+# Validate every local Markdown link, and check governance word limits only when
+# the pushed commits change that guidance.
 ZERO_SHA="0000000000000000000000000000000000000000"
 EMPTY_TREE=$(git hash-object -t tree /dev/null)
 SHOULD_CHECK=0
@@ -33,3 +34,5 @@ done
 if [ "$SHOULD_CHECK" -eq 1 ]; then
   npm exec nx -- run badak-mini:governance
 fi
+
+npm exec nx -- run badak-mini:markdown-links

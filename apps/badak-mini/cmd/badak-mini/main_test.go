@@ -18,7 +18,7 @@ func TestRunPrintsHelp(t *testing.T) {
 	if exitCode != 0 {
 		t.Fatalf("expected successful help exit, got %d", exitCode)
 	}
-	if !strings.Contains(stdout.String(), "harness instruction-size validate") {
+	if !strings.Contains(stdout.String(), "harness instruction-size validate") || !strings.Contains(stdout.String(), "harness markdown-links validate") {
 		t.Fatalf("expected command usage, got %q", stdout.String())
 	}
 	if stderr.Len() != 0 {

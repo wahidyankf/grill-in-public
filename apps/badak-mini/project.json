@@ -12,6 +12,10 @@
       "cache": false,
       "command": "go -C apps/badak-mini run ./cmd/badak-mini harness instruction-size validate"
     },
+    "markdown-links": {
+      "cache": false,
+      "command": "go -C apps/badak-mini run ./cmd/badak-mini harness markdown-links validate"
+    },
     "lint": {
       "command": "unformatted=$(gofmt -l apps/badak-mini/cmd apps/badak-mini/internal); test -z \"$unformatted\""
     },

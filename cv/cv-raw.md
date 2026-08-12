@@ -7,7 +7,7 @@ turning them into copy-ready CV or LinkedIn content.
 ## Source Files
 
 - [LinkedIn-oriented profile](./cv-linkedin.md)
-- [Hijra Bank OKR 2026 management dashboard transcription](./hijra-bank-okr-2026-management-dashboard.md)
+- Hijra Bank evidence is transcribed in the role sections below.
 
 ## Career Timeline
 

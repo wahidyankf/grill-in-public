@@ -41,6 +41,8 @@ that needs them.
 - `npm run run:dummy` builds and runs the TypeScript demonstration CLI.
 - `npm run format` and `npm run format:check` apply or verify Prettier.
 - `npm run check:governance` enforces governance-document word limits.
+- `npm run check:markdown-links` validates every repository-local Markdown link;
+  it runs on every pre-push. See the [commit hook policy](repo-governance/commit-hook-policy.md).
 - `npm audit --audit-level=low` checks the locked dependency tree.
 
 ## Nx and Coding Conventions
