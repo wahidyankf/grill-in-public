@@ -1,3 +1,8 @@
+---
+tldr: "Defines Badak Mini's role as the repository-local validation CLI."
+when_to_use: "Use when adding or changing recurring repository validation checks."
+---
+
 # Badak Mini Policy
 
 ## Scope

@@ -1,3 +1,8 @@
+---
+tldr: "Defines cacheable quick tests and explicit uncached integration tests."
+when_to_use: "Use when adding, changing, or running project test and quality targets."
+---
+
 # Testing Policy
 
 ## Scope

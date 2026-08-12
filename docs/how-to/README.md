@@ -1,3 +1,8 @@
+---
+tldr: "Indexes goal-oriented guides for completing known tasks."
+when_to_use: "Use when documenting or following direct steps to achieve a specific outcome."
+---
+
 # How-to Guides
 
 How-to guides are goal-oriented directions for readers who already understand

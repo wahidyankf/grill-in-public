@@ -1,3 +1,8 @@
+---
+tldr: "Fix the responsible cause of a problem instead of suppressing its symptoms."
+when_to_use: "Use when diagnosing errors, regressions, mistakes, or recurring failures."
+---
+
 # Root Cause Orientation
 
 When an error, mistake, or failure is found, investigate its root cause and fix

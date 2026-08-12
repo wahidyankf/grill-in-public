@@ -1,3 +1,8 @@
+---
+tldr: "Defines required Git hooks and the narrow exception for bypassing them."
+when_to_use: "Use before committing, pushing, changing hooks, or considering a hook bypass."
+---
+
 # Commit Hook Policy
 
 This policy applies to every contributor and AI agent working in this

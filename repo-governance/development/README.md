@@ -1,3 +1,8 @@
+---
+tldr: "Indexes development policies for code, testing, hooks, Nx, and validation."
+when_to_use: "Use when changing executable code, development tooling, tests, or quality gates."
+---
+
 # Development Governance
 
 This directory contains rules for building, testing, validating, and maintaining

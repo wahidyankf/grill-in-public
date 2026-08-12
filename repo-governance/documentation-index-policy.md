@@ -1,3 +1,8 @@
+---
+tldr: "Defines recursive README indexes and concise discovery metadata."
+when_to_use: "Use when adding, moving, renaming, or reviewing Markdown in docs/ or repo-governance/."
+---
+
 # Documentation Index Policy
 
 ## Scope
@@ -12,6 +17,14 @@ Each README must register its immediate Markdown documents, excluding itself,
 with a descriptive relative link. It must also register each immediate child
 directory through that directory's README. Child READMEs own their descendants;
 do not repeat the full recursive tree.
+
+Every Markdown document in scope, except `repo-governance/README.md`, must begin
+with YAML frontmatter containing `tldr` and `when_to_use`. Keep both values
+short enough to help a reader decide whether to open the document.
+
+`repo-governance/README.md` is the exception because it is the governance entry
+index. Every link there must state both the linked document's short description
+and when a reader should use it.
 
 ## Maintenance
 

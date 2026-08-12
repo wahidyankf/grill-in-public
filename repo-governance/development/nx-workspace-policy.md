@@ -1,3 +1,8 @@
+---
+tldr: "Restricts Nx to raw command targets with exact-pinned ordinary tooling."
+when_to_use: "Use when changing Nx configuration, targets, dependencies, generators, or executors."
+---
+
 # Nx Workspace Policy
 
 ## Scope

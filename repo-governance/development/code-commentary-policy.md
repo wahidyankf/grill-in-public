@@ -1,3 +1,8 @@
+---
+tldr: "Requires purposeful comments that teach intent, flow, and non-obvious decisions."
+when_to_use: "Use when adding or reviewing executable source, tests, or repository scripts."
+---
+
 # Code Commentary Policy
 
 ## Purpose

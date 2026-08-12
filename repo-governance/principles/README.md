@@ -1,3 +1,8 @@
+---
+tldr: "Indexes the foundational principles for repository governance."
+when_to_use: "Use before creating or resolving conflicts among governance policies and workflows."
+---
+
 # Governance Principles
 
 These principles are the foundation of `repo-governance/`. All governance

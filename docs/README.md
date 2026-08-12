@@ -1,3 +1,8 @@
+---
+tldr: "Indexes human-facing documentation using the Diátaxis framework."
+when_to_use: "Use when choosing where to read, add, or organize human-facing documentation."
+---
+
 # Documentation
 
 This directory contains human-facing documentation for SWE Grilling: interview

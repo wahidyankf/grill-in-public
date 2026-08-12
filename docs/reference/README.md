@@ -1,3 +1,8 @@
+---
+tldr: "Defines reference documentation as concise facts and stable conventions."
+when_to_use: "Use when adding or consulting factual repository reference material."
+---
+
 # Reference
 
 Reference material is an accurate, information-oriented description of the

@@ -1,3 +1,8 @@
+---
+tldr: "Keep always-read guidance concise and reveal detail through focused links."
+when_to_use: "Use when structuring, splitting, indexing, or linking repository documentation."
+---
+
 # Progressive Disclosure
 
 Keep always-read guidance concise and place detailed, conditional, or

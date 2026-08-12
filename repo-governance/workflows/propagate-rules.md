@@ -1,3 +1,8 @@
+---
+tldr: "Integrates changed repository rules without duplication or contradictions."
+when_to_use: "Use before adding, moving, changing, or removing repository rules or agent guidance."
+---
+
 # Propagate Rules
 
 ## Purpose
@@ -42,6 +47,10 @@ exists.
      directory must have a README that indexes its immediate Markdown documents
      and child directories; see the
      [documentation index policy](../documentation-index-policy.md).
+     Every scoped Markdown document except `repo-governance/README.md` must
+     begin with `tldr` and `when_to_use` YAML frontmatter.
+     Every link in `repo-governance/README.md` must describe the target and when
+     it should be used.
 
 3. Search the inventory for equivalent, overlapping, or inverse rules. Merge
    equivalent guidance into the canonical source, update references, and remove

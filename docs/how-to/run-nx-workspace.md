@@ -1,3 +1,8 @@
+---
+tldr: "Explains how to build, test, lint, and run the raw-Nx demonstration workspace."
+when_to_use: "Use when working with Nx projects, their quality targets, or the Dummy App."
+---
+
 # Run the Nx Workspace
 
 Use this guide to build, test, or run the TypeScript workspace after installing

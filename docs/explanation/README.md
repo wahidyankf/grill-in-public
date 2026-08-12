@@ -1,3 +1,8 @@
+---
+tldr: "Defines explanation as documentation for understanding rationale and trade-offs."
+when_to_use: "Use when documenting why a design, practice, or decision exists."
+---
+
 # Explanation
 
 Explanation provides understanding: background, rationale, trade-offs, and

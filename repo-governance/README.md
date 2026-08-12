@@ -1,20 +1,28 @@
 # Repository Governance
 
 This directory contains shared repository governance for human contributors and
-AI agents. It supplements human-facing [`README.md`](../README.md) and
-[`docs/`](../docs/), plus AI-agent guidance such as
-[`AGENTS.md`](../AGENTS.md). Both audiences read only the governance document
-relevant to their work.
+AI agents.
+
+## Related Entry Points
+
+- [Repository README](../README.md) — the human project overview. Use it for
+  repository purpose, setup, and human-facing navigation.
+- [Documentation Hub](../docs/README.md) — human Diátaxis documentation. Use it
+  when the task is learning, reference, explanation, or a how-to procedure.
+- [AGENTS.md](../AGENTS.md) — concise instructions for coding agents. Use it at
+  the start of repository work before loading focused governance below.
 
 ## Directory Index
 
-- [Development Governance](development/README.md) for code, testing, hook, Nx,
-  and validation policies.
-- [Documentation Index Policy](documentation-index-policy.md) for keeping
-  `docs/` and this directory recursively discoverable.
-- [Governance Principles](principles/README.md) for the foundations every policy
-  and workflow must follow.
-- [Repository Workflows](workflows/README.md) for repeatable procedures.
+- [Development Governance](development/README.md) — policies for code, testing,
+  hooks, Nx, and validation. Use it when changing executable code or tooling.
+- [Documentation Index Policy](documentation-index-policy.md) — README and
+  metadata requirements for repository documents. Use it when adding, moving,
+  or maintaining Markdown under `docs/` or `repo-governance/`.
+- [Governance Principles](principles/README.md) — foundations every policy and
+  workflow must follow. Use them before resolving a governance conflict.
+- [Repository Workflows](workflows/README.md) — repeatable repository
+  procedures. Use the relevant workflow whenever a task has a defined process.
 
 ## How to Use This Directory
 

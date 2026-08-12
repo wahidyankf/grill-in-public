@@ -1,3 +1,8 @@
+---
+tldr: "Indexes repeatable repository procedures."
+when_to_use: "Use when a task has a defined sequence, required checks, or recovery steps."
+---
+
 # Repository Workflows
 
 This directory contains repeatable procedures for working in SWE Grilling.
