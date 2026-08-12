@@ -34,6 +34,10 @@ exists.
    - Put repeatable procedures in `repo-governance/workflows/`.
    - Put directory-specific rules in the nearest scoped `AGENTS.md`.
    - Put capability-specific guidance in the relevant `SKILL.md`.
+   - Create and categorize a focused document or subdirectory in
+     `repo-governance/` when no existing location is a suitable canonical home.
+     Update the relevant README so people and agents can discover it; do not
+     create empty categories.
 
 3. Search the inventory for equivalent, overlapping, or inverse rules. Merge
    equivalent guidance into the canonical source, update references, and remove
