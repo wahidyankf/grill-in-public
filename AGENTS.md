@@ -19,6 +19,8 @@ Before changing repository rules, read and follow the
 [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md).
 `README.md` and `docs/` serve people; this and related instruction files serve
 AI agents. `repo-governance/` applies to both.
+Every `docs/` and `repo-governance/` directory requires an indexed README; see
+the [documentation index policy](repo-governance/documentation-index-policy.md).
 
 ## Project Structure
 

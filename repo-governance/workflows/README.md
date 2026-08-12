@@ -11,6 +11,11 @@ name, such as `add-coding-exercise.md` or `update-dependency.md`. Keep each
 workflow narrowly scoped; link to related governance guidance instead of
 duplicating it.
 
+## Available Workflows
+
+- [Propagate Rules](propagate-rules.md) integrates changed repository rules
+  without duplication or contradictions.
+
 ## Workflow Template
 
 Each workflow should include:

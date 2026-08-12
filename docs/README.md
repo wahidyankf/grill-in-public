@@ -10,12 +10,12 @@ belong in [`repo-governance/`](../repo-governance/).
 
 Organize documentation by the reader's need, using the four Diátaxis forms:
 
-| Form         | Reader need       | Use for                            | Location       |
-| ------------ | ----------------- | ---------------------------------- | -------------- |
-| Tutorial     | Learning          | A guided first experience          | `tutorials/`   |
-| How-to guide | Completing a task | Goal-oriented directions           | `how-to/`      |
-| Reference    | Looking up facts  | Accurate conventions and facts     | `reference/`   |
-| Explanation  | Understanding     | Rationale, trade-offs, and context | `explanation/` |
+| Form         | Reader need       | Use for                            | Location                                |
+| ------------ | ----------------- | ---------------------------------- | --------------------------------------- |
+| Tutorial     | Learning          | A guided first experience          | [`tutorials/`](tutorials/README.md)     |
+| How-to guide | Completing a task | Goal-oriented directions           | [`how-to/`](how-to/README.md)           |
+| Reference    | Looking up facts  | Accurate conventions and facts     | [`reference/`](reference/README.md)     |
+| Explanation  | Understanding     | Rationale, trade-offs, and context | [`explanation/`](explanation/README.md) |
 
 For example, a lesson that teaches a problem-solving pattern is a tutorial;
 instructions for recording a drill are a how-to guide; an exercise directory

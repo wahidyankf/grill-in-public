@@ -6,11 +6,15 @@ AI agents. It supplements human-facing [`README.md`](../README.md) and
 [`AGENTS.md`](../AGENTS.md). Both audiences read only the governance document
 relevant to their work.
 
-## Foundations
+## Directory Index
 
-[`principles/`](principles/README.md) contains the foundational rules for this
-directory. All policies and workflows here must follow them; resolve any
-contradiction before accepting lower-level guidance.
+- [Development Governance](development/README.md) for code, testing, hook, Nx,
+  and validation policies.
+- [Documentation Index Policy](documentation-index-policy.md) for keeping
+  `docs/` and this directory recursively discoverable.
+- [Governance Principles](principles/README.md) for the foundations every policy
+  and workflow must follow.
+- [Repository Workflows](workflows/README.md) for repeatable procedures.
 
 ## How to Use This Directory
 
@@ -27,6 +31,7 @@ Use focused, descriptive filenames such as:
 - `exercise-layout.md` for exercise organization and naming details.
 - `dependency-policy.md` for package review, pinning, and audit procedures.
 - `development/` for code, testing, Nx, hook, and validation policies.
+- `documentation-index-policy.md` for recursive README requirements.
 - `contribution-workflow.md` for branch, pull request, or release practices.
 - `principles/` for foundational governance rules.
 

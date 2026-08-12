@@ -38,7 +38,10 @@ exists.
    - Create and categorize a focused document or subdirectory in
      `repo-governance/` when no existing location is a suitable canonical home.
      Update the relevant README so people and agents can discover it; do not
-     create empty categories.
+     create empty categories. In `docs/` and `repo-governance/`, every affected
+     directory must have a README that indexes its immediate Markdown documents
+     and child directories; see the
+     [documentation index policy](../documentation-index-policy.md).
 
 3. Search the inventory for equivalent, overlapping, or inverse rules. Merge
    equivalent guidance into the canonical source, update references, and remove
