@@ -9,8 +9,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/wahidyankf/swe-grilling/apps/badak-mini/internal/governance"
-	"github.com/wahidyankf/swe-grilling/apps/badak-mini/internal/markdownlinks"
+	"github.com/wahidyankf/swe-grilling/apps/badakmini-cli/internal/governance"
+	"github.com/wahidyankf/swe-grilling/apps/badakmini-cli/internal/markdownlinks"
 )
 
 const usage = `Usage:

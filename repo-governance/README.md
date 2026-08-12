@@ -30,6 +30,7 @@ Use focused, descriptive filenames such as:
 - `nx-workspace-policy.md` for the permitted Nx workspace integration.
 - `testing-policy.md` for quick and integration-test responsibilities.
 - `commit-hook-policy.md` for required Git-hook behavior and bypass exceptions.
+- `badakmini-cli-policy.md` for repository-local validation ownership and scope.
 - `contribution-workflow.md` for branch, pull request, or release practices.
 - `principles/` for foundational governance rules.
 

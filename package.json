@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "build": "nx run-many -t build",
-    "check:governance": "nx run badak-mini:governance",
-    "check:markdown-links": "nx run badak-mini:markdown-links",
+    "check:governance": "nx run badakmini-cli:governance",
+    "check:markdown-links": "nx run badakmini-cli:markdown-links",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "nx run-many -t lint",

@@ -48,7 +48,7 @@ npm run check:governance
 npm run check:markdown-links
 ```
 
-The governance command uses the [Badak Mini](../../apps/badak-mini/README.md)
+The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md)
 Go CLI and runs automatically during a push that changes those paths. The link
 command validates every Git-tracked Markdown file and runs during every push.
 

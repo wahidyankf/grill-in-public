@@ -49,7 +49,7 @@ func Check(root string) ([]Finding, error) {
 		}
 
 		for _, candidate := range extractLinks(string(contents)) {
-			finding := checkLink(root, sourcePath, candidate, trackedFiles)
+			finding := checkLink(root, sourcePath, candidate)
 			if finding != nil {
 				findings = append(findings, *finding)
 			}
@@ -255,7 +255,7 @@ func inlineDestination(value string, openingParenthesis int) (string, int, bool)
 	return "", 0, false
 }
 
-func checkLink(root string, sourcePath string, candidate link, trackedFiles map[string]struct{}) *Finding {
+func checkLink(root string, sourcePath string, candidate link) *Finding {
 	if isExternal(candidate.destination) {
 		return nil
 	}
@@ -293,16 +293,6 @@ func checkLink(root string, sourcePath string, candidate link, trackedFiles map[
 		}
 		return finding(sourcePath, candidate, "cannot inspect its target")
 	}
-	targetRelativePath, err := filepath.Rel(root, targetPath)
-	if err != nil {
-		return finding(sourcePath, candidate, "cannot determine its target path")
-	}
-	if !info.IsDir() && !isTrackedFile(filepath.ToSlash(targetRelativePath), trackedFiles) {
-		return finding(sourcePath, candidate, "targets a file that is not tracked by Git")
-	}
-	if info.IsDir() && !isTrackedDirectory(filepath.ToSlash(targetRelativePath), trackedFiles) {
-		return finding(sourcePath, candidate, "targets a directory with no tracked files")
-	}
 	resolvedRoot, err := filepath.EvalSymlinks(root)
 	if err != nil {
 		return finding(sourcePath, candidate, "cannot resolve the repository root")
@@ -323,10 +313,6 @@ func checkLink(root string, sourcePath string, candidate link, trackedFiles map[
 		if err != nil {
 			return finding(sourcePath, candidate, "targets a directory without README.md for its fragment")
 		}
-		targetRelativePath, err = filepath.Rel(root, targetPath)
-		if err != nil || !isTrackedFile(filepath.ToSlash(targetRelativePath), trackedFiles) {
-			return finding(sourcePath, candidate, "targets a directory without a tracked README.md for its fragment")
-		}
 		resolvedTarget, err = filepath.EvalSymlinks(targetPath)
 		if err != nil {
 			return finding(sourcePath, candidate, "cannot resolve its target")
@@ -346,24 +332,6 @@ func checkLink(root string, sourcePath string, candidate link, trackedFiles map[
 		return finding(sourcePath, candidate, "targets a heading that does not exist")
 	}
 	return nil
-}
-
-func isTrackedFile(path string, trackedFiles map[string]struct{}) bool {
-	_, exists := trackedFiles[path]
-	return exists
-}
-
-func isTrackedDirectory(path string, trackedFiles map[string]struct{}) bool {
-	if path == "." {
-		return len(trackedFiles) > 0
-	}
-	prefix := strings.TrimSuffix(path, "/") + "/"
-	for trackedPath := range trackedFiles {
-		if strings.HasPrefix(trackedPath, prefix) {
-			return true
-		}
-	}
-	return false
 }
 
 func isExternal(destination string) bool {

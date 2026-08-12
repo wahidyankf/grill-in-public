@@ -15,8 +15,8 @@ be investigated and resolved before continuing.
 Pre-push validates every Git-tracked repository Markdown file, not only changed
 documents, so moved or deleted files cannot leave a dangling internal reference.
 It checks repository-local file paths and Markdown heading fragments; external
-URLs are outside this validation. A target must be Git-tracked. Run
-`npm run check:markdown-links` to diagnose a failure before pushing.
+URLs are outside this validation. Run `npm run check:markdown-links` to diagnose
+a failure before pushing.
 
 ## Exception
 

@@ -19,9 +19,9 @@ progressive-disclosure remediation.
 
 The Markdown-link command scans every Git-tracked repository Markdown file. It
 validates local file targets and Markdown heading fragments, including
-reference-style links. Targets must also be Git-tracked. It does not check
-external URLs. The pre-push hook always runs this command so deleting or moving
-a document cannot leave a dangling local link.
+reference-style links. It does not check external URLs. The pre-push hook always
+runs this command so deleting or moving a document cannot leave a dangling local
+link.
 
 ## Run and Verify
 
@@ -30,8 +30,8 @@ From the repository root:
 ```sh
 npm run check:governance
 npm run check:markdown-links
-npx nx run badak-mini:build
-npx nx run badak-mini:test:quick
+npx nx run badakmini-cli:build
+npx nx run badakmini-cli:test:quick
 ```
 
 Badak Mini is a standard-library-only Go module pinned to Go 1.26.1. It is an

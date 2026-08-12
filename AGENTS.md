@@ -52,8 +52,9 @@ plugin-specific executors, or generators without explicit owner direction; see
 the [Nx workspace policy](repo-governance/nx-workspace-policy.md).
 
 Use strict TypeScript and CommonJS-compatible Node output for TypeScript code.
-Badak Mini uses its pinned Go toolchain and standard library; do not add Go
-dependencies without owner direction. Prettier is the formatting source of truth. Use two-space indentation,
+Badak Mini is the standard-library Go CLI for recurring repository-local
+validation; follow the [Badak Mini policy](repo-governance/badakmini-cli-policy.md)
+before extending it. Prettier is the formatting source of truth. Use two-space indentation,
 `camelCase` variables and functions, `PascalCase` classes, and descriptive file
 names. Import internal libraries by package name, not relative cross-project
 paths.

@@ -111,7 +111,7 @@ func TestCheckIgnoresRepositoryMetadataAndBuildOutputs(t *testing.T) {
 	}
 }
 
-func TestCheckReportsUntrackedTargets(t *testing.T) {
+func TestCheckAcceptsUntrackedTargetsBeforeTheyAreStaged(t *testing.T) {
 	root := newRepository(t)
 	writeMarkdown(t, root, "README.md", "[Draft](docs/draft.md)\n")
 	writeMarkdown(t, root, "docs/draft.md", "# Draft\n")
@@ -121,8 +121,8 @@ func TestCheckReportsUntrackedTargets(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expected completed check, got %v", err)
 	}
-	if len(findings) != 1 || findings[0].Problem != "targets a file that is not tracked by Git" {
-		t.Fatalf("expected an untracked target finding, got %#v", findings)
+	if len(findings) != 0 {
+		t.Fatalf("expected an untracked target to be valid, got %#v", findings)
 	}
 }
 

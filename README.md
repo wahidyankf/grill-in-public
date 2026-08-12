@@ -57,7 +57,7 @@ with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md)
 for the full workflow. This workspace deliberately does not use framework or
 language-specific Nx plugins.
 
-[Badak Mini](apps/badak-mini/README.md) is a small Go CLI that checks
+[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI that checks
 governance-document word limits and repository-local Markdown links. Run
 `npm run check:governance` or `npm run check:markdown-links`.
 

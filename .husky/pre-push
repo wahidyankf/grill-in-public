@@ -32,7 +32,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 done
 
 if [ "$SHOULD_CHECK" -eq 1 ]; then
-  npm exec nx -- run badak-mini:governance
+  npm exec nx -- run badakmini-cli:governance
 fi
 
-npm exec nx -- run badak-mini:markdown-links
+npm exec nx -- run badakmini-cli:markdown-links

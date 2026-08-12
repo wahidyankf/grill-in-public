@@ -1,0 +1,30 @@
+{
+  "name": "badakmini-cli",
+  "projectType": "application",
+  "root": "apps/badakmini-cli",
+  "sourceRoot": "apps/badakmini-cli",
+  "targets": {
+    "build": {
+      "command": "go -C apps/badakmini-cli build -o dist/badak-mini ./cmd/badak-mini",
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "governance": {
+      "cache": false,
+      "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness instruction-size validate"
+    },
+    "markdown-links": {
+      "cache": false,
+      "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness markdown-links validate"
+    },
+    "lint": {
+      "command": "unformatted=$(gofmt -l apps/badakmini-cli/cmd apps/badakmini-cli/internal); test -z \"$unformatted\""
+    },
+    "test:quick": {
+      "dependsOn": ["typecheck", "lint"],
+      "command": "go -C apps/badakmini-cli test ./..."
+    },
+    "typecheck": {
+      "command": "go -C apps/badakmini-cli vet ./..."
+    }
+  }
+}
