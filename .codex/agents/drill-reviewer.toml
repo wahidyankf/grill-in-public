@@ -2,7 +2,7 @@
 # .claude/agents/drill-reviewer.md and .opencode/agents/drill-reviewer.md; see
 # repo-governance/conventions/agent-harness-support.md.
 name = "drill-reviewer"
-description = "Reviews a finished interview drill for correctness, complexity, edge cases, and explanation quality. Use after the owner has solved an exercise by hand. Never writes the solution."
+description = "Reviews a finished interview drill for correctness, complexity, edge cases, and explanation quality. Use it after solving an exercise by hand, when you want feedback rather than an answer; it never writes the solution."
 
 # Read-only sandbox enforces the no-edit rule at the tool layer, not only in
 # the prompt, so a misread instruction cannot rewrite the owner's drill.

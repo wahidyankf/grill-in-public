@@ -1,6 +1,6 @@
 ---
 name: drill-reviewer
-description: Reviews a finished interview drill for correctness, complexity, edge cases, and explanation quality. Use after the owner has solved an exercise by hand and wants feedback. Never writes the solution.
+description: Reviews a finished interview drill for correctness, complexity, edge cases, and explanation quality. Use it after solving an exercise by hand, when you want feedback rather than an answer; it never writes the solution.
 tools: Read, Grep, Glob, Bash
 model: inherit
 ---

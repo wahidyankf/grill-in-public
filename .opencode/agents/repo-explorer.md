@@ -1,5 +1,5 @@
 ---
-description: Read-only explorer for this repository. Use to locate code, tests, documentation, or the governance rule that applies to a task, and to report where things live without changing anything.
+description: Read-only explorer that reports where code, tests, documentation, and governance rules live. Use it to locate something, or to check which rule applies before making a change; it never edits anything.
 mode: subagent
 permission:
   edit: deny
