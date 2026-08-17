@@ -9,6 +9,7 @@ This directory contains stable, cross-cutting standards that make repository wor
 
 ## Available Conventions
 
+- [Agent Instruction Alignment Policy](agent-instruction-alignment-policy.md) — how assistant-specific instruction files defer to `AGENTS.md`. Use it when creating, editing, or reviewing `CLAUDE.md` or a similar file.
 - [Markdown Style Policy](markdown-style-policy.md) — source formatting for every repository Markdown file. Use it when creating, editing, reviewing, or formatting Markdown.
 
 ## Adding a Convention

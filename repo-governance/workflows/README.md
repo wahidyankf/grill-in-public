@@ -13,6 +13,7 @@ Create one Markdown file per procedure using a descriptive, lowercase-hyphenated
 
 ## Available Workflows
 
+- [Align Agent Harnesses](align-agent-harnesses.md) verifies that `AGENTS.md` and every assistant-specific harness file stay equal and current.
 - [Propagate Rules](propagate-rules.md) integrates changed repository rules without duplication or contradictions.
 - [Refresh READMEs](refresh-readmes.md) keeps root, project, documentation, and governance READMEs accurate before a thematic commit.
 
