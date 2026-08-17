@@ -8,6 +8,8 @@ This repository is where I practice, review, and document the skills needed for 
 
 This README and [`docs/`](docs/README.md) are for people. AI agents use [`AGENTS.md`](AGENTS.md) and related instruction files; shared repository governance in [`repo-governance/`](repo-governance/README.md) applies to both.
 
+Three agent harnesses are supported: Claude Code, Codex, and opencode. Codex and opencode read `AGENTS.md` directly, Claude Code reads [`CLAUDE.md`](CLAUDE.md), and each tool keeps its configuration and shared `drill-reviewer` and `repo-explorer` subagents under `.claude/`, `.codex/`, and `.opencode/`. See the [agent harness support policy](repo-governance/conventions/agent-harness-support.md).
+
 ## Hands-On by Design
 
 Unlike my `ose-*` repositories, this repository is intentionally not fully automation-first. I will complete parts of the work by hand—especially coding exercises and drills—to build muscle memory, reinforce the fundamentals, and practice recalling and communicating solutions under interview conditions.

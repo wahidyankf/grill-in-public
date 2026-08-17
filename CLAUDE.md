@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Like `AGENTS.md`, this file has a hard 500-word limit enforced by `npm run check:governance`. Link to a focused document instead of growing it.
 
+The repository also supports Codex and opencode, which read `AGENTS.md` directly; see the [agent harness support policy](repo-governance/conventions/agent-harness-support.md). The `drill-reviewer` and `repo-explorer` subagents in `.claude/agents/` are mirrored for both, and must stay at parity.
+
 This is a hands-on interview-preparation workspace: review, format, and give feedback by default, rather than solving the owner's drills.
 
 ## Commands

@@ -9,6 +9,8 @@ when_to_use: "Use when creating, editing, or reviewing CLAUDE.md or any other as
 
 This policy applies to every assistant-specific instruction file in the repository, at any depth, including `CLAUDE.md`, `GEMINI.md`, `COPILOT.md`, `.cursorrules`, and any equivalent file a future tool introduces. It does not apply to `AGENTS.md`, which these files depend on, or to `repo-governance/`.
 
+The [agent harness support policy](agent-harness-support.md) records which harness reads which file, and when a new harness file is warranted at all.
+
 ## Canonical Source
 
 [`AGENTS.md`](../../AGENTS.md) is the canonical agent instruction file, and it links to the detailed policies in `repo-governance/`. An assistant-specific file is a derivative: it may add only the operational detail its tool needs, such as command invocations, tool-specific workflows, or architecture notes that help that assistant work faster. It must state that `AGENTS.md` is authoritative and link to it.

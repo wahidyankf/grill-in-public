@@ -7,7 +7,7 @@ when_to_use: "Use after changing AGENTS.md, governance, tooling, or any assistan
 
 ## Purpose
 
-Keep every agent harness file — `AGENTS.md` and each assistant-specific derivative such as `CLAUDE.md` — equal in effect, so any agent reading any one of them receives the same rules, commands, and structure. The standing rules live in the [agent instruction alignment policy](../conventions/agent-instruction-alignment-policy.md); this workflow is the procedure that proves they hold.
+Keep every agent harness equal in effect, so any supported tool receives the same rules, commands, and structure. That covers the instruction files, `AGENTS.md` and each derivative such as `CLAUDE.md`, plus each tool's project config and shared subagents. The standing rules live in the [agent instruction alignment policy](../conventions/agent-instruction-alignment-policy.md) and the [agent harness support policy](../conventions/agent-harness-support.md); this workflow is the procedure that proves they hold.
 
 ## When to Use
 
@@ -15,14 +15,15 @@ Use it after changing `AGENTS.md`, a document under `repo-governance/`, a harnes
 
 ## Prerequisites
 
-Install dependencies with `npm install` so the formatting and validation commands run.
+Run `npm install` so the validation commands work.
 
 ## Steps
 
-1. Inventory the harness files:
+1. Inventory the harness files, configs, and subagents:
 
    ```sh
    rg --files -g 'AGENTS.md' -g 'CLAUDE.md' -g 'GEMINI.md' -g 'COPILOT.md' -g '.cursorrules' -g '!node_modules'
+   ls .claude/agents .codex/agents .opencode/agents
    ```
 
 2. Read `AGENTS.md` first, then each derivative. For every rule, command, path, and link in a derivative, decide which case applies:
@@ -36,7 +37,9 @@ Install dependencies with `npm install` so the formatting and validation command
 
 4. Confirm each derivative names `AGENTS.md` as authoritative and links to it.
 
-5. Apply the edits to all affected harness files in the same change.
+5. Compare the shared subagents across `.claude/agents/`, `.codex/agents/`, and `.opencode/agents/`. Each role must exist everywhere with the same name, purpose, and permission posture; wording may differ per format, but capability must not. Confirm each project config still holds only documented settings, and no rules.
+
+6. Apply the edits to every affected harness file, config, and subagent in the same change.
 
 ## Verification
 
