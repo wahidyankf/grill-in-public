@@ -21,14 +21,21 @@ Do not create a `CODEX.md` or `OPENCODE.md`. Both tools read `AGENTS.md` already
 
 Keep the shared subagents at parity. The same role must exist in every harness that supports subagents, with the same name, the same purpose, and the same permission posture. Their instructions may be reworded to fit each format, but they must not diverge in what the agent is allowed to do.
 
-Keep each project config to settings that the tool documents and that the repository actually needs. A config file is not a place for rules; rules belong in `AGENTS.md` or `repo-governance/`. Do not list an auto-discovered file again as an extra instruction, which is why `opencode.json` pins only its schema: opencode already reads `AGENTS.md` and `.opencode/agents/`.
+Keep each project config to settings that the tool documents and that the repository actually needs. A config file is not a place for rules; rules belong in `AGENTS.md` or `repo-governance/`. Do not re-list an auto-discovered file as an extra instruction; `opencode.json` therefore pins only its schema.
 
 Write every agent description as two things: a short statement of what the agent does, then a short sentence saying when it should be used. Harnesses route work by description, so an agent that omits its trigger will be picked at the wrong time or never. Keep the wording equivalent across formats.
 
-Index a harness directory with a `README.md`, as the [documentation index policy](../documentation-index-policy.md) requires, and update it in the same change that adds, renames, or removes a file there. Inside an agents directory the index must not become an agent: opencode registers every `*.md` filename as an agent, so its `README.md` needs `disable: true` in the frontmatter, while Claude Code ignores a file without agent frontmatter and Codex reads only `*.toml`.
+Index a harness directory with a `README.md`, as the [documentation index policy](../documentation-index-policy.md) requires, and update it in the same change that adds, renames, or removes a file there. Verified behavior for an index inside a registering directory:
+
+| Directory | Index behavior |
+| --- | --- |
+| `.claude/agents/` | Ignored without agent frontmatter |
+| `.claude/commands/` | Becomes `/README`; no README, index from parent |
+| `.codex/agents/` | Ignored; only `*.toml` is read |
+| `.opencode/agents/` | Becomes an agent unless frontmatter sets `disable: true` |
 
 A permission control that one harness lacks is recorded where it is missing. Codex has no per-agent shell switch, so its read-only explorer relies on `sandbox_mode` plus an explicit instruction; that divergence is noted in the agent file rather than left implicit.
 
 ## Verification
 
-Run the [Align Agent Harnesses](../workflows/align-agent-harnesses.md) workflow after changing any instruction file, harness config, or subagent. Confirm a new tool's discovery behavior against its own documentation before relying on it here, because instruction-file support changes between releases.
+Run the [Align Agent Harnesses](../workflows/align-agent-harnesses.md) workflow after changing any instruction file, harness config, or subagent. Test a new tool's discovery behavior yourself before relying on it, because support changes between releases.
