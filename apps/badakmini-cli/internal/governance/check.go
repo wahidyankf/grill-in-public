@@ -17,9 +17,9 @@ const (
 	governanceDirectory = "repo-governance"
 )
 
-// harnessFiles are the root agent instruction files. They share one limit
-// because each must stay equally concise for the agent that reads it.
-var harnessFiles = []string{agentsFile, claudeFile}
+// instructionFiles are the root agent instruction files. They share one limit
+// because each must stay equally concise for the harness that reads it.
+var instructionFiles = []string{agentsFile, claudeFile}
 
 // Finding describes one governance document that exceeds MaxWords.
 type Finding struct {
@@ -27,14 +27,14 @@ type Finding struct {
 	WordCount int
 }
 
-// Check validates every root harness file and the recursive Markdown
+// Check validates every root instruction file and the recursive Markdown
 // governance documents below root. It returns every over-limit document so
 // contributors can fix all of them in one pass.
 func Check(root string) ([]Finding, error) {
 	// Fail fast for the repository structures this policy promises to govern; a
 	// missing structure is a setup error, not a zero-word success.
-	for _, harnessFile := range harnessFiles {
-		if err := requireFile(filepath.Join(root, harnessFile), harnessFile); err != nil {
+	for _, instructionFile := range instructionFiles {
+		if err := requireFile(filepath.Join(root, instructionFile), instructionFile); err != nil {
 			return nil, err
 		}
 	}
@@ -43,8 +43,8 @@ func Check(root string) ([]Finding, error) {
 	}
 
 	var findings []Finding
-	for _, harnessFile := range harnessFiles {
-		fileFindings, err := checkFile(root, harnessFile)
+	for _, instructionFile := range instructionFiles {
+		fileFindings, err := checkFile(root, instructionFile)
 		if err != nil {
 			return nil, err
 		}

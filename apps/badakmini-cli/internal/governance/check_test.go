@@ -42,10 +42,10 @@ func TestCheckReportsDocumentsOverTheWordLimit(t *testing.T) {
 	if findings[0].Path != agentsFile || findings[0].WordCount != MaxWords+1 {
 		t.Fatalf("unexpected root finding: %#v", findings[0])
 	}
-	// Every harness file shares the limit, so CLAUDE.md must be reported beside
+	// Every instruction file shares the limit, so CLAUDE.md must be reported beside
 	// AGENTS.md rather than being exempt from the concise-guidance budget.
 	if findings[1].Path != claudeFile || findings[1].WordCount != MaxWords+1 {
-		t.Fatalf("unexpected harness finding: %#v", findings[1])
+		t.Fatalf("unexpected instruction file finding: %#v", findings[1])
 	}
 	if findings[2].Path != "repo-governance/nested/policy.md" {
 		t.Fatalf("expected recursive Markdown finding, got %#v", findings[2])
