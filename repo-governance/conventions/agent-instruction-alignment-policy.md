@@ -9,7 +9,7 @@ when_to_use: "Use when creating, editing, or reviewing CLAUDE.md or any other as
 
 This policy applies to every assistant-specific instruction file in the repository, at any depth, including `CLAUDE.md`, `GEMINI.md`, `COPILOT.md`, `.cursorrules`, and any equivalent file a future tool introduces. It does not apply to `AGENTS.md`, which these files depend on, or to `repo-governance/`.
 
-The [agent harness support policy](agent-harness-support.md) records which harness reads which file, and when a new harness file is warranted at all.
+The [agent harness support policy](agent-harness-support.md) records which harness reads which file, and when a new instruction file is warranted at all. The [agent vocabulary](agent-vocabulary.md) fixes what each of those words means.
 
 ## Canonical Source
 
@@ -17,7 +17,7 @@ The [agent harness support policy](agent-harness-support.md) records which harne
 
 ## Word Limit
 
-`CLAUDE.md` shares the 500-word limit that governs `AGENTS.md` and `repo-governance/`, enforced by `npm run check:governance`. Keep every harness file equally concise; move detail into a focused governance document and link to it rather than trimming a required rule. Badak Mini treats `AGENTS.md` and `CLAUDE.md` as required, so removing one fails the check.
+`CLAUDE.md` shares the 500-word limit that governs `AGENTS.md` and `repo-governance/`, enforced by `npm run check:governance`. Keep every instruction file equally concise; move detail into a focused governance document and link to it rather than trimming a required rule. Badak Mini treats `AGENTS.md` and `CLAUDE.md` as required, so removing one fails the check.
 
 ## Required Alignment
 

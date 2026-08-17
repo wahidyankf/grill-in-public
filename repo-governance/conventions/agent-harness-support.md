@@ -7,7 +7,7 @@ when_to_use: "Use when adding, configuring, or changing support for an agent har
 
 ## Supported Harnesses
 
-This repository supports three harnesses. Each reads a different instruction file, which is why `AGENTS.md` is canonical and `CLAUDE.md` exists as its derivative.
+This repository supports three harnesses, in the sense the [agent vocabulary](agent-vocabulary.md) defines: the tool that runs the model. Each reads a different instruction file, which is why `AGENTS.md` is canonical and `CLAUDE.md` exists as its derivative.
 
 | Harness | Instructions read | Project config | Subagents |
 | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ This repository supports three harnesses. Each reads a different instruction fil
 
 ## Rules
 
-Do not create a `CODEX.md` or `OPENCODE.md`. Both tools read `AGENTS.md` already, and a third harness file would add a copy to keep aligned for no gain. Add a harness file only when its tool cannot read `AGENTS.md`, and then follow the [agent instruction alignment policy](agent-instruction-alignment-policy.md).
+Do not create a `CODEX.md` or `OPENCODE.md`. Both tools read `AGENTS.md` already, and a third instruction file would add a copy to keep aligned for no gain. Add an instruction file only when its harness cannot read `AGENTS.md`, and then follow the [agent instruction alignment policy](agent-instruction-alignment-policy.md).
 
 Keep the shared subagents at parity. The same role must exist in every harness that supports subagents, with the same name, the same purpose, and the same permission posture. Their instructions may be reworded to fit each format, but they must not diverge in what the agent is allowed to do.
 
@@ -31,4 +31,4 @@ A permission control that one harness lacks is recorded where it is missing. Cod
 
 ## Verification
 
-Run the [Align Agent Harnesses](../workflows/align-agent-harnesses.md) workflow after changing any harness file, config, or subagent. Confirm a new tool's discovery behavior against its own documentation before relying on it here, because instruction-file support changes between releases.
+Run the [Align Agent Harnesses](../workflows/align-agent-harnesses.md) workflow after changing any instruction file, harness config, or subagent. Confirm a new tool's discovery behavior against its own documentation before relying on it here, because instruction-file support changes between releases.

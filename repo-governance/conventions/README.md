@@ -10,6 +10,7 @@ This directory contains stable, cross-cutting standards that make repository wor
 ## Available Conventions
 
 - [Agent Harness Support Policy](agent-harness-support.md) — which harnesses are supported and where each reads instructions, config, and subagents. Use it when adding or configuring a harness.
+- [Agent Vocabulary](agent-vocabulary.md) — what harness, agent, instruction file, and subagent mean here. Use it when writing or reviewing any text about agents.
 - [Agent Instruction Alignment Policy](agent-instruction-alignment-policy.md) — how assistant-specific instruction files defer to `AGENTS.md`. Use it when creating, editing, or reviewing `CLAUDE.md` or a similar file.
 - [Markdown Style Policy](markdown-style-policy.md) — source formatting for every repository Markdown file. Use it when creating, editing, reviewing, or formatting Markdown.
 

@@ -1,6 +1,6 @@
 ---
-tldr: "Verifies every agent harness file stays equal to and consistent with AGENTS.md."
-when_to_use: "Use after changing AGENTS.md, governance, tooling, or any assistant-specific instruction file."
+tldr: "Verifies every harness receives the same rules through its instruction file, config, and subagents."
+when_to_use: "Use after changing AGENTS.md, governance, tooling, or any harness's instruction file, config, or subagents."
 ---
 
 # Align Agent Harnesses
@@ -11,7 +11,7 @@ Keep every agent harness equal in effect, so any supported tool receives the sam
 
 ## When to Use
 
-Use it after changing `AGENTS.md`, a `repo-governance/` document, a harness file, or tooling a harness describes, such as an npm script or a Git hook. Use it also before a thematic commit touching any of those.
+Use it after changing `AGENTS.md`, a `repo-governance/` document, an instruction file, or tooling those files describe, such as an npm script or a Git hook. Use it also before a thematic commit touching any of those.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Run `npm install` so the validation commands work.
 
 ## Steps
 
-1. Inventory the harness files, configs, and subagents:
+1. Inventory the instruction files, harness configs, and subagents:
 
    ```sh
    rg --files -g 'AGENTS.md' -g 'CLAUDE.md' -g 'GEMINI.md' -g 'COPILOT.md' -g '.cursorrules' -g '!node_modules'
@@ -33,7 +33,7 @@ Run `npm install` so the validation commands work.
    - **Orphan** — it describes tooling, a path, or a policy that no longer exists. Delete or correct it.
    - **Gap** — it is genuine tool-specific operational detail missing from that harness. Add it there only.
 
-3. Verify every command quoted in a harness file still exists in `package.json` or a `project.json` target, and that every referenced path exists.
+3. Verify every command quoted in an instruction file still exists in `package.json` or a `project.json` target, and that every referenced path exists.
 
 4. Confirm each derivative names `AGENTS.md` as authoritative and links to it.
 
@@ -41,7 +41,7 @@ Run `npm install` so the validation commands work.
 
 6. Confirm each project config holds only documented settings, and that every harness directory has a `README.md` listing its current contents, including the `disable: true` index inside `.opencode/agents/`.
 
-7. Apply the edits to every affected harness file, config, README, and subagent in the same change.
+7. Apply the edits to every affected instruction file, harness config, README, and subagent in the same change.
 
 ## Verification
 

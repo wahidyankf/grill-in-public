@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Like `AGENTS.md`, this file has a hard 500-word limit enforced by `npm run check:governance`. Link to a focused document instead of growing it.
 
-The repository also supports Codex and opencode, which read `AGENTS.md` directly; see the [agent harness support policy](repo-governance/conventions/agent-harness-support.md). The `drill-reviewer` and `repo-explorer` subagents in `.claude/agents/` are mirrored for both, and must stay at parity.
+Claude Code is one of three supported harnesses; Codex and opencode read `AGENTS.md` directly. See the [agent harness support policy](repo-governance/conventions/agent-harness-support.md) and the [agent vocabulary](repo-governance/conventions/agent-vocabulary.md). The `drill-reviewer` and `repo-explorer` subagents in `.claude/agents/` are mirrored for both, and must stay at parity.
 
 This is a hands-on interview-preparation workspace: review, format, and give feedback by default, rather than solving the owner's drills.
 
@@ -21,7 +21,7 @@ npm test                     # cached test:quick across projects
 npm run test:integration     # uncached, excluded from pre-push
 npm run run:dummy            # build and run the demo CLI
 npm run format               # Prettier, the formatting source of truth
-npm run check:governance     # 500-word harness and governance limits
+npm run check:governance     # 500-word instruction and governance limits
 npm run check:markdown-links # repository-local link validation
 ```
 
