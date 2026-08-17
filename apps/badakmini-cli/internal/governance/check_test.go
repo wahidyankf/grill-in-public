@@ -12,6 +12,7 @@ func TestCheckAcceptsDocumentsAtTheWordLimit(t *testing.T) {
 	// progressive-disclosure limit, not when it reaches it.
 	root := newRepositoryFixture(t)
 	writeFile(t, filepath.Join(root, agentsFile), words(MaxWords))
+	writeFile(t, filepath.Join(root, claudeFile), words(MaxWords))
 	writeFile(t, filepath.Join(root, governanceDirectory, "policy.md"), words(MaxWords))
 
 	findings, err := Check(root)
@@ -26,6 +27,7 @@ func TestCheckAcceptsDocumentsAtTheWordLimit(t *testing.T) {
 func TestCheckReportsDocumentsOverTheWordLimit(t *testing.T) {
 	root := newRepositoryFixture(t)
 	writeFile(t, filepath.Join(root, agentsFile), words(MaxWords+1))
+	writeFile(t, filepath.Join(root, claudeFile), words(MaxWords+1))
 	writeFile(t, filepath.Join(root, governanceDirectory, "nested", "policy.md"), words(MaxWords+1))
 	// Non-Markdown material may be long without being repository guidance.
 	writeFile(t, filepath.Join(root, governanceDirectory, "nested", "ignored.txt"), words(MaxWords+1))
@@ -34,19 +36,25 @@ func TestCheckReportsDocumentsOverTheWordLimit(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expected a completed check, got %v", err)
 	}
-	if len(findings) != 2 {
-		t.Fatalf("expected two findings, got %#v", findings)
+	if len(findings) != 3 {
+		t.Fatalf("expected three findings, got %#v", findings)
 	}
 	if findings[0].Path != agentsFile || findings[0].WordCount != MaxWords+1 {
 		t.Fatalf("unexpected root finding: %#v", findings[0])
 	}
-	if findings[1].Path != "repo-governance/nested/policy.md" {
-		t.Fatalf("expected recursive Markdown finding, got %#v", findings[1])
+	// Every harness file shares the limit, so CLAUDE.md must be reported beside
+	// AGENTS.md rather than being exempt from the concise-guidance budget.
+	if findings[1].Path != claudeFile || findings[1].WordCount != MaxWords+1 {
+		t.Fatalf("unexpected harness finding: %#v", findings[1])
+	}
+	if findings[2].Path != "repo-governance/nested/policy.md" {
+		t.Fatalf("expected recursive Markdown finding, got %#v", findings[2])
 	}
 }
 
 func TestCheckRequiresAgentsFile(t *testing.T) {
 	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
 
 	_, err := Check(root)
 	if err == nil || !strings.Contains(err.Error(), "required file not found: AGENTS.md") {
@@ -54,9 +62,20 @@ func TestCheckRequiresAgentsFile(t *testing.T) {
 	}
 }
 
+func TestCheckRequiresClaudeFile(t *testing.T) {
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "required file not found: CLAUDE.md") {
+		t.Fatalf("expected a missing CLAUDE.md error, got %v", err)
+	}
+}
+
 func TestCheckRequiresGovernanceDirectory(t *testing.T) {
 	root := t.TempDir()
 	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
 
 	_, err := Check(root)
 	if err == nil || !strings.Contains(err.Error(), "required directory not found: repo-governance") {

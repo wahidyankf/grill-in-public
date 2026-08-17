@@ -13,8 +13,13 @@ const (
 	MaxWords = 500
 
 	agentsFile          = "AGENTS.md"
+	claudeFile          = "CLAUDE.md"
 	governanceDirectory = "repo-governance"
 )
+
+// harnessFiles are the root agent instruction files. They share one limit
+// because each must stay equally concise for the agent that reads it.
+var harnessFiles = []string{agentsFile, claudeFile}
 
 // Finding describes one governance document that exceeds MaxWords.
 type Finding struct {
@@ -22,28 +27,34 @@ type Finding struct {
 	WordCount int
 }
 
-// Check validates AGENTS.md and recursive Markdown governance documents below
-// root. It returns every over-limit document so contributors can fix all of
-// them in one pass.
+// Check validates every root harness file and the recursive Markdown
+// governance documents below root. It returns every over-limit document so
+// contributors can fix all of them in one pass.
 func Check(root string) ([]Finding, error) {
-	// Fail fast for the two repository structures this policy promises to govern;
-	// a missing structure is a setup error, not a zero-word success.
-	if err := requireFile(filepath.Join(root, agentsFile), agentsFile); err != nil {
-		return nil, err
+	// Fail fast for the repository structures this policy promises to govern; a
+	// missing structure is a setup error, not a zero-word success.
+	for _, harnessFile := range harnessFiles {
+		if err := requireFile(filepath.Join(root, harnessFile), harnessFile); err != nil {
+			return nil, err
+		}
 	}
 	if err := requireDirectory(filepath.Join(root, governanceDirectory), governanceDirectory); err != nil {
 		return nil, err
 	}
 
-	findings, err := checkFile(root, agentsFile)
-	if err != nil {
-		return nil, err
+	var findings []Finding
+	for _, harnessFile := range harnessFiles {
+		fileFindings, err := checkFile(root, harnessFile)
+		if err != nil {
+			return nil, err
+		}
+		findings = append(findings, fileFindings...)
 	}
 
 	governancePath := filepath.Join(root, governanceDirectory)
 	// Walk recursively because progressive disclosure permits nested, focused
 	// policies. Restricting the scan to Markdown leaves code and data untouched.
-	err = filepath.WalkDir(governancePath, func(path string, entry os.DirEntry, walkErr error) error {
+	err := filepath.WalkDir(governancePath, func(path string, entry os.DirEntry, walkErr error) error {
 		if walkErr != nil {
 			return walkErr
 		}

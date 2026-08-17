@@ -40,14 +40,14 @@ For example, Dummy App's integration test verifies that it consumes the greeting
 
 ## Check Governance Guidance and Markdown Links
 
-Run the governance check after changing `AGENTS.md` or Markdown files under `repo-governance/`:
+Run the governance check after changing the harness files, `AGENTS.md` and `CLAUDE.md`, or Markdown files under `repo-governance/`:
 
 ```sh
 npm run check:governance
 npm run check:markdown-links
 ```
 
-The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md) Go CLI and runs automatically during a push that changes those paths. The link command validates every Git-tracked Markdown file and runs during every push.
+The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md) Go CLI and runs automatically during a push that changes those paths. The link command validates every Git-tracked Markdown file and runs during every push. It cannot see an untracked new document, so run `git add -N <file>` before trusting a local run on newly created Markdown.
 
 Before each push, Nx runs cached `test:quick` targets for projects affected relative to `origin/main`. See the shared [testing policy](../../repo-governance/development/testing-policy.md) for the target rules.
 

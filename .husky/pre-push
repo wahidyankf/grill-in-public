@@ -34,7 +34,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     base_sha="$EMPTY_TREE"
   fi
 
-  if ! git diff --quiet "$base_sha" "$local_sha" -- AGENTS.md repo-governance; then
+  if ! git diff --quiet "$base_sha" "$local_sha" -- AGENTS.md CLAUDE.md repo-governance; then
     SHOULD_CHECK=1
   fi
 done
