@@ -23,6 +23,10 @@ Keep the shared subagents at parity. The same role must exist in every harness t
 
 Keep each project config to settings that the tool documents and that the repository actually needs. A config file is not a place for rules; rules belong in `AGENTS.md` or `repo-governance/`. Do not list an auto-discovered file again as an extra instruction, which is why `opencode.json` pins only its schema: opencode already reads `AGENTS.md` and `.opencode/agents/`.
 
+Write every agent description as two things: a short statement of what the agent does, then a short sentence saying when it should be used. Harnesses route work by description, so an agent that omits its trigger will be picked at the wrong time or never. Keep the wording equivalent across formats.
+
+Index a harness directory with a `README.md`, as the [documentation index policy](../documentation-index-policy.md) requires, and update it in the same change that adds, renames, or removes a file there. Inside an agents directory the index must not become an agent: opencode registers every `*.md` filename as an agent, so its `README.md` needs `disable: true` in the frontmatter, while Claude Code ignores a file without agent frontmatter and Codex reads only `*.toml`.
+
 A permission control that one harness lacks is recorded where it is missing. Codex has no per-agent shell switch, so its read-only explorer relies on `sandbox_mode` plus an explicit instruction; that divergence is noted in the agent file rather than left implicit.
 
 ## Verification

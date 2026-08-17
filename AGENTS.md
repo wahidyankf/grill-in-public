@@ -10,7 +10,7 @@ Use [ose-public](https://github.com/wahidyankf/ose-public) and [ose-primer](http
 
 ## Rule Changes and Audience
 
-Before changing repository rules, read and follow the [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md). `README.md` and `docs/` serve people; this and related instruction files serve AI agents. `repo-governance/` applies to both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/` and `repo-governance/` directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
+Before changing repository rules, read and follow the [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md). `README.md` and `docs/` serve people; this and related instruction files serve AI agents. `repo-governance/` applies to both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
 
 ## Project Structure
 

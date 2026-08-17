@@ -7,11 +7,11 @@ when_to_use: "Use after changing AGENTS.md, governance, tooling, or any assistan
 
 ## Purpose
 
-Keep every agent harness equal in effect, so any supported tool receives the same rules, commands, and structure. That covers the instruction files, `AGENTS.md` and each derivative such as `CLAUDE.md`, plus each tool's project config and shared subagents. The standing rules live in the [agent instruction alignment policy](../conventions/agent-instruction-alignment-policy.md) and the [agent harness support policy](../conventions/agent-harness-support.md); this workflow is the procedure that proves they hold.
+Keep every agent harness equal in effect, so any supported tool receives the same rules, commands, and structure: the instruction files, each tool's project config, its READMEs, and the shared subagents. The standing rules live in the [agent instruction alignment policy](../conventions/agent-instruction-alignment-policy.md) and the [agent harness support policy](../conventions/agent-harness-support.md); this workflow proves they hold.
 
 ## When to Use
 
-Use it after changing `AGENTS.md`, a document under `repo-governance/`, a harness file, or repository tooling that a harness file describes, such as an npm script, an Nx target, or a Git hook. Use it also before a thematic commit that touches any of those.
+Use it after changing `AGENTS.md`, a `repo-governance/` document, a harness file, or tooling a harness describes, such as an npm script or a Git hook. Use it also before a thematic commit touching any of those.
 
 ## Prerequisites
 
@@ -37,9 +37,11 @@ Run `npm install` so the validation commands work.
 
 4. Confirm each derivative names `AGENTS.md` as authoritative and links to it.
 
-5. Compare the shared subagents across `.claude/agents/`, `.codex/agents/`, and `.opencode/agents/`. Each role must exist everywhere with the same name, purpose, and permission posture; wording may differ per format, but capability must not. Confirm each project config still holds only documented settings, and no rules.
+5. Compare the shared subagents across `.claude/agents/`, `.codex/agents/`, and `.opencode/agents/`. Each role must exist everywhere with the same name, purpose, and permission posture; wording may differ per format, capability must not. Each description must say what the agent does and when to use it.
 
-6. Apply the edits to every affected harness file, config, and subagent in the same change.
+6. Confirm each project config holds only documented settings, and that every harness directory has a `README.md` listing its current contents, including the `disable: true` index inside `.opencode/agents/`.
+
+7. Apply the edits to every affected harness file, config, README, and subagent in the same change.
 
 ## Verification
 
@@ -51,8 +53,8 @@ npm run check:markdown-links
 
 `AGENTS.md`, `CLAUDE.md`, and every `repo-governance/` document must stay within the 500-word limit; move detail into a focused governance document rather than trimming a required rule.
 
-The link check reads Git-tracked files, so a newly created document is invisible to it. Run `git add -N <file>` for each new Markdown file before trusting a local link run.
+The link check reads Git-tracked files. Run `git add -N <file>` for each new Markdown file before trusting a local run.
 
 ## Recovery
 
-If a difference is substantive and its correct resolution is unclear, leave both files unchanged, and report the conflicting text, its practical effect, and a recommended resolution to the repository owner.
+If a difference is substantive and its resolution unclear, leave both files unchanged and report the conflicting text, its effect, and a recommended resolution to the owner.
