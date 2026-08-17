@@ -15,7 +15,13 @@ const (
 	agentsFile          = "AGENTS.md"
 	claudeFile          = "CLAUDE.md"
 	governanceDirectory = "repo-governance"
+	readmeFile          = "README.md"
 )
+
+// harnessDirectories hold each harness's project configuration. Their READMEs
+// are indexes, so they share the concise-guidance limit, while the agent and
+// command definitions beside them are prompts and stay unmeasured.
+var harnessDirectories = []string{".claude", ".codex", ".opencode"}
 
 // instructionFiles are the root agent instruction files. They share one limit
 // because each must stay equally concise for the harness that reads it.
@@ -78,7 +84,74 @@ func Check(root string) ([]Finding, error) {
 		return nil, fmt.Errorf("read %s: %w", governanceDirectory, err)
 	}
 
+	harnessFindings, err := checkHarnessReadmes(root)
+	if err != nil {
+		return nil, err
+	}
+	findings = append(findings, harnessFindings...)
+
 	return findings, nil
+}
+
+// checkHarnessReadmes measures the README index in every harness directory. A
+// harness that this repository does not configure is absent rather than empty,
+// so a missing directory is skipped instead of failing the run.
+func checkHarnessReadmes(root string) ([]Finding, error) {
+	var findings []Finding
+
+	for _, harnessDirectory := range harnessDirectories {
+		harnessPath := filepath.Join(root, harnessDirectory)
+		if _, err := os.Stat(harnessPath); err != nil {
+			if os.IsNotExist(err) {
+				continue
+			}
+			return nil, fmt.Errorf("inspect %s: %w", harnessDirectory, err)
+		}
+
+		err := filepath.WalkDir(harnessPath, func(path string, entry os.DirEntry, walkErr error) error {
+			if walkErr != nil {
+				return walkErr
+			}
+			if entry.IsDir() {
+				// A harness may install dependencies or caches beside its own
+				// configuration. That content is vendored, not repository guidance,
+				// so descending into it would report documents nobody here wrote.
+				if path != harnessPath && isVendoredDirectory(entry.Name()) {
+					return filepath.SkipDir
+				}
+				return nil
+			}
+			// Only the index is governed here. Agent and command definitions are
+			// prompts, and a useful prompt is often longer than a concise index.
+			if entry.Name() != readmeFile {
+				return nil
+			}
+
+			relativePath, err := filepath.Rel(root, path)
+			if err != nil {
+				return fmt.Errorf("determine the path for %s: %w", path, err)
+			}
+
+			fileFindings, err := checkFile(root, relativePath)
+			if err != nil {
+				return err
+			}
+			findings = append(findings, fileFindings...)
+			return nil
+		})
+		if err != nil {
+			return nil, fmt.Errorf("read %s: %w", harnessDirectory, err)
+		}
+	}
+
+	return findings, nil
+}
+
+// isVendoredDirectory reports whether a directory inside a harness holds
+// installed or generated content rather than authored configuration. Hidden
+// directories are treated the same way because tools put caches there.
+func isVendoredDirectory(name string) bool {
+	return name == "node_modules" || strings.HasPrefix(name, ".")
 }
 
 func requireFile(path string, displayPath string) error {

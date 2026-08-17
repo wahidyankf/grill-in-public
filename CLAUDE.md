@@ -53,7 +53,7 @@ The [commit hook policy](repo-governance/development/commit-hook-policy.md) forb
 
 ## Quality Gates
 
-Pre-commit formats staged files. Pre-push requires `origin/main`, runs affected `test:quick`, runs the governance check when the push touches `AGENTS.md`, `CLAUDE.md`, or `repo-governance/`, and always validates Markdown links. Commit messages go through commitlint. See the [commit hook policy](repo-governance/development/commit-hook-policy.md); the link check reads Git-tracked files, so `git add -N` a new document before trusting a local run.
+Pre-commit formats staged files. Pre-push requires `origin/main`, runs affected `test:quick`, runs the governance check when the push touches `AGENTS.md`, `CLAUDE.md`, `repo-governance/`, or a harness directory, and always validates Markdown links. Commit messages go through commitlint. See the [commit hook policy](repo-governance/development/commit-hook-policy.md); the link check reads Git-tracked files, so `git add -N` a new document before trusting a local run.
 
 ## Writing Here
 

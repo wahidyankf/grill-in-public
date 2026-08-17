@@ -52,6 +52,54 @@ func TestCheckReportsDocumentsOverTheWordLimit(t *testing.T) {
 	}
 }
 
+func TestCheckReportsOverlongHarnessReadmes(t *testing.T) {
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	writeFile(t, filepath.Join(root, ".claude", readmeFile), words(MaxWords+1))
+	// A nested index is governed too, because depth does not make a directory
+	// listing longer to read.
+	writeFile(t, filepath.Join(root, ".opencode", "agents", readmeFile), words(MaxWords+1))
+	// An agent definition beside the index is a prompt, not an index, so its
+	// length is the author's call.
+	writeFile(t, filepath.Join(root, ".opencode", "agents", "drill-reviewer.md"), words(MaxWords+1))
+	// Only the configured harnesses are scanned; .codex is absent here.
+	// Installed dependencies and caches are vendored content, so their own
+	// READMEs must not be reported as this repository's overlong guidance.
+	writeFile(t, filepath.Join(root, ".opencode", "node_modules", "dep", readmeFile), words(MaxWords+1))
+	writeFile(t, filepath.Join(root, ".claude", ".cache", readmeFile), words(MaxWords+1))
+
+	findings, err := Check(root)
+	if err != nil {
+		t.Fatalf("expected a completed check, got %v", err)
+	}
+	if len(findings) != 2 {
+		t.Fatalf("expected two harness findings, got %#v", findings)
+	}
+	if findings[0].Path != ".claude/README.md" {
+		t.Fatalf("unexpected first harness finding: %#v", findings[0])
+	}
+	if findings[1].Path != ".opencode/agents/README.md" {
+		t.Fatalf("unexpected nested harness finding: %#v", findings[1])
+	}
+}
+
+func TestCheckAcceptsRepositoriesWithoutHarnessDirectories(t *testing.T) {
+	// A repository may configure no harness at all; that is a valid state, not a
+	// setup error, so the check must stay silent rather than fail.
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+
+	findings, err := Check(root)
+	if err != nil {
+		t.Fatalf("expected a successful check, got %v", err)
+	}
+	if len(findings) != 0 {
+		t.Fatalf("expected no findings, got %#v", findings)
+	}
+}
+
 func TestCheckRequiresAgentsFile(t *testing.T) {
 	root := newRepositoryFixture(t)
 	writeFile(t, filepath.Join(root, claudeFile), words(1))

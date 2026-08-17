@@ -9,7 +9,7 @@ badak-mini harness instruction-size validate
 badak-mini harness markdown-links validate
 ```
 
-The command finds the Git repository root and ensures that the root agent instruction files, `AGENTS.md` and `CLAUDE.md`, and every recursive Markdown file in `repo-governance/` contain at most 500 words. A missing instruction file fails the check. Its `harness` command group names the family of harness-related checks, not the files they read. It ignores non-Markdown files and reports each violation with a progressive-disclosure remediation.
+The command finds the Git repository root and ensures that the root agent instruction files, `AGENTS.md` and `CLAUDE.md`, every recursive Markdown file in `repo-governance/`, and every recursive `README.md` in `.claude/`, `.codex/`, and `.opencode/` contain at most 500 words. A missing instruction file fails the check, while an absent harness directory is skipped. Agent and command definitions are prompts rather than indexes, so they are not measured. Its `harness` command group names the family of harness-related checks, not the files they read. It ignores non-Markdown files and reports each violation with a progressive-disclosure remediation.
 
 The Markdown-link command scans every Git-tracked repository Markdown file. It validates local file targets and Markdown heading fragments, including reference-style links. It does not check external URLs. The pre-push hook always runs this command so deleting or moving a document cannot leave a dangling local link.
 

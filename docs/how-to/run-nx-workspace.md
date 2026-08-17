@@ -40,7 +40,7 @@ For example, Dummy App's integration test verifies that it consumes the greeting
 
 ## Check Governance Guidance and Markdown Links
 
-Run the governance check after changing the agent instruction files, `AGENTS.md` and `CLAUDE.md`, or Markdown files under `repo-governance/`:
+Run the governance check after changing the agent instruction files, `AGENTS.md` and `CLAUDE.md`, Markdown files under `repo-governance/`, or a `README.md` under `.claude/`, `.codex/`, or `.opencode/`:
 
 ```sh
 npm run check:governance
