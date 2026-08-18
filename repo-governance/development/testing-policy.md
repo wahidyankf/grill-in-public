@@ -11,7 +11,7 @@ This policy applies to every Nx project in this repository.
 
 ## Quick Tests
 
-Each project must expose a cacheable `test:quick` target. It runs deterministic unit tests with collaborators mocked, the project's static type check when its language provides one, and linting. The pre-push hook runs `test:quick` only for projects affected relative to `origin/main`; it intentionally uses Nx's local task cache.
+Each project must expose a cacheable `test:quick` target. It runs deterministic unit tests with collaborators mocked, the project's static type check when its language provides one, and linting. It reaches the last two through `dependsOn` rather than by reimplementing them, so `lint` and `typecheck` must exist as their own targets and be named there. The pre-push hook runs `test:quick` only for projects affected relative to `origin/main`; it intentionally uses Nx's local task cache.
 
 ## Integration Tests
 
@@ -20,6 +20,8 @@ Use an uncached `test:integration` target for behavior that crosses project or e
 ```sh
 npm run test:integration
 ```
+
+A project whose behavior crosses no boundary defines no `test:integration` target at all. Its absence is the signal that the project has nothing to integration-test, so a placeholder that echoes and exits earns a passing run without testing anything and hides the same absence it claims to report.
 
 ## Tooling
 

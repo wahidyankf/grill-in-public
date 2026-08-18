@@ -40,6 +40,6 @@ Comments must explain intent, flow, and non-obvious decisions without narrating 
 
 ## Testing and Commits
 
-Each Nx project must define a cacheable `test:quick` target and an uncached `test:integration` target; see the [testing policy](repo-governance/development/testing-policy.md). Behavior is specified as Gherkin in `specs/` and implemented test-first, one scenario per red-green-refactor cycle; see the [specs policy](repo-governance/development/specs-policy.md) and the [TDD policy](repo-governance/development/tdd-policy.md).
+Each Nx project must define a cacheable `test:quick` target, and an uncached `test:integration` target only for boundary-crossing behavior; see the [testing policy](repo-governance/development/testing-policy.md). Behavior is specified as Gherkin in `specs/` and implemented test-first, one scenario per red-green-refactor cycle; see the [specs policy](repo-governance/development/specs-policy.md) and the [TDD policy](repo-governance/development/tdd-policy.md).
 
 Use Conventional Commits and split unrelated work into thematic commits. The [commit hook policy](repo-governance/development/commit-hook-policy.md) governs commit messages, pull-request content, attribution, and `--no-verify`. Do not commit secrets, `node_modules/`, or unreviewed dependency updates.
