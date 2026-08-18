@@ -23,9 +23,7 @@ This directory contains shared repository governance for human contributors and 
 
 ## Gate History
 
-Each [rules-quality-gate](workflows/rules-quality-gate.md) run appends one line here: date, level, cycles, status, and any open finding.
-
-No runs yet.
+Each [rules-quality-gate](workflows/rules-quality-gate.md) run appends one line to `local-tmp/gate-history/rules-quality-gate.md`, which is untracked. The log grows without bound, and this index does not, so neither rule has to give way. An open finding is written into the affected document as well, where a reader of the rule will meet it.
 
 ## How to Use This Directory
 

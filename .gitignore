@@ -3,3 +3,5 @@ node_modules/
 apps/*/dist/
 libs/*/dist/
 .memsearch/
+# Untracked working area: gate logs and other machine-local records.
+local-tmp/
