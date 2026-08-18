@@ -1,5 +1,5 @@
 {
-  "name": "@grill-in-public/dummy-lib",
+  "name": "@grind-in-public/dummy-lib",
   "version": "0.0.0",
   "private": true,
   "main": "./dist/index.js",

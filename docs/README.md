@@ -5,7 +5,7 @@ when_to_use: "Use when choosing where to read, add, or organize human-facing doc
 
 # Documentation
 
-This directory contains human-facing documentation for Grill in Public: interview preparation material, exercise guidance, and project concepts. AI-agent instructions belong in [`AGENTS.md`](../AGENTS.md) and related instruction files. Shared rules and governance procedures apply to people and agents, and belong in [`repo-governance/`](../repo-governance/).
+This directory contains human-facing documentation for Grind in Public: interview preparation material, exercise guidance, and project concepts. AI-agent instructions belong in [`AGENTS.md`](../AGENTS.md) and related instruction files. Shared rules and governance procedures apply to people and agents, and belong in [`repo-governance/`](../repo-governance/).
 
 ## Diátaxis
 

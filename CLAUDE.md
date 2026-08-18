@@ -39,7 +39,7 @@ npx nx affected -t test:quick --base=origin/main --head=HEAD
 ## Architecture
 
 ```text
-apps/dummy-app  --depends on-->  libs/dummy-lib   (@grill-in-public/dummy-lib)
+apps/dummy-app  --depends on-->  libs/dummy-lib   (@grind-in-public/dummy-lib)
 apps/badakmini-cli                                (Go validation CLI)
 ```
 

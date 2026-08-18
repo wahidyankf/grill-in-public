@@ -3,6 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@grill-in-public/dummy-lib": "0.0.0"
+    "@grind-in-public/dummy-lib": "0.0.0"
   }
 }

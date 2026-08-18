@@ -11,10 +11,10 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/wahidyankf/grill-in-public/apps/badakmini-cli/internal/governance"
-	"github.com/wahidyankf/grill-in-public/apps/badakmini-cli/internal/markdownlinks"
-	"github.com/wahidyankf/grill-in-public/apps/badakmini-cli/internal/parity"
-	"github.com/wahidyankf/grill-in-public/apps/badakmini-cli/internal/rulechange"
+	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/governance"
+	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/markdownlinks"
+	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/parity"
+	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/rulechange"
 )
 
 // Each supported invocation is spelled out, so an unknown command fails with

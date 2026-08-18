@@ -1,6 +1,6 @@
 # opencode Harness
 
-This directory holds the opencode agents for Grill in Public. opencode reads its repository rules from [`AGENTS.md`](../AGENTS.md), falling back to `CLAUDE.md` only when no `AGENTS.md` exists, so no opencode-specific instruction file is needed; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
+This directory holds the opencode agents for Grind in Public. opencode reads its repository rules from [`AGENTS.md`](../AGENTS.md), falling back to `CLAUDE.md` only when no `AGENTS.md` exists, so no opencode-specific instruction file is needed; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
 
 ## Contents
 

@@ -2,7 +2,7 @@
 
 ## Purpose and Working Style
 
-Grill in Public is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
+Grind in Public is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
 
 ## Reference Repositories
 

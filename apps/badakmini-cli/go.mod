@@ -1,4 +1,4 @@
-module github.com/wahidyankf/grill-in-public/apps/badakmini-cli
+module github.com/wahidyankf/grind-in-public/apps/badakmini-cli
 
 go 1.26.5
 

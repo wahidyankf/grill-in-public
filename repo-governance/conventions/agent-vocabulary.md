@@ -21,7 +21,7 @@ These words describe different things, and mixing them makes a rule read as if i
 
 **Subagent** — a named role a harness can spawn with its own instructions and permissions, defined under a harness directory's `agents/`. Codex also calls these custom agents.
 
-**Drill grilling** — questioning the owner to practice for an interview. The owner answers, and the agent reviews. This is what the repository name refers to.
+**Drill grilling** — questioning the owner to practice for an interview. The owner answers, and the agent reviews. The repository name refers to the practice itself, the grind, not to either kind of grilling.
 
 **Grilling-with-options** — questioning the owner to resolve an open decision about the work itself, in the structured form the [grilling-with-options policy](grilling-with-options-policy.md) requires. The agent asks and the owner decides, so the roles are the reverse of a drill.
 
@@ -29,7 +29,7 @@ These words describe different things, and mixing them makes a rule read as if i
 
 Name the object you mean. A limit on `AGENTS.md` is a limit on an instruction file, not on a harness. Support for opencode is support for a harness, not for a file.
 
-Qualify grilling whenever both senses could fit the sentence. Unqualified, it reads as the drill this repository is named for, so a rule about deciding must say grilling-with-options.
+Qualify grilling whenever both senses could fit the sentence. The two differ in who answers, and nothing in the word says which is meant, so a rule about deciding must say grilling-with-options and a rule about practice must say drill.
 
 Keep code identifiers on the same vocabulary as the prose that documents them.
 
