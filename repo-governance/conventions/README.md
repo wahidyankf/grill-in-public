@@ -14,6 +14,7 @@ This directory contains stable, cross-cutting standards that make repository wor
 - [Agent Vocabulary](agent-vocabulary.md) — what harness, agent, instruction file, and subagent mean here. Use it when writing or reviewing any text about agents.
 - [Agent Instruction Alignment Policy](agent-instruction-alignment-policy.md) — how assistant-specific instruction files defer to `AGENTS.md`. Use it when creating, editing, or reviewing `CLAUDE.md` or a similar file.
 - [Markdown Style Policy](markdown-style-policy.md) — source formatting for every repository Markdown file. Use it when creating, editing, reviewing, or formatting Markdown.
+- [Task Tracking Policy](task-tracking-policy.md) — how granular a task list must be and when it must be updated. Use it when starting or reviewing work that takes more than one step.
 
 ## Adding a Convention
 
