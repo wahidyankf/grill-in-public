@@ -16,6 +16,17 @@ This directory contains shared repository governance for human contributors and 
 - [Governance Principles](principles/README.md) — foundations every policy and workflow must follow. Use them before resolving a governance conflict.
 - [Repository Workflows](workflows/README.md) — repeatable repository procedures. Use the relevant workflow whenever a task has a defined process.
 
+## Delivery Directories
+
+- [Plans](../plans/README.md) — the working record of change, staged from idea to archive. Use it when planning, executing, or reviewing a piece of work.
+- [Specifications](../specs/README.md) — Gherkin behavior for the workspace's apps and libraries. Use it when adding or changing what the software does.
+
+## Gate History
+
+Each [rules-quality-gate](workflows/rules-quality-gate.md) run appends one line here: date, level, cycles, status, and any open finding.
+
+No runs yet.
+
 ## How to Use This Directory
 
 - Keep `AGENTS.md` concise and link it to shared governance that agents need.
@@ -25,15 +36,7 @@ This directory contains shared repository governance for human contributors and 
 
 ## Document Conventions
 
-Use focused, descriptive filenames such as:
-
-- `exercise-layout.md` for exercise organization and naming details.
-- `dependency-policy.md` for package review, pinning, and audit procedures.
-- `conventions/` for stable shared standards such as Markdown style and naming.
-- `development/` for code, testing, Nx, hook, and validation policies.
-- `documentation-index-policy.md` for recursive README requirements.
-- `contribution-workflow.md` for branch, pull request, or release practices.
-- `principles/` for foundational governance rules.
+Name each document for its subject, in lowercase with hyphens, following the [document naming policy](conventions/document-naming-policy.md). Group related documents into a subdirectory — `conventions/` for stable shared standards, `development/` for code, testing, Nx, hook, and validation policies, `principles/` for foundational rules, and `workflows/` for repeatable procedures.
 
 Each document should state its scope, give actionable rules, and link to any source-of-truth files or commands. Avoid duplicating `AGENTS.md`; keep shared rules there and move only extended context here.
 

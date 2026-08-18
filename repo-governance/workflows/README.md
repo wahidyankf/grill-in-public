@@ -9,13 +9,19 @@ This directory contains repeatable procedures for working in Grind in Public. Us
 
 ## Adding a Workflow
 
-Create one Markdown file per procedure using a descriptive, lowercase-hyphenated name, such as `add-coding-exercise.md` or `update-dependency.md`. Keep each workflow narrowly scoped; link to related governance guidance instead of duplicating it.
+Create one Markdown file per procedure, named as a domain-prefixed noun phrase such as `rules-propagation.md` or `plan-execution.md`; see the [document naming policy](../conventions/document-naming-policy.md). Keep each workflow narrowly scoped; link to related governance guidance instead of duplicating it.
 
 ## Available Workflows
 
-- [Align Agent Harnesses](align-agent-harnesses.md) verifies that every supported harness receives the same rules through its instruction file, config, and subagents.
-- [Propagate Rules](propagate-rules.md) integrates changed repository rules without duplication or contradictions.
-- [Refresh READMEs](refresh-readmes.md) keeps root, project, documentation, and governance READMEs accurate before a thematic commit.
+- [Harness Alignment](harness-alignment.md) verifies that every supported harness receives the same rules through its instruction file, config, and subagents.
+- [Rules Propagation](rules-propagation.md) integrates changed repository rules without duplication or contradictions.
+- [README Refresh](readme-refresh.md) keeps root, project, documentation, and governance READMEs accurate before a thematic commit.
+- [Rules Quality Gate](rules-quality-gate.md) runs `rules-checker` and `rules-fixer` over every rule-bearing file until no findings remain, composing Harness Alignment as a step. Its detail lives in [`rules-quality-gate/`](rules-quality-gate/README.md).
+- [Plan Planning](plan-planning.md) turns a described change into a validated five-document plan under `plans/`.
+- [Plan Quality Gate](plan-quality-gate.md) runs `plan-checker` and `plan-fixer` until a plan has no findings left.
+- [Plan Execution](plan-execution.md) executes a plan phase by phase, delivering to `main` at each gate, then archives it.
+
+The three plan workflows keep their detail in [`plan-planning/`](plan-planning/README.md), [`plan-quality-gate/`](plan-quality-gate/README.md), and [`plan-execution/`](plan-execution/README.md).
 
 ## Workflow Template
 
