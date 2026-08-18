@@ -7,7 +7,7 @@ when_to_use: "Use when adding or reviewing executable source, tests, or reposito
 
 ## Purpose
 
-This is a learning repository. Code should help a reader understand both what it does and the reasoning behind it, especially during interview preparation.
+This is a learning repository. Code should help a reader understand both what it does and the reasoning behind it, including the owner returning to a drill months later.
 
 ## Required Commentary
 

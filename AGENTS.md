@@ -2,7 +2,7 @@
 
 ## Purpose and Working Style
 
-Grind in Public is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
+Grind in Public is a personal lifelong-learning workspace for software engineering. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
 
 ## Reference Repositories
 
@@ -10,12 +10,12 @@ Use [ose-public](https://github.com/wahidyankf/ose-public) and [ose-primer](http
 
 ## Rule Changes and Audience
 
-Before changing repository rules, read and follow the [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md); a change to what a harness reads also requires the [`align-agent-harnesses` workflow](repo-governance/workflows/align-agent-harnesses.md). `README.md` and `docs/` serve people; instruction files serve agents; `repo-governance/` serves both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
+Before changing repository rules, follow the [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md); a change to what a harness reads also requires the [`align-agent-harnesses` workflow](repo-governance/workflows/align-agent-harnesses.md). `README.md` and `docs/` serve people; instruction files serve agents; `repo-governance/` serves both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
 
 ## Project Structure
 
 - `apps/` holds runnable workspace applications.
-- `libs/` holds reusable workspace packages consumed by apps.
+- `libs/` holds reusable workspace packages.
 - `docs/` holds human-facing Diátaxis documentation.
 - `repo-governance/` holds shared policies and workflows.
 - Root configs: `package.json`, `nx.json`, `tsconfig.base.json`.

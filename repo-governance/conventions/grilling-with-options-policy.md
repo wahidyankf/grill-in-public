@@ -7,7 +7,7 @@ when_to_use: "Use whenever an agent must resolve an open design or scope decisio
 
 ## Scope
 
-This policy governs how an agent questions the owner to resolve an open decision, adapted from the `ose-public` convention of the same name. It does not govern interview drills, where the owner is the one being questioned; the [agent vocabulary](agent-vocabulary.md) separates the two senses. The [harness binding](grilling-harness-binding.md) maps the rules below onto each harness's tool.
+This policy governs how an agent questions the owner to resolve an open decision, adapted from the `ose-public` convention of the same name. It does not govern practice drills, where the owner is the one being questioned; the [agent vocabulary](agent-vocabulary.md) separates the two senses. The [harness binding](grilling-harness-binding.md) maps the rules below onto each harness's tool.
 
 ## Rules
 

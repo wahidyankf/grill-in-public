@@ -1,10 +1,10 @@
 # Grind in Public
 
-Personal interview-preparation workspace maintained by **Wahidyan Kresna Fridayoka**.
+Personal lifelong-learning workspace maintained by **Wahidyan Kresna Fridayoka**.
 
 [LinkedIn](https://www.linkedin.com/in/wahidyan-kresna-fridayoka/)
 
-This repository is where I practice, review, and document the skills needed for software engineering interviews.
+This repository is where I practice, review, and document the craft of software engineering, in the open, for as long as I keep building.
 
 This README and [`docs/`](docs/README.md) are for people. AI agents use [`AGENTS.md`](AGENTS.md) and related instruction files; shared repository governance in [`repo-governance/`](repo-governance/README.md) applies to both.
 
@@ -12,7 +12,7 @@ Three agent harnesses are supported: Claude Code, Codex, and opencode. Codex and
 
 ## Hands-On by Design
 
-Unlike my `ose-*` repositories, this repository is intentionally not fully automation-first. I will complete parts of the work by hand—especially coding exercises and drills—to build muscle memory, reinforce the fundamentals, and practice recalling and communicating solutions under interview conditions.
+Unlike my `ose-*` repositories, this repository is intentionally not fully automation-first. I will complete parts of the work by hand—especially coding exercises and drills—to build muscle memory, reinforce the fundamentals, and practice recalling and explaining solutions without help.
 
 Tools can support review and feedback, but they should not replace the hands-on practice at the heart of this repository.
 
@@ -22,20 +22,20 @@ Tools can support review and feedback, but they should not replace the hands-on 
 - Coding exercises and problem-solving patterns
 - System design
 - Computer science and software engineering fundamentals
-- Behavioral interview preparation
-- Mock interviews and retrospective notes
+- Languages, tools, and engineering craft
+- Retrospective notes on what stuck and what did not
 
 ## Practice Workflow
 
-1. Choose a topic or interview question.
-2. Work through it by hand under realistic interview constraints.
+1. Choose a topic or problem worth understanding.
+2. Work through it by hand under deliberate constraints, without shortcuts.
 3. Record the solution and reasoning.
 4. Review trade-offs, mistakes, and possible improvements.
 5. Revisit the exercise until the approach is clear and repeatable.
 
 ## Goal
 
-Build strong fundamentals, communicate solutions clearly, and become more confident and consistent in software engineering interviews.
+Build strong fundamentals, explain solutions clearly, and keep compounding skill as a software engineer over years rather than cramming for a deadline.
 
 ## Nx Workspace
 

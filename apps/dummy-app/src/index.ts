@@ -8,7 +8,7 @@ export function createApp(createGreetingForName: GreetingCreator): {
   run: () => string;
 } {
   return {
-    // Keep the app's fixed interview-drill input at the composition boundary so
+    // Keep the app's fixed drill input at the composition boundary so
     // a unit test can replace only the collaboration, not the behavior under test.
     run: () => createGreetingForName("Wahidyan"),
   };

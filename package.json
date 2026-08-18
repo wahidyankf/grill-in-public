@@ -1,7 +1,7 @@
 {
   "name": "grind-in-public",
   "version": "1.0.0",
-  "description": "Personal interview-preparation workspace maintained by **Wahidyan Kresna Fridayoka**.",
+  "description": "Personal lifelong-learning workspace maintained by **Wahidyan Kresna Fridayoka**.",
   "main": "index.js",
   "private": true,
   "engines": {

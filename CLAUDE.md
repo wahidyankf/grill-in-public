@@ -10,7 +10,7 @@ Like `AGENTS.md`, this file has a hard 500-word limit enforced by `npm run check
 
 Claude Code is one of three supported harnesses; Codex and opencode read `AGENTS.md`. See the [agent harness support policy](repo-governance/conventions/agent-harness-support.md) and the [agent vocabulary](repo-governance/conventions/agent-vocabulary.md). The subagents in `.claude/agents/` are mirrored for both, as the [harness capability parity policy](repo-governance/conventions/harness-capability-parity-policy.md) requires.
 
-Review, format, and give feedback by default rather than solving the owner's drills in this hands-on interview-preparation workspace.
+Review, format, and give feedback by default rather than solving the owner's drills in this hands-on lifelong-learning workspace.
 
 ## Commands
 
