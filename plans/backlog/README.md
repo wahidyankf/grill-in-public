@@ -6,4 +6,4 @@ A plan is never executed out of this folder. Move it to [`in-progress/`](../in-p
 
 ## Current Plans
 
-- [`wahidyankf-www-migration/`](wahidyankf-www-migration/README.md) — move the personal website, its end-to-end project, its specs, and its two library dependencies from `ose-public` into this repository.
+None yet.

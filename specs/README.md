@@ -8,4 +8,4 @@ For the structure, the Gherkin cardinality rule, and when specs are required, re
 
 ## Current Specifications
 
-None yet. Existing projects gain specs when a plan next touches them; the first are expected to arrive with the [wahidyankf-www migration](../plans/backlog/wahidyankf-www-migration/README.md).
+None yet. Existing projects gain specs when a plan next touches them.

@@ -2,7 +2,7 @@
 
 Plans are this repository's working record of change: why work exists, what it depends on, and what evidence proves it finished. They are not documentation. `docs/` explains the repository to a reader and `repo-governance/` holds its rules; a plan describes one piece of work and retires when that work lands.
 
-Drills are not planned. The owner practices by hand and tracks the session in a harness task list. A plan covers application work, infrastructure work, and repository rule changes.
+Drills are not planned. The owner practices by hand and tracks the session in a harness task list. A plan covers application work, infrastructure work, and substantial rule work; the [plans organization policy](../repo-governance/conventions/plans-organization-policy.md) draws the line below which a rule change is propagated without one.
 
 ## Stages
 
