@@ -9,3 +9,11 @@
 # Subagents stay available so the shared drill-reviewer and repo-explorer roles
 # can be spawned in this repository.
 enabled = true
+
+[features]
+# The grill-me skill asks structured decision questions through
+# request_user_input, which Codex keeps off by default while the feature is
+# under development. The opt-in is documented; its effect is unverified here,
+# like the Codex pre-edit hook. See
+# repo-governance/conventions/grilling-harness-binding.md.
+default_mode_request_user_input = true

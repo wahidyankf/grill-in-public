@@ -6,5 +6,6 @@ This directory holds the opencode agents for Grill in Public. opencode reads its
 
 - [`agents/`](agents/README.md) — the shared subagents available in this repository.
 - [`plugin/`](plugin/README.md) — session plugins, currently the rule-change notice.
+- [`skills/`](skills/README.md) — the shared skills available in this repository.
 
 Project settings live in [`opencode.json`](../opencode.json) at the repository root, which is where opencode expects them.

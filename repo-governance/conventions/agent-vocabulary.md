@@ -17,13 +17,19 @@ These words describe different things, and mixing them makes a rule read as if i
 
 **Agent instruction file** — a file a harness reads for repository rules, such as `AGENTS.md` or `CLAUDE.md`. It is never called a harness file: the harness reads it, and one instruction file can serve several harnesses.
 
-**Harness directory** — the directory holding one harness's project configuration: `.claude/`, `.codex/`, or `.opencode/`.
+**Harness directory** — the directory holding one harness's project configuration: `.claude/`, `.codex/`, `.opencode/`, or the shared `.agents/`.
 
 **Subagent** — a named role a harness can spawn with its own instructions and permissions, defined under a harness directory's `agents/`. Codex also calls these custom agents.
+
+**Drill grilling** — questioning the owner to practice for an interview. The owner answers, and the agent reviews. This is what the repository name refers to.
+
+**Grilling-with-options** — questioning the owner to resolve an open decision about the work itself, in the structured form the [grilling-with-options policy](grilling-with-options-policy.md) requires. The agent asks and the owner decides, so the roles are the reverse of a drill.
 
 ## Rules
 
 Name the object you mean. A limit on `AGENTS.md` is a limit on an instruction file, not on a harness. Support for opencode is support for a harness, not for a file.
+
+Qualify grilling whenever both senses could fit the sentence. Unqualified, it reads as the drill this repository is named for, so a rule about deciding must say grilling-with-options.
 
 Keep code identifiers on the same vocabulary as the prose that documents them.
 

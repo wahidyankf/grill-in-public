@@ -15,6 +15,8 @@ This directory contains stable, cross-cutting standards that make repository wor
 - [Agent Instruction Alignment Policy](agent-instruction-alignment-policy.md) — how assistant-specific instruction files defer to `AGENTS.md`. Use it when creating, editing, or reviewing `CLAUDE.md` or a similar file.
 - [Markdown Style Policy](markdown-style-policy.md) — source formatting for every repository Markdown file. Use it when creating, editing, reviewing, or formatting Markdown.
 - [Task Tracking Policy](task-tracking-policy.md) — how granular a task list must be and when it must be updated. Use it when starting or reviewing work that takes more than one step.
+- [Grilling-With-Options Policy](grilling-with-options-policy.md) — the structured form an agent must use to resolve an open decision with the owner. Use it before asking the owner to decide anything.
+- [Grilling Harness Binding](grilling-harness-binding.md) — the question tool each harness uses and the Markdown fallback. Use it when asking a decision question or adding a harness.
 
 ## Adding a Convention
 

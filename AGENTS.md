@@ -2,7 +2,7 @@
 
 ## Purpose and Working Style
 
-Grill in Public is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md).
+Grill in Public is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
 
 ## Reference Repositories
 
@@ -42,6 +42,6 @@ Comments must explain intent, flow, and non-obvious decisions without narrating 
 
 ## Testing, Commits, and Pull Requests
 
-Each Nx project must define a cacheable `test:quick` target for unit tests, type checks, and linting. Mock collaborators in unit tests; put real cross-project or external interactions in uncached `test:integration` targets. See the [testing policy](repo-governance/development/testing-policy.md).
+Each Nx project must define a cacheable `test:quick` target and an uncached `test:integration` target for boundary-crossing behavior. See the [testing policy](repo-governance/development/testing-policy.md).
 
 Use Conventional Commits, enforced by Husky and commitlint. Split unrelated work into thematic commits. Never use `--no-verify` without explicit owner approval; see the [commit hook policy](repo-governance/development/commit-hook-policy.md). Keep pull requests focused, with motivation, commands run, linked issues when applicable, and screenshots only for visual changes. Do not commit secrets, `node_modules/`, or unreviewed dependency updates.

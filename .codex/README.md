@@ -9,3 +9,5 @@ This directory holds the project-scoped Codex configuration for Grill in Public.
 - [`agents/`](agents/README.md) — the shared subagents available in this repository.
 
 Codex discovers agents from `agents/*.toml` without registration, and ignores other file types there.
+
+Codex skills live outside this directory, in [`.agents/skills/`](../.agents/README.md), because that is where Codex reads them.
