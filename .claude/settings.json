@@ -5,5 +5,18 @@
     "commit": "",
     "pr": "",
     "sessionUrl": false
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "go -C \"${CLAUDE_PROJECT_DIR}/apps/badakmini-cli\" run ./cmd/badak-mini harness rule-change hook"
+          }
+        ]
+      }
+    ]
   }
 }

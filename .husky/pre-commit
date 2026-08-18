@@ -1,3 +1,9 @@
 # Format only staged supported files so a commit cannot accidentally include
 # unrelated working-tree formatting changes.
 npx lint-staged
+
+# Announce the propagate-rules workflow whenever the staged change touches a
+# rule. This runs for every editor and agent, so the workflow does not depend on
+# anyone remembering it. It reports and never blocks: a hook cannot judge
+# whether the workflow was followed, only that it applies.
+npm exec nx -- run badakmini-cli:rule-change

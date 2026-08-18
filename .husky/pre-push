@@ -1,6 +1,7 @@
 # Run cached quick quality gates for every project affected since origin/main.
-# Validate every local Markdown link, and check governance word limits only when
-# the pushed commits change that guidance.
+# Validate every local Markdown link, check governance word limits only when the
+# pushed commits change that guidance, and compare the harness capabilities only
+# when the pushed commits change a harness directory.
 ZERO_SHA="0000000000000000000000000000000000000000"
 # Git represents a newly created remote ref with the all-zero object ID. Its
 # empty tree lets git diff evaluate the first push using normal range logic.
@@ -8,6 +9,7 @@ EMPTY_TREE=$(git hash-object -t tree /dev/null)
 # Multiple ref updates can arrive in one hook invocation; defer this shared
 # check until every update has established whether governance changed.
 SHOULD_CHECK=0
+SHOULD_CHECK_PARITY=0
 
 if ! git rev-parse --verify --quiet origin/main >/dev/null; then
   printf 'ERROR: origin/main is required for affected pre-push checks.\n' >&2
@@ -34,14 +36,25 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     base_sha="$EMPTY_TREE"
   fi
 
-  if ! git diff --quiet "$base_sha" "$local_sha" -- AGENTS.md CLAUDE.md repo-governance .claude .codex .opencode; then
+  if ! git diff --quiet "$base_sha" "$local_sha" -- AGENTS.md CLAUDE.md repo-governance .claude .codex .opencode .agents; then
     SHOULD_CHECK=1
+  fi
+
+  # Only the capability directories can leave one harness exposing more than
+  # another, so a governance-only change does not need this comparison.
+  if ! git diff --quiet "$base_sha" "$local_sha" -- .claude .codex .opencode .agents; then
+    SHOULD_CHECK_PARITY=1
   fi
 done
 
 if [ "$SHOULD_CHECK" -eq 1 ]; then
   # Governance limits matter only when their protected documents change.
   npm exec nx -- run badakmini-cli:governance
+fi
+
+if [ "$SHOULD_CHECK_PARITY" -eq 1 ]; then
+  # A subagent, skill, or command added for one harness must reach them all.
+  npm exec nx -- run badakmini-cli:capability-parity
 fi
 
 # Link targets elsewhere can break when any file is moved or deleted, so this

@@ -5,5 +5,6 @@ This directory holds the opencode agents for SWE Grilling. opencode reads its re
 ## Contents
 
 - [`agents/`](agents/README.md) — the shared subagents available in this repository.
+- [`plugin/`](plugin/README.md) — session plugins, currently the rule-change notice.
 
 Project settings live in [`opencode.json`](../opencode.json) at the repository root, which is where opencode expects them.

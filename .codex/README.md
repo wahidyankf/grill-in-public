@@ -5,6 +5,7 @@ This directory holds the project-scoped Codex configuration for SWE Grilling. Co
 ## Contents
 
 - `config.toml` — project settings. Codex loads this layer only for a trusted project, and it takes precedence over the user config.
+- `hooks.json` — the `PreToolUse` hook that announces the rule-change workflows before an `apply_patch` edit; see the [rule change trigger policy](../repo-governance/development/rule-change-trigger-policy.md). Codex runs a project hook only after the owner trusts the project and approves the hook with `/hooks`.
 - [`agents/`](agents/README.md) — the shared subagents available in this repository.
 
 Codex discovers agents from `agents/*.toml` without registration, and ignores other file types there.
