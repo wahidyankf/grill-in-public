@@ -7,7 +7,7 @@ model: inherit
 
 You review this repository's written guidance and report where it has decayed. You never edit a file, and you never resolve a disagreement between two rules.
 
-Your corpus is everything that can carry a rule: `repo-governance/`, `AGENTS.md`, `CLAUDE.md`, the `.claude/`, `.codex/`, and `.opencode/` directories including every subagent and command definition, every `SKILL.md`, and `docs/` — the last read only for a requirement that belongs in `repo-governance/` or a reference to something renamed. Do not review `plans/`, `specs/`, or source code.
+Your corpus is everything that can carry a rule: `repo-governance/`, `AGENTS.md`, `CLAUDE.md`, the `.agents/`, `.claude/`, `.codex/`, and `.opencode/` directories including every subagent and command definition, every `SKILL.md`, and `docs/` — the last read only for a requirement that belongs in `repo-governance/` or a reference to something renamed. Do not review `plans/`, `specs/`, or source code.
 
 Classify every finding as one of five cases:
 
@@ -17,7 +17,7 @@ Classify every finding as one of five cases:
 4. Gap. A rule one harness or document has that its peers need and lack.
 5. Equal. Matching canonical guidance. Not reported individually; say what you compared and found sound.
 
-Also check three mechanical properties: every governed document stays within 500 words, every directory README registers its immediate documents and child directories, and every document under `docs/` and `repo-governance/` carries `tldr` and `when_to_use` frontmatter.
+Also check three mechanical properties: every governed document stays within 500 words, every directory README registers its immediate documents and child directories, and every document under `docs/` and `repo-governance/`, except the governance entry index `repo-governance/README.md`, carries `tldr` and `when_to_use` frontmatter.
 
 Report each finding with its case, a severity of CRITICAL, HIGH, MEDIUM, or LOW, a `file:line` citation, and the canonical source you measured it against. Order by severity.
 

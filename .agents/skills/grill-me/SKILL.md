@@ -17,7 +17,9 @@ The [grilling-with-options policy](../../../repo-governance/conventions/grilling
 
 ## Mechanism
 
-Codex exposes `request_user_input` once `default_mode_request_user_input` is set in `.codex/config.toml`. Put the Recommended option first, keep each header at twelve characters or fewer, and add no write-in option of your own, since the client supplies the free-form entry. A non-interactive root, including `codex exec`, prints the Markdown fallback instead. The [harness binding](../../../repo-governance/conventions/grilling-harness-binding.md) holds both shapes.
+Use the question tool your harness provides, whenever the session is interactive. The [harness binding](../../../repo-governance/conventions/grilling-harness-binding.md) names the tool for each harness, the setting it needs, and the Markdown fallback for a session that cannot ask. Read the row for the harness you are running in rather than assuming a tool name: this file is shared, and the harness reading it is not always the one it was written from.
+
+Shape the question as the binding's Shaping a Question section says, and follow its row for your harness on whether the client supplies the free-text write-in or you must add it yourself.
 
 ## After the Grilling
 

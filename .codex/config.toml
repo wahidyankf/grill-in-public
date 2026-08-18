@@ -6,8 +6,8 @@
 # registered here. See repo-governance/conventions/agent-harness-support.md.
 
 [agents]
-# Subagents stay available so the shared drill-reviewer and repo-explorer roles
-# can be spawned in this repository.
+# Subagents stay available so the shared roles defined in .codex/agents/ can be
+# spawned in this repository; that directory's README lists them.
 enabled = true
 
 [features]

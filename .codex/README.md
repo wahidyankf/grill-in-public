@@ -5,9 +5,11 @@ This directory holds the project-scoped Codex configuration for Grind in Public.
 ## Contents
 
 - `config.toml` — project settings. Codex loads this layer only for a trusted project, and it takes precedence over the user config.
-- `hooks.json` — the `PreToolUse` hook that announces the rule-change workflows before an `apply_patch` edit; see the [rule change trigger policy](../repo-governance/development/rule-change-trigger-policy.md). Codex runs a project hook only after the owner trusts the project and approves the hook with `/hooks`.
+- `hooks.json` — the `PreToolUse` hook that announces the rule-change workflows before an `apply_patch`, `Edit`, or `Write` edit; see the [rule change trigger policy](../repo-governance/development/rule-change-trigger-policy.md). Codex runs a project hook only after the owner trusts the project and approves the hook with `/hooks`.
 - [`agents/`](agents/README.md) — the shared subagents available in this repository.
 
 Codex discovers agents from `agents/*.toml` without registration, and ignores other file types there.
 
-Codex skills live outside this directory, in [`.agents/skills/`](../.agents/README.md), because that is where Codex reads them.
+Codex skills live outside this directory, in [`.agents/skills/`](../.agents/skills/README.md), because that is where Codex reads them.
+
+Codex supports no project command directory, so this harness has no `commands/` and is exempt from that capability's count; see the [harness capability parity policy](../repo-governance/conventions/harness-capability-parity-policy.md).

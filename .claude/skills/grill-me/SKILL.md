@@ -17,7 +17,9 @@ The [grilling-with-options policy](../../../repo-governance/conventions/grilling
 
 ## Mechanism
 
-Claude Code exposes `AskUserQuestion`, and this skill uses it whenever the session is interactive. Put the Recommended option first, keep each header at twelve characters or fewer, and leave the free-text entry to the harness, which supplies it. The [harness binding](../../../repo-governance/conventions/grilling-harness-binding.md) holds the shaping details and the Markdown fallback for a non-interactive session.
+Use the question tool your harness provides, whenever the session is interactive. The [harness binding](../../../repo-governance/conventions/grilling-harness-binding.md) names the tool for each harness, the setting it needs, and the Markdown fallback for a session that cannot ask. Read the row for the harness you are running in rather than assuming a tool name: this file is shared, and the harness reading it is not always the one it was written from.
+
+Shape the question as the binding's Shaping a Question section says, and follow its row for your harness on whether the client supplies the free-text write-in or you must add it yourself.
 
 ## After the Grilling
 

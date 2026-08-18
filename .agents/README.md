@@ -1,6 +1,6 @@
 # Shared Agent Directory
 
-This directory holds capabilities a harness reads from a shared location rather than from its own harness directory. Codex reads skills from here; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
+This directory holds capabilities a harness reads from a shared location rather than from its own harness directory. Codex and opencode read skills from here; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
 
 ## Contents
 

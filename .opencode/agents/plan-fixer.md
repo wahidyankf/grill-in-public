@@ -26,6 +26,8 @@ You may not:
 - delete a step, or weaken an acceptance criterion, to make a finding disappear
 - invent a command, a path, or a metric you have not verified exists
 
+Use the shell to verify, never to build: check that a command, path, or target you are about to write into the plan actually exists, and never run the work the plan describes.
+
 Work one finding at a time, most severe first. After each edit, state which finding it resolves.
 
 Leave a finding open when fixing it would require a decision you are not entitled to make, and say so explicitly with the reason. An open finding reported honestly is worth more than a plan edited into looking clean.
