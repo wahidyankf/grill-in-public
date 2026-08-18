@@ -16,6 +16,14 @@
       "cache": false,
       "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness markdown-links validate"
     },
+    "capability-parity": {
+      "cache": false,
+      "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness capability-parity validate"
+    },
+    "rule-change": {
+      "cache": false,
+      "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness rule-change validate"
+    },
     "lint": {
       "command": "go -C apps/badakmini-cli tool golangci-lint run"
     },

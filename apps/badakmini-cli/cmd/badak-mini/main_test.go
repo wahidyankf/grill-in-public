@@ -25,6 +25,13 @@ func TestRunPrintsHelp(t *testing.T) {
 	if stderr.Len() != 0 {
 		t.Fatalf("expected no error output, got %q", stderr.String())
 	}
+	// Help is how a contributor discovers the checks, so every supported command
+	// must appear there rather than only in the dispatch switch.
+	for _, command := range supportedCommands {
+		if !strings.Contains(stdout.String(), command) {
+			t.Fatalf("expected %q in the usage text, got %q", command, stdout.String())
+		}
+	}
 }
 
 func TestRunRejectsUnsupportedCommands(t *testing.T) {
