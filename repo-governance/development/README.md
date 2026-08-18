@@ -11,6 +11,7 @@ This directory contains rules for building, testing, validating, and maintaining
 - [Code Commentary](code-commentary-policy.md) for learning-oriented comments.
 - [Commit Hooks](commit-hook-policy.md) for required Git-hook behavior.
 - [Nx Workspace](nx-workspace-policy.md) for raw-Nx boundaries and verification.
+- [Rule Change Triggers](rule-change-trigger-policy.md) for how a rule change announces the workflows that must follow it.
 - [Testing](testing-policy.md) for quick and integration-test responsibilities.
 
 Foundational principles remain in [`../principles/`](../principles/README.md), and repeatable procedures remain in [`../workflows/`](../workflows/README.md).

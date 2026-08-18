@@ -9,17 +9,19 @@ when_to_use: "Use when adding, configuring, or changing support for an agent har
 
 This repository supports three harnesses, in the sense the [agent vocabulary](agent-vocabulary.md) defines: the tool that runs the model. Each reads a different instruction file, which is why `AGENTS.md` is canonical and `CLAUDE.md` exists as its derivative.
 
-| Harness | Instructions read | Project config | Subagents |
-| --- | --- | --- | --- |
-| Claude Code | `CLAUDE.md` only, with no fallback | `.claude/settings.json` | `.claude/agents/*.md` |
-| Codex | `AGENTS.md` | `.codex/config.toml` | `.codex/agents/*.toml` |
-| opencode | `AGENTS.md`, falling back to `CLAUDE.md` | `opencode.json` | `.opencode/agents/*.md` |
+| Harness | Instructions read | Project config |
+| --- | --- | --- |
+| Claude Code | `CLAUDE.md` only, with no fallback | `.claude/settings.json` |
+| Codex | `AGENTS.md` | `.codex/config.toml` |
+| opencode | `AGENTS.md`, falling back to `CLAUDE.md` | `opencode.json` |
+
+Where each harness loads its subagents, skills, and commands belongs to the [harness capability parity policy](harness-capability-parity-policy.md).
 
 ## Rules
 
 Do not create a `CODEX.md` or `OPENCODE.md`. Both tools read `AGENTS.md` already, and a third instruction file would add a copy to keep aligned for no gain. Add an instruction file only when its harness cannot read `AGENTS.md`, and then follow the [agent instruction alignment policy](agent-instruction-alignment-policy.md).
 
-Keep the shared subagents at parity. The same role must exist in every harness that supports subagents, with the same name, the same purpose, and the same permission posture. Their instructions may be reworded to fit each format, but they must not diverge in what the agent is allowed to do.
+Keep the shared subagents, skills, and commands at parity across harnesses, as the [harness capability parity policy](harness-capability-parity-policy.md) requires. That policy owns the capability directories and the check that enforces them.
 
 Keep each project config to settings that the tool documents and that the repository actually needs. A config file is not a place for rules; rules belong in `AGENTS.md` or `repo-governance/`. Do not re-list an auto-discovered file as an extra instruction; `opencode.json` therefore pins only its schema.
 
