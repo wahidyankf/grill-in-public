@@ -1,5 +1,5 @@
 {
-  "name": "swe-grilling",
+  "name": "grill-in-public",
   "version": "1.0.0",
   "description": "Personal interview-preparation workspace maintained by **Wahidyan Kresna Fridayoka**.",
   "main": "index.js",
@@ -30,16 +30,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wahidyankf/swe-grilling.git"
+    "url": "git+https://github.com/wahidyankf/grill-in-public.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/wahidyankf/swe-grilling/issues"
+    "url": "https://github.com/wahidyankf/grill-in-public/issues"
   },
-  "homepage": "https://github.com/wahidyankf/swe-grilling#readme",
+  "homepage": "https://github.com/wahidyankf/grill-in-public#readme",
   "overrides": {
     "brace-expansion": "5.0.9"
   },

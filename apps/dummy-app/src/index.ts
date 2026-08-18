@@ -1,4 +1,4 @@
-import { createGreeting } from "@swe-grilling/dummy-lib";
+import { createGreeting } from "@grill-in-public/dummy-lib";
 
 /** Produces greetings for the dummy app. */
 export type GreetingCreator = (name: string) => string;

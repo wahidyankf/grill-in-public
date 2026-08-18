@@ -1,6 +1,6 @@
 # Codex Harness
 
-This directory holds the project-scoped Codex configuration for SWE Grilling. Codex reads its repository rules from [`AGENTS.md`](../AGENTS.md), so no Codex-specific instruction file exists; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
+This directory holds the project-scoped Codex configuration for Grill in Public. Codex reads its repository rules from [`AGENTS.md`](../AGENTS.md), so no Codex-specific instruction file exists; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
 
 ## Contents
 

@@ -2,7 +2,7 @@
 
 ## Purpose and Working Style
 
-SWE Grilling is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md).
+Grill in Public is a personal interview-preparation workspace. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md).
 
 ## Reference Repositories
 

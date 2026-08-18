@@ -1,6 +1,6 @@
 # Claude Code Harness
 
-This directory holds the Claude Code configuration for SWE Grilling. Claude Code reads its repository rules from [`CLAUDE.md`](../CLAUDE.md), not from this directory; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
+This directory holds the Claude Code configuration for Grill in Public. Claude Code reads its repository rules from [`CLAUDE.md`](../CLAUDE.md), not from this directory; see the [agent harness support policy](../repo-governance/conventions/agent-harness-support.md).
 
 ## Contents
 

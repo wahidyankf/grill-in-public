@@ -5,7 +5,7 @@ when_to_use: "Use when a task has a defined sequence, required checks, or recove
 
 # Repository Workflows
 
-This directory contains repeatable procedures for working in SWE Grilling. Use a workflow when a task has a defined sequence, required checks, or recovery steps that should be performed consistently by contributors and agents.
+This directory contains repeatable procedures for working in Grill in Public. Use a workflow when a task has a defined sequence, required checks, or recovery steps that should be performed consistently by contributors and agents.
 
 ## Adding a Workflow
 

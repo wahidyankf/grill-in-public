@@ -1,6 +1,6 @@
 # Dummy App
 
-Dummy App is a small TypeScript command-line application used to practice the raw-Nx workspace setup. It consumes [`@swe-grilling/dummy-lib`](../../libs/dummy-lib/README.md) and prints a deterministic greeting.
+Dummy App is a small TypeScript command-line application used to practice the raw-Nx workspace setup. It consumes [`@grill-in-public/dummy-lib`](../../libs/dummy-lib/README.md) and prints a deterministic greeting.
 
 ## Run
 

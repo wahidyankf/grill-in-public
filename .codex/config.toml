@@ -1,4 +1,4 @@
-# Project-scoped Codex settings for SWE Grilling. Codex loads this layer only
+# Project-scoped Codex settings for Grill in Public. Codex loads this layer only
 # for a trusted project, and it sits above the user config in precedence.
 #
 # Codex reads AGENTS.md for repository rules; this file holds tool settings

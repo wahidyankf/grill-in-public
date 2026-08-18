@@ -1,13 +1,13 @@
 # Dummy Library
 
-`@swe-grilling/dummy-lib` is a small TypeScript library that exports `createGreeting(name)`. It provides the reusable dependency consumed by [Dummy App](../../apps/dummy-app/README.md).
+`@grill-in-public/dummy-lib` is a small TypeScript library that exports `createGreeting(name)`. It provides the reusable dependency consumed by [Dummy App](../../apps/dummy-app/README.md).
 
 ## Use
 
 Within this workspace, import the package by name:
 
 ```ts
-import { createGreeting } from "@swe-grilling/dummy-lib";
+import { createGreeting } from "@grill-in-public/dummy-lib";
 
 const message = createGreeting("Wahidyan");
 ```
