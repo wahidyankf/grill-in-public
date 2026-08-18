@@ -15,16 +15,16 @@ Run it on demand — after a large rule change, when a contradiction is suspecte
 
 ## Prerequisites
 
-A clean working tree, or a change complete enough to review as a whole. Choose a severity level; the gate reuses the levels defined for the [plan quality gate](plan-quality-gate/severity-and-modes.md), and strict is the default.
+A clean working tree, or a change complete enough to review as a whole. Choose a severity level; the gate reuses the levels defined for the [plan quality gate](plan-quality-gate/01-severity-and-modes.md), and strict is the default.
 
 ## Steps
 
-1. Establish the corpus; see [scope and corpus](rules-quality-gate/scope-and-corpus.md). It spans `repo-governance/`, `AGENTS.md`, `CLAUDE.md`, every harness directory and `SKILL.md`, and `docs/` for leaked rules only.
+1. Establish the corpus; see [scope and corpus](rules-quality-gate/01-scope-and-corpus.md). It spans `repo-governance/`, `AGENTS.md`, `CLAUDE.md`, every harness directory and `SKILL.md`, and `docs/` for leaked rules only.
 2. Run the [Harness Alignment](harness-alignment.md) workflow as a step. It owns the harness inventory, the command and path verification, and the parity comparison, and this gate invokes it rather than restating it.
-3. Run `rules-checker` over the corpus. It reports findings by severity against the [finding taxonomy](rules-quality-gate/finding-taxonomy.md), citing `file:line`.
-4. Stop if no finding meets the chosen level. Otherwise run `rules-fixer` on the findings at or above it; see the [check and fix loop](rules-quality-gate/check-fix-loop.md).
+3. Run `rules-checker` over the corpus. It reports findings by severity against the [finding taxonomy](rules-quality-gate/02-finding-taxonomy.md), citing `file:line`.
+4. Stop if no finding meets the chosen level. Otherwise run `rules-fixer` on the findings at or above it; see the [check and fix loop](rules-quality-gate/03-check-fix-loop.md).
 5. Re-run `rules-checker`. Repeat until two consecutive runs are clean at that level, or seven cycles have passed.
-6. Record the outcome; see the [findings report](rules-quality-gate/findings-report.md).
+6. Record the outcome; see the [findings report](rules-quality-gate/04-findings-report.md).
 
 ## Verification
 

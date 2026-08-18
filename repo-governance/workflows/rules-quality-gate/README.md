@@ -9,7 +9,7 @@ Detail behind the [rules-quality-gate](../rules-quality-gate.md) workflow. Filen
 
 ## Contents
 
-- [Scope and Corpus](scope-and-corpus.md) — which files the gate reads, and how it treats each kind.
-- [Finding Taxonomy](finding-taxonomy.md) — the five alignment cases and the three mechanical checks.
-- [Check and Fix Loop](check-fix-loop.md) — how `rules-checker` and `rules-fixer` divide the work.
-- [Findings Report](findings-report.md) — what a run records when it finishes.
+- [Scope and Corpus](01-scope-and-corpus.md) — which files the gate reads, and how it treats each kind.
+- [Finding Taxonomy](02-finding-taxonomy.md) — the five alignment cases and the three mechanical checks.
+- [Check and Fix Loop](03-check-fix-loop.md) — how `rules-checker` and `rules-fixer` divide the work.
+- [Findings Report](04-findings-report.md) — what a run records when it finishes.

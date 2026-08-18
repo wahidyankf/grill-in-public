@@ -29,4 +29,4 @@ The gate mechanizes the five cases the [Harness Alignment](../harness-alignment.
 
 ## Severity
 
-The gate reuses the levels and modes defined for the [plan quality gate](../plan-quality-gate/severity-and-modes.md). One severity vocabulary across both gates means a report reads the same way whichever produced it.
+The gate reuses the levels and modes defined for the [plan quality gate](../plan-quality-gate/01-severity-and-modes.md). One severity vocabulary across both gates means a report reads the same way whichever produced it.

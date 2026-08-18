@@ -15,16 +15,16 @@ Use it after [plan-planning](plan-planning.md) authors a plan, after any edit to
 
 ## Prerequisites
 
-The plan exists with all five documents and has been through the [structural review](plan-planning/04-structural-review.md). Choose a severity level; see [severity and modes](plan-quality-gate/severity-and-modes.md). Strict is the default.
+The plan exists with all five documents and has been through the [structural review](plan-planning/04-structural-review.md). Choose a severity level; see [severity and modes](plan-quality-gate/01-severity-and-modes.md). Strict is the default.
 
 ## Steps
 
-1. Run `plan-checker` against the plan folder. It reads every document and reports findings by severity, citing `file:line`; see the [check and fix loop](plan-quality-gate/check-fix-loop.md).
+1. Run `plan-checker` against the plan folder. It reads every document and reports findings by severity, citing `file:line`; see the [check and fix loop](plan-quality-gate/02-check-fix-loop.md).
 2. Stop if no finding meets the chosen level. Otherwise continue.
 3. Run `plan-fixer` on the findings at or above that level. It edits the plan documents only; it never touches the code the plan describes.
 4. Re-run `plan-checker`. A fix that introduced a new finding is caught here rather than at execution.
 5. Repeat until two consecutive runs report nothing at the chosen level, or seven cycles have passed.
-6. Record the outcome in the plan's `README.md`: the level used, the cycles run, and the final status; see the [findings report](plan-quality-gate/findings-report.md).
+6. Record the outcome in the plan's `README.md`: the level used, the cycles run, and the final status; see the [findings report](plan-quality-gate/03-findings-report.md).
 
 ## Verification
 

@@ -9,7 +9,7 @@ This directory contains repeatable procedures for working in Grind in Public. Us
 
 ## Adding a Workflow
 
-Create one Markdown file per procedure, named as a domain-prefixed noun phrase such as `rules-propagation.md` or `plan-execution.md`; see the [document naming policy](../conventions/document-naming-policy.md). Keep each workflow narrowly scoped; link to related governance guidance instead of duplicating it.
+Create one Markdown file per procedure, named as a domain-prefixed noun phrase such as `rules-propagation.md` or `plan-execution.md`; see the [document naming policy](../conventions/document-naming-policy.md). A workflow that outgrows one file splits into a directory of the same name whose children carry `NN-` prefixes, because they are the steps. Keep each workflow narrowly scoped; link to related governance guidance instead of duplicating it.
 
 ## Available Workflows
 

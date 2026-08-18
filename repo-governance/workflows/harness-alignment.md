@@ -34,7 +34,7 @@ Run `npm install` so the validation commands work.
    ls .claude/agents .codex/agents .opencode/agents
    ```
 
-2. Read `AGENTS.md` first, then each derivative. Classify every rule, command, path, and link in a derivative as equal, contradiction, duplication, orphan, or gap, per the [finding taxonomy](rules-quality-gate/finding-taxonomy.md). Leave what is equal; replace duplication with a link; correct or delete an orphan; add a gap only to the harness that needs it. Resolve a contradiction at the canonical source with the [Rules Propagation](rules-propagation.md) workflow, then correct the derivative.
+2. Read `AGENTS.md` first, then each derivative. Classify every rule, command, path, and link in a derivative as equal, contradiction, duplication, orphan, or gap, per the [finding taxonomy](rules-quality-gate/02-finding-taxonomy.md). Leave what is equal; replace duplication with a link; correct or delete an orphan; add a gap only to the harness that needs it. Resolve a contradiction at the canonical source with the [Rules Propagation](rules-propagation.md) workflow, then correct the derivative.
 
 3. Verify every command quoted in an instruction file exists in `package.json` or a `project.json` target, and that every referenced path exists.
 
