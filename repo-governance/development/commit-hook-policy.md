@@ -19,6 +19,10 @@ Pre-push validates every Git-tracked repository Markdown file, not only changed 
 
 Commits and pull requests must carry no AI attribution. Do not add a `Co-Authored-By` trailer for an assistant, a generated-with footer, or a session link, by hand or by tool default. The author and committer remain the repository owner. Configure each agent to suppress its own attribution; for Claude Code, `.claude/settings.json` sets `attribution.commitTrailers` to `false` with empty `commit` and `pr` text.
 
+## Pull Request Content
+
+Keep a pull request focused on one theme. State the motivation, the commands run, and any linked issue; add screenshots only for a visual change. Delivery here normally goes directly to `main`, so a pull request is the exception and carries its reason.
+
 ## Exception
 
 A bypass is allowed only with explicit approval from the repository owner. Record the approval and reason in the commit or pull request so the skipped validation is visible and can be rerun promptly.

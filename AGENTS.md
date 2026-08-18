@@ -10,27 +10,25 @@ Use [ose-public](https://github.com/wahidyankf/ose-public) and [ose-primer](http
 
 ## Rule Changes and Audience
 
-Before changing repository rules, follow the [`propagate-rules` workflow](repo-governance/workflows/propagate-rules.md); a change to what a harness reads also requires the [`align-agent-harnesses` workflow](repo-governance/workflows/align-agent-harnesses.md). `README.md` and `docs/` serve people; instruction files serve agents; `repo-governance/` serves both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
+Before changing repository rules, follow the [`rules-propagation` workflow](repo-governance/workflows/rules-propagation.md); a change to what a harness reads also requires the [`harness-alignment` workflow](repo-governance/workflows/harness-alignment.md). `README.md` and `docs/` serve people; instruction files serve agents; `repo-governance/` serves both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
 
 ## Project Structure
 
 - `apps/` holds runnable workspace applications.
 - `libs/` holds reusable workspace packages.
 - `docs/` holds human-facing Diátaxis documentation.
-- `repo-governance/` holds shared policies and workflows.
+- `repo-governance/` holds shared policies and workflows; `plans/` holds delivery plans and `specs/` holds Gherkin behavior.
 - Root configs: `package.json`, `nx.json`, `tsconfig.base.json`.
 
 Keep implementation and tests under `src/`; use lowercase-hyphenated project directories. Add assets only within the project needing them.
 
 ## Commands
 
-- `npm install` installs pinned dependencies and enables Husky hooks.
-- `npm run build`, `npm run typecheck`, and `npm run lint` run Nx targets.
-- `npm test` runs cached `test:quick` targets; `npm run test:integration` is excluded from pre-push.
-- `npm run run:dummy` runs the demo CLI.
-- `npm run format` and `npm run format:check` apply or verify Prettier.
-- `npm run check:governance`, `npm run check:harness-parity`, and `npm run check:markdown-links` enforce word limits, equal harness capabilities, and local links. See the [commit hook policy](repo-governance/development/commit-hook-policy.md).
-- `npm audit --audit-level=low` checks the locked dependency tree.
+`npm install`, `npm run build`, and `npm test` cover the common loop; `npm run format` is the formatting source of truth. The [workspace commands](repo-governance/development/workspace-commands.md) document is canonical for every command, check, and hook.
+
+## Planning
+
+Application, infrastructure, and rule work is planned before it starts; drills are not. A plan is five documents in `plans/`, staged through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
 
 ## Nx and Coding Conventions
 
@@ -40,8 +38,8 @@ Use strict TypeScript with CommonJS-compatible Node output. Badak Mini is the st
 
 Comments must explain intent, flow, and non-obvious decisions without narrating syntax; see the [code commentary policy](repo-governance/development/code-commentary-policy.md).
 
-## Testing, Commits, and Pull Requests
+## Testing and Commits
 
-Each Nx project must define a cacheable `test:quick` target and an uncached `test:integration` target for boundary-crossing behavior. See the [testing policy](repo-governance/development/testing-policy.md).
+Each Nx project must define a cacheable `test:quick` target and an uncached `test:integration` target; see the [testing policy](repo-governance/development/testing-policy.md). Behavior is specified as Gherkin in `specs/` and implemented test-first, one scenario per red-green-refactor cycle; see the [specs policy](repo-governance/development/specs-policy.md) and the [TDD policy](repo-governance/development/tdd-policy.md).
 
-Use Conventional Commits, enforced by Husky and commitlint. Split unrelated work into thematic commits. Never use `--no-verify` without explicit owner approval; see the [commit hook policy](repo-governance/development/commit-hook-policy.md). Keep pull requests focused, with motivation, commands run, linked issues when applicable, and screenshots only for visual changes. Do not commit secrets, `node_modules/`, or unreviewed dependency updates.
+Use Conventional Commits and split unrelated work into thematic commits. The [commit hook policy](repo-governance/development/commit-hook-policy.md) governs commit messages, pull-request content, attribution, and `--no-verify`. Do not commit secrets, `node_modules/`, or unreviewed dependency updates.

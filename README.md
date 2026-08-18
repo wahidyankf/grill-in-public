@@ -48,6 +48,10 @@ The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes [`@grind-in-pu
 
 [Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI that checks governance-document word limits and repository-local Markdown links. Run `npm run check:governance` or `npm run check:markdown-links`.
 
+## Plans and Specs
+
+Application, infrastructure, and rule work is planned before it starts; drills are not, because working them out by hand is the point. A plan is five documents in [`plans/`](plans/README.md), moving from `ideas/` through `backlog/` and `in-progress/` to `done/`, and delivering directly to `main` at each phase gate. What the software should do is described as Gherkin in [`specs/`](specs/README.md), separate from the code that implements it.
+
 ## Documentation
 
 Human-facing project documentation is organized with the [Diátaxis framework](docs/README.md). Repository and agent rules are maintained separately in [`repo-governance/`](repo-governance/README.md).

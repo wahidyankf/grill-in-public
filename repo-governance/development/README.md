@@ -12,6 +12,9 @@ This directory contains rules for building, testing, validating, and maintaining
 - [Commit Hooks](commit-hook-policy.md) for required Git-hook behavior.
 - [Nx Workspace](nx-workspace-policy.md) for raw-Nx boundaries and verification.
 - [Rule Change Triggers](rule-change-trigger-policy.md) for how a rule change announces the workflows that must follow it.
+- [Specs](specs-policy.md) for Gherkin acceptance criteria and the `specs/` tree.
+- [TDD](tdd-policy.md) for red-green-refactor cycles bound to scenarios.
 - [Testing](testing-policy.md) for quick and integration-test responsibilities.
+- [Workspace Commands](workspace-commands.md) for the canonical command, check, and hook reference.
 
 Foundational principles remain in [`../principles/`](../principles/README.md), and repeatable procedures remain in [`../workflows/`](../workflows/README.md).

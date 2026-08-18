@@ -19,6 +19,10 @@ For diagrams, schemas, flows, and similar visual models in Markdown, prefer ASCI
 
 Do not use Mermaid by default. Use it only when the task, user, or governing requirement explicitly calls for Mermaid; otherwise, choose terminal-readable ASCII art.
 
+## Related
+
+Filenames are governed separately by the [document naming policy](document-naming-policy.md).
+
 ## Enforcement
 
 Prettier is configured with `proseWrap: "never"` so `npm run format`, `npm run format:check`, and staged Markdown formatting preserve this style. Run `npm run format` after changing Markdown; use `npm run format:check` to verify it before committing.
