@@ -36,4 +36,4 @@ Plans follow the [Markdown style policy](markdown-style-policy.md) without excep
 
 ## Verification
 
-`plans/` is outside `repo-governance/`, so no word limit applies to a plan and no automated check reads one. The [plan-quality-gate](../workflows/plan-quality-gate.md) workflow is the verification: `plan-checker` reports findings against these rules and `plan-fixer` resolves them.
+`plans/` is outside `repo-governance/`, so no word limit applies to a plan and no governance check reads one. The Markdown link check does: it reads every Git-tracked document, a plan included. The [plan-quality-gate](../workflows/plan-quality-gate.md) workflow is the verification: `plan-checker` reports findings against these rules and `plan-fixer` resolves them.

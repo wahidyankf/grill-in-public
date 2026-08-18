@@ -17,7 +17,7 @@ Run it directly for a correction, a clarification, or a rule confined to one doc
 
 ## Automatic Triggers
 
-The repository announces this workflow rather than relying on memory: pre-commit names it when a staged change touches a rule path, and each harness announces it while the edit is being written. A harness path announces [Harness Alignment](harness-alignment.md) as well. The [rule change trigger policy](../development/rule-change-trigger-policy.md) owns those paths and mechanisms.
+The repository announces this workflow rather than relying on memory. The [rule change trigger policy](../development/rule-change-trigger-policy.md) owns the rule paths, the hooks that watch them, and when [Harness Alignment](harness-alignment.md) is announced alongside this workflow.
 
 An announcement is not the work; carrying out the steps below is still yours.
 

@@ -26,7 +26,7 @@ Archival is blocked until every entry is terminal, or the plan records `No gener
 A plan resumed in a new session starts from the repository, not from memory:
 
 1. Read `delivery.md` and find the first unticked item.
-2. Check the Git log and the working tree against the ticked items above it. A ticked item whose change does not exist is untricked and re-run.
+2. Check the Git log and the working tree against the ticked items above it. A ticked item whose change does not exist is unticked and re-run.
 3. Rebuild the harness task list for the current phase only.
 4. Re-run the previous phase's gate before continuing, so execution resumes from a state proven green rather than assumed green.
 

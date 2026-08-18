@@ -18,10 +18,11 @@ const (
 	readmeFile          = "README.md"
 )
 
-// harnessDirectories hold each harness's project configuration. Their READMEs
-// are indexes, so they share the concise-guidance limit, while the agent and
-// command definitions beside them are prompts and stay unmeasured.
-var harnessDirectories = []string{".claude", ".codex", ".opencode"}
+// harnessDirectories hold each harness's project configuration, including the
+// shared .agents directory more than one harness reads. Their READMEs are
+// indexes, so they share the concise-guidance limit, while the agent, skill,
+// and command definitions beside them are prompts and stay unmeasured.
+var harnessDirectories = []string{".agents", ".claude", ".codex", ".opencode"}
 
 // instructionFiles are the root agent instruction files. They share one limit
 // because each must stay equally concise for the harness that reads it.

@@ -20,7 +20,7 @@ This repository delivers directly to `main`. Once the gate passes:
 1. Confirm the working tree is coherent — it builds and its tests pass, which the gate has just shown.
 2. Stage the phase's work, including the ticked checkboxes and any `learnings.md` entries.
 3. Commit with a Conventional Commits message naming what the phase did, per the [commit hook policy](../../development/commit-hook-policy.md). Split unrelated work into separate commits.
-4. Push to `origin main`. Pre-push runs the affected tests, the governance checks where they apply, and the link check.
+4. Push to `origin main`. The [workspace commands](../../development/workspace-commands.md#hooks) reference lists what pre-push runs and when.
 
 Phase 0 commits only the plan itself, since it changes nothing else.
 

@@ -19,7 +19,7 @@ A harness path is the narrower set the tools read: the instruction files, `openc
 
 The pre-commit hook runs `npm run check:rule-change`, which names the applicable workflows when a staged path carries rules. It runs for every editor, harness, and human, so the trigger never depends on which tool made the change.
 
-It reports and exits zero. A hook can tell that the workflow applies; it cannot tell whether the workflow was followed, and a gate that cannot judge its own condition would only teach people to bypass it. The mechanical parts stay enforced elsewhere, by the governance word limits and the Markdown link check.
+It reports and exits zero. A hook can tell that the workflow applies; it cannot tell whether it was followed, and a gate that cannot judge its own condition only teaches people to bypass it. The mechanical parts stay enforced elsewhere, by the word limits and the link check.
 
 ## Harness Pre-Edit Triggers
 
@@ -29,9 +29,9 @@ A pre-edit trigger says the same thing earlier, while the change is still being 
 | --- | --- |
 | Claude Code | `PreToolUse` on `Edit`, `Write`, and `NotebookEdit`, wired in `.claude/settings.json`; verified |
 | opencode | `.opencode/plugin/rule-change-notice.js` on `tool.execute.before`; the plugin loads, firing is unverified here |
-| Codex | `PreToolUse` on `apply_patch`, wired in `.codex/hooks.json`; it runs only after the owner trusts the project and approves the hook with `/hooks`, so firing is unverified here |
+| Codex | `PreToolUse` on `apply_patch`, `Edit`, and `Write`, wired in `.codex/hooks.json`; it runs only after the owner trusts the project and approves the hook with `/hooks`, so firing is unverified here |
 
-Each harness asks Badak Mini for the notice instead of keeping its own copy of the rule paths, so the three triggers cannot drift apart. Claude Code and Codex send a pre-edit payload to `harness rule-change hook`; the opencode plugin calls the same command. The payloads differ, and the command reads both: Claude Code names the file, while Codex sends the patch and its file headers are read from it.
+Each harness asks Badak Mini for the notice rather than keeping its own copy of the rule paths, so the three cannot drift apart: all of them call `harness rule-change hook`. The payloads differ and the command reads both, since Claude Code names the file while Codex sends a patch whose file headers it parses.
 
 Do not treat a harness trigger as the guarantee. Each one is a convenience over the pre-commit hook, and each can be switched off outside this repository.
 

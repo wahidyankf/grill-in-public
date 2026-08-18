@@ -25,7 +25,7 @@ The [workspace commands](repo-governance/development/workspace-commands.md) docu
 
 ## Planning
 
-Application, infrastructure, and substantial rule work is planned; drills are not. Plans live in `plans/` as five documents and move through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Run [plan-planning](repo-governance/workflows/plan-planning.md), then [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), then [plan-execution](repo-governance/workflows/plan-execution.md). The gate uses the `plan-checker` and `plan-fixer` subagents in `.claude/agents/`; phases deliver directly to `main`.
+`AGENTS.md` states when work is planned and which workflow runs each stage. What is Claude Code-specific: the quality gate spawns the `plan-checker` and `plan-fixer` subagents from `.claude/agents/`, and the same two are mirrored for the other harnesses.
 
 ## Architecture
 
@@ -36,17 +36,17 @@ apps/badakmini-cli                                (Go validation CLI)
 
 Every Nx target is a raw `command` target: no plugins, generators, or executors; see the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md).
 
-TypeScript projects compile with `tsc` into `<project>/dist`; tests run against that compiled JavaScript with `node --test`, never `src/`. `test:quick` therefore declares `dependsOn: ["build", "typecheck", "lint"]`, and running one test file directly needs a build first.
+Tests run against compiled output rather than `src/`, so running one test file directly needs a build first; [workspace commands](repo-governance/development/workspace-commands.md#build-and-test) shows the invocation, and the [testing policy](repo-governance/development/testing-policy.md) owns what `test:quick` depends on.
 
 `apps/badakmini-cli` owns repository-local checks, including the limit above. `cv/` holds career evidence; read [cv/README.md](cv/README.md) before touching it.
 
 ## Commit Attribution
 
-The [commit hook policy](repo-governance/development/commit-hook-policy.md) forbids AI attribution in commits and pull requests. `.claude/settings.json` enforces it: `attribution.commitTrailers` is `false`, `commit` and `pr` text are empty, and `sessionUrl` is off, so no `Co-Authored-By` trailer or generated-with footer appears. Never add either by hand.
+The [commit hook policy](repo-governance/development/commit-hook-policy.md) forbids AI attribution in commits and pull requests, and `.claude/settings.json` carries the `attribution` settings that policy names. Never add a trailer, footer, or session link by hand.
 
 ## Quality Gates
 
-Pre-commit formats staged files and announces the [Rules Propagation](repo-governance/workflows/rules-propagation.md) workflow when a staged path carries rules; a `PreToolUse` hook says the same before an edit. Pre-push runs affected tests, the governance and parity checks where they apply, and always validates Markdown links. Commit messages go through commitlint. The link check reads Git-tracked files, so `git add -N` a new document first. See the [commit hook policy](repo-governance/development/commit-hook-policy.md).
+Pre-commit formats staged files and announces the [Rules Propagation](repo-governance/workflows/rules-propagation.md) workflow when a staged path carries rules, and [Harness Alignment](repo-governance/workflows/harness-alignment.md) when a harness reads that path; a `PreToolUse` hook says the same before an edit. Commit messages go through commitlint. [Workspace commands](repo-governance/development/workspace-commands.md#hooks) lists what each hook runs and the caveats of running those checks locally; the [commit hook policy](repo-governance/development/commit-hook-policy.md) governs bypasses.
 
 ## Writing Here
 

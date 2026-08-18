@@ -20,8 +20,16 @@ Each checkbox carries every element that applies:
 - **An acceptance criterion** stating the observable outcome that proves it done. No bare "implement", "set up", or "configure".
 - **One Gherkin scenario** per behavior cycle, inlined verbatim, as the [TDD policy](../../development/tdd-policy.md) requires.
 
+Bad, because it names no file, no command, and no observable outcome:
+
 ```markdown
-bad: - [ ] Add caching good: - [ ] [AI] Edit `apps/dummy-app/src/index.ts`: memoize `createApp`. Verify with `npx nx run dummy-app:test:quick` — the suite exits 0.
+- [ ] Add caching
+```
+
+Good:
+
+```markdown
+- [ ] [AI] Edit `apps/dummy-app/src/index.ts`: memoize `createApp`. Verify with `npx nx run dummy-app:test:quick` — the suite exits 0.
 ```
 
 ## Executor Tags

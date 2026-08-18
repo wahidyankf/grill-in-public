@@ -7,7 +7,7 @@ when_to_use: "Use when asking a structured decision question, or when adding a h
 
 ## Scope
 
-The [grilling-with-options policy](grilling-with-options-policy.md) owns the rules. This document owns only how those rules reach the owner in each harness, so the three `grill-me` skills can name their tool without restating the rules and drifting apart.
+The [grilling-with-options policy](grilling-with-options-policy.md) owns the rules. This document owns only how those rules reach the owner in each harness, so the shared `grill-me` skill can point at one table instead of naming a tool per copy and drifting apart.
 
 ## Tools
 
@@ -23,7 +23,7 @@ A tool that returns a structured choice removes the parsing step, which is why R
 
 Keep the header short, at most twelve characters, since every harness renders it as a chip or label. Put the Recommended option first and suffix its label with `(Recommended)`; a reader who stops after one option should still see the recommendation. Give each option a one-to-five word label and a one-sentence trade-off. Ask at most four questions in one call, one decision each, and never request multiple selections for a decision that has one answer.
 
-Claude Code and opencode supply the free-text entry themselves, so add only the chat option explicitly. That leaves two or three substantive options plus chat inside a four-option list.
+Claude Code and opencode supply the free-text entry themselves, so add only the chat option explicitly. Codex is unverified here, so add the write-in yourself and drop it if the client turns out to supply one; a duplicated write-in is a smaller failure than a question that offers none. Rule 8 of the policy says what gives when the harness's list runs out of room.
 
 ## Markdown Fallback
 
@@ -42,4 +42,4 @@ The fallback is a rendering of the same question, not a weaker one: it still car
 
 ## Adding a Harness
 
-Record the new harness's tool in the table above and give it a `grill-me` skill, as the [harness capability parity policy](harness-capability-parity-policy.md) requires. State plainly whether the binding is verified or only documented; an unverified binding is useful, and a binding claimed as working when nobody ran it is not.
+Record the new harness's tool in the table above. Check which shared skill directories it reads before copying a `SKILL.md` into it; the [harness capability parity policy](harness-capability-parity-policy.md) owns how many copies a shared skill needs. State plainly whether the binding is verified or only documented; an unverified binding is useful, and a binding claimed as working when nobody ran it is not.

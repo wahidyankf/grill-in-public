@@ -9,7 +9,7 @@ Every decision left open at authoring time becomes a guess written into a checkl
 
 ## The Rules Apply Unchanged
 
-The [grilling-with-options policy](../../conventions/grilling-with-options-policy.md) is normative here: two to four mutually exclusive options, each with its own specific trade-off, exactly one marked Recommended, one decision per question, plus the standing write-in and chat options. Use the harness's native question tool; see the [grilling harness binding](../../conventions/grilling-harness-binding.md).
+The [grilling-with-options policy](../../conventions/grilling-with-options-policy.md) is normative here and applies to a plan exactly as it does anywhere else; read its rules rather than a summary of them. Use the harness's native question tool; see the [grilling harness binding](../../conventions/grilling-harness-binding.md).
 
 ## What to Grill in a Plan
 

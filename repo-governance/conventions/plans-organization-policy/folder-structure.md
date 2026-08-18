@@ -9,10 +9,10 @@ when_to_use: "Use when deciding which plans/ stage a document belongs in."
 
 ```text
 plans/
-├── ideas/          two-pager briefs, one file each, not yet plans
-├── backlog/        full plans prepared but not started
-├── in-progress/    full plans under active execution
-└── done/           completed plans, kept as history
++-- ideas/          two-pager briefs, one file each, not yet plans
++-- backlog/        full plans prepared but not started
++-- in-progress/    full plans under active execution
++-- done/           completed plans, kept as history
 ```
 
 ## Stage Purposes
@@ -27,4 +27,4 @@ plans/
 
 ## Index Requirement
 
-Every stage carries a `README.md` listing the plans it holds, as the [documentation index policy](../../documentation-index-policy.md) requires. A move between stages updates both the source and destination index in the same change, so no index describes a plan that is no longer there.
+Every stage carries a `README.md` listing the plans it holds. The [documentation index policy](../../documentation-index-policy.md) does not reach `plans/`, so this rule is the one that governs a stage index, for the same reason: an unlisted plan is a plan nobody finds. A move between stages updates both the source and destination index in the same change, so no index describes a plan that is no longer there.

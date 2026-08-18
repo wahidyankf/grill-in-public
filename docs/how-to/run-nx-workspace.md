@@ -38,9 +38,9 @@ npm run test:integration
 
 For example, Dummy App's integration test verifies that it consumes the greeting exported by `libs/dummy-lib`. Integration tests are not part of the pre-push hook.
 
-## Check Governance Guidance and Markdown Links
+## Run the Repository Checks
 
-Run the governance check after changing the agent instruction files, `AGENTS.md` and `CLAUDE.md`, Markdown files under `repo-governance/`, or a `README.md` under `.claude/`, `.codex/`, or `.opencode/`:
+Run these checks after changing the agent instruction files, `AGENTS.md` and `CLAUDE.md`, Markdown files under `repo-governance/`, anything under `.agents/`, `.claude/`, `.codex/`, or `.opencode/`, or a project's `project.json` or `nx.json`:
 
 ```sh
 npm run check:governance
@@ -49,7 +49,7 @@ npm run check:markdown-links
 npm run check:project-targets
 ```
 
-The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md) Go CLI and runs automatically during a push that changes those paths. The parity command compares the subagents, skills, and commands each harness exposes, and runs during a push that changes a harness directory. The link command validates every Git-tracked Markdown file and runs during every push. The project-targets command verifies that every Nx project defines `test:quick`, `lint`, and `typecheck` and wires the last two into `test:quick`, and runs during a push that changes a `project.json` or `nx.json`. A fifth command, `npm run check:rule-change`, runs during pre-commit and names the [Rules Propagation](../../repo-governance/workflows/rules-propagation.md) workflow when a staged change touches a rule path, plus [Harness Alignment](../../repo-governance/workflows/harness-alignment.md) when a harness reads that path; it reports without blocking. It cannot see an untracked new document, so run `git add -N <file>` before trusting a local run on newly created Markdown.
+The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md) Go CLI to hold instruction files, governance documents, and harness READMEs to 500 words. The parity command compares the subagents, skills, and commands each harness exposes. The link command validates every Git-tracked Markdown file. The project-targets command verifies that every Nx project defines `test:quick`, `lint`, and `typecheck` and wires the last two into `test:quick`. A fifth command, `npm run check:rule-change`, names the [Rules Propagation](../../repo-governance/workflows/rules-propagation.md) workflow when a staged change touches a rule path, plus [Harness Alignment](../../repo-governance/workflows/harness-alignment.md) when a harness reads that path; it reports without blocking. Which hook runs each one, and on which pushes, is listed once in [workspace commands](../../repo-governance/development/workspace-commands.md#hooks). The rule-change and link commands read Git-tracked files, so `git add -N <file>` a new document before trusting a local run.
 
 Before each push, Nx runs cached `test:quick` targets for projects affected relative to `origin/main`. See the shared [testing policy](../../repo-governance/development/testing-policy.md) for the target rules.
 

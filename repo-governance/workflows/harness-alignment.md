@@ -27,11 +27,11 @@ Run `npm install` so the validation commands work.
 
 ## Steps
 
-1. Inventory the instruction files, harness configs, and subagents:
+1. Inventory the instruction files, harness configs, subagents, and skills:
 
    ```sh
-   rg --files -g 'AGENTS.md' -g 'CLAUDE.md' -g 'GEMINI.md' -g 'COPILOT.md' -g '.cursorrules' -g '!node_modules'
-   ls .claude/agents .codex/agents .opencode/agents
+   rg --files -g 'AGENTS.md' -g 'CLAUDE.md' -g 'GEMINI.md' -g 'COPILOT.md' -g '.cursorrules' -g 'SKILL.md' -g '!node_modules'
+   ls .claude/agents .codex/agents .opencode/agents .claude/skills .agents/skills .opencode/skills
    ```
 
 2. Read `AGENTS.md` first, then each derivative. Classify every rule, command, path, and link in a derivative as equal, contradiction, duplication, orphan, or gap, per the [finding taxonomy](rules-quality-gate/02-finding-taxonomy.md). Leave what is equal; replace duplication with a link; correct or delete an orphan; add a gap only to the harness that needs it. Resolve a contradiction at the canonical source with the [Rules Propagation](rules-propagation.md) workflow, then correct the derivative.
@@ -42,7 +42,7 @@ Run `npm install` so the validation commands work.
 
 5. Compare the shared subagents, skills, and commands as the [harness capability parity policy](../conventions/harness-capability-parity-policy.md) requires. Each description must say what the agent does and when to use it.
 
-6. Confirm each project config holds only documented settings, and that every harness directory has a `README.md` listing its contents, including the `disable: true` index inside `.opencode/agents/`.
+6. Confirm each project config holds only documented settings, and that each directory is indexed as the [documentation index policy](../documentation-index-policy.md) requires, exemptions included.
 
 7. Apply the edits to every affected instruction file, harness config, README, and subagent in the same change.
 
@@ -57,7 +57,7 @@ npm run check:markdown-links
 
 Every governed document must stay within the 500-word limit; split one rather than trim a required rule.
 
-The link check reads Git-tracked files, so `git add -N` a new Markdown file before trusting a local run.
+[Workspace commands](../development/workspace-commands.md#repository-checks) records the caveats of running these checks locally.
 
 ## Recovery
 

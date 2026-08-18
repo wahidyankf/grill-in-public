@@ -14,25 +14,24 @@ Before changing repository rules, follow the [`rules-propagation` workflow](repo
 
 ## Project Structure
 
-- `apps/` holds runnable workspace applications.
-- `libs/` holds reusable workspace packages.
-- `docs/` holds human-facing Diátaxis documentation.
-- `repo-governance/` holds shared policies and workflows; `plans/` holds delivery plans and `specs/` holds Gherkin behavior.
+- `apps/` runnable applications; `libs/` reusable packages.
+- `docs/` human-facing Diátaxis documentation.
+- `repo-governance/` shared policies and workflows; `plans/` delivery plans; `specs/` Gherkin behavior.
 - Root configs: `package.json`, `nx.json`, `tsconfig.base.json`.
 
 Keep implementation and tests under `src/`; use lowercase-hyphenated project directories. Add assets only within the project needing them.
 
 ## Commands
 
-`npm install`, `npm run build`, and `npm test` cover the common loop; `npm run format` is the formatting source of truth. The [workspace commands](repo-governance/development/workspace-commands.md) document is canonical for every command, check, and hook.
+`npm install`, `npm run build`, and `npm test` cover the common loop; `npm run format` is the formatting source of truth. [Workspace commands](repo-governance/development/workspace-commands.md) is canonical for every command, check, and hook.
 
 ## Planning
 
-Application, infrastructure, and substantial rule work is planned before it starts; drills are not. A plan is five documents in `plans/`, staged through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
+Application, infrastructure, and substantial rule work is planned before it starts; drills are not. A plan is five documents in `plans/`, promoted from an idea in `ideas/` and staged through `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
 
 ## Nx and Coding Conventions
 
-Use Nx only as a raw task runner with `command` targets. Do not add Nx plugins, plugin-specific executors, or generators without explicit owner direction; see the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md).
+Use Nx only as a raw task runner with `command` targets. Add no plugin, executor, or generator without explicit owner direction; see the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md).
 
 Use strict TypeScript with CommonJS-compatible Node output. Badak Mini is the standard-library Go CLI for repository-local validation; follow the [Badak Mini policy](repo-governance/development/badakmini-cli-policy.md) before extending it. Prettier is the source of truth; Markdown uses unwrapped paragraphs and terminal-first ASCII diagrams—see the [Markdown style policy](repo-governance/conventions/markdown-style-policy.md). Use two-space indentation, `camelCase` variables and functions, `PascalCase` classes, and descriptive file names. Import internal libraries by package name, not relative cross-project paths.
 

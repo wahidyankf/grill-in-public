@@ -25,7 +25,7 @@ A project whose behavior crosses no boundary defines no `test:integration` targe
 
 ## Tooling
 
-TypeScript projects use TypeScript 6's `tsc --noEmit`, Biome, and project-local ESLint commentary checks. Go projects use `go vet` plus the Go-module-pinned golangci-lint, which runs `gofmt`, Revive, and `nolintlint`. Keep dependency versions exact; audit npm dependencies and scan Go module dependencies.
+TypeScript projects use TypeScript 6's `tsc --noEmit`, Biome, and project-local ESLint commentary checks. Go projects use `go vet` plus the Go-module-pinned golangci-lint, which runs `gofmt`, Revive, and `nolintlint`. Keep dependency versions exact; audit npm dependencies and scan Go module dependencies with the commands [workspace commands](workspace-commands.md#repository-checks) lists.
 
 ## Verification
 

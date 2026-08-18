@@ -18,7 +18,7 @@ This policy governs how an agent questions the owner to resolve an open decision
 5. **One decision per question.** Batch only decisions where one answer constrains the other. Unrelated decisions are separate questions.
 6. **Use the harness's native question tool** when the session is interactive, and the Markdown fallback only when it is not.
 7. **A write-in answer counts as much as a listed option.** When it opens a new branch, grill that branch before proceeding.
-8. **Every question carries two standing options** beyond its substantive ones: a blank-state write-in, and a "chat about this" path that drops the options and discusses the decision in prose. These are escape hatches, not branches, so they do not count toward the cap.
+8. **Every question carries two standing options** beyond its substantive ones: a blank-state write-in, and a "chat about this" path that drops the options and discusses the decision in prose. These are escape hatches, not branches, so they do not count toward the cap. A harness whose list holds only four entries cannot show four substantive options and both escapes; there, prune to three substantive options rather than drop an escape, because a question with no way out is worse than a question with one fewer answer.
 
 ## Validation
 

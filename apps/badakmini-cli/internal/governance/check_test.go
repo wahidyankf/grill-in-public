@@ -84,6 +84,25 @@ func TestCheckReportsOverlongHarnessReadmes(t *testing.T) {
 	}
 }
 
+func TestCheckReportsTheSharedHarnessDirectory(t *testing.T) {
+	// .agents holds the skills Codex and opencode both read, so its indexes are
+	// governed guidance like any other harness directory's.
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	writeFile(t, filepath.Join(root, ".agents", readmeFile), words(MaxWords+1))
+	// A skill body is a prompt, so it stays unmeasured beside its index.
+	writeFile(t, filepath.Join(root, ".agents", "skills", "grill-me", "SKILL.md"), words(MaxWords+1))
+
+	findings, err := Check(root)
+	if err != nil {
+		t.Fatalf("expected a completed check, got %v", err)
+	}
+	if len(findings) != 1 || findings[0].Path != ".agents/README.md" {
+		t.Fatalf("expected the shared harness index to be reported, got %#v", findings)
+	}
+}
+
 func TestCheckAcceptsRepositoriesWithoutHarnessDirectories(t *testing.T) {
 	// A repository may configure no harness at all; that is a valid state, not a
 	// setup error, so the check must stay silent rather than fail.

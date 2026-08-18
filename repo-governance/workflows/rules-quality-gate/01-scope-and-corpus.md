@@ -11,7 +11,7 @@ A rule is any sentence that tells a contributor or an agent what they must, may,
 
 - `repo-governance/**` — every policy, principle, workflow, and index.
 - `AGENTS.md` and `CLAUDE.md` — the instruction files.
-- `.claude/`, `.codex/`, `.opencode/` — subagent definitions, commands, plugin notes, and each directory's README.
+- `.agents/`, `.claude/`, `.codex/`, `.opencode/` — subagent definitions, skills, commands, plugin notes, and each directory's README.
 - Every `SKILL.md`, wherever it lives.
 
 ## In Scope, Judged Narrowly
@@ -26,7 +26,7 @@ A rule is any sentence that tells a contributor or an agent what they must, may,
 
 ## Harness Directories
 
-The gate does not review harness directories itself. It runs the [Harness Alignment](../harness-alignment.md) workflow, which owns the inventory, the per-item review, the command and path verification, and the parity comparison. Composing it keeps one implementation of that review instead of two that drift.
+The gate reads harness files as rule documents, because a prompt tells an agent what to do. It does not repeat the sweep: the [Harness Alignment](../harness-alignment.md) workflow owns the inventory, the per-item comparison, the command and path verification, and the parity check, and the gate runs it as a step rather than doing that work twice. A gap the gate notices while reading is still its finding to report; the systematic search for gaps is alignment's.
 
 ## Prompts Are Rules
 

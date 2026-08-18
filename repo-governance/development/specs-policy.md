@@ -15,12 +15,12 @@ Specs mirror the workspace: `specs/apps/<name>/` and `specs/libs/<name>/`. Each 
 
 ```text
 specs/apps/<name>/
-├── README.md          index for this subject
-├── product/           the problem, its users, and scope
-├── system-context/    the boundary with the outside world
-├── containers/        the running parts
-├── components/        the internals of a part
-└── behavior/          Gherkin acceptance scenarios
++-- README.md          index for this subject
++-- product/           the problem, its users, and scope
++-- system-context/    the boundary with the outside world
++-- containers/        the running parts
++-- components/        the internals of a part
++-- behavior/          Gherkin acceptance scenarios
 ```
 
 `behavior/` is the only mandatory folder. Add another when the subject is complex enough to need it, not in advance.

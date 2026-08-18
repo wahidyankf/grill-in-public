@@ -5,7 +5,7 @@ when_to_use: "Use when looking up the gate's corpus, taxonomy, loop, or report f
 
 # Rules Quality Gate Details
 
-Detail behind the [rules-quality-gate](../rules-quality-gate.md) workflow. Filenames carry no number: these are reference sections consulted individually, not ordered steps; see the [document naming policy](../../conventions/document-naming-policy.md).
+Detail behind the [rules-quality-gate](../rules-quality-gate.md) workflow. Filenames are numbered because every workflow child is a step: each section is consulted at its point in the run; see the [document naming policy](../../conventions/document-naming-policy.md).
 
 ## Contents
 

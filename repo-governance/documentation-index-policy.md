@@ -7,11 +7,11 @@ when_to_use: "Use when adding, moving, renaming, or reviewing Markdown in docs/,
 
 ## Scope
 
-Every directory in `docs/`, `repo-governance/`, and each agent harness directory — `.claude/`, `.codex/`, and `.opencode/` — at every depth, must contain a `README.md`. The README is the directory's concise entry point for both people and agents.
+Every directory in `docs/`, `repo-governance/`, and each agent harness directory — `.agents/`, `.claude/`, `.codex/`, and `.opencode/` — at every depth, must contain a `README.md`. The README is the directory's concise entry point for both people and agents.
 
-A harness directory holds tool configuration rather than prose, so its README indexes the files and child directories it contains and states what each one does. The `tldr` and `when_to_use` frontmatter requirement below does not apply there, because those files carry frontmatter their tool defines.
+A harness directory holds tool configuration rather than prose, so its README indexes what the directory contains and what each entry does. The `tldr` and `when_to_use` requirement below does not apply there, because those files carry the frontmatter their tool defines.
 
-One exemption applies. A harness registers the files in some directories by filename, so an index placed there becomes a command or an agent. Add the README only where the tool ignores it or offers a flag that keeps it inert. Where neither holds, leave that directory without a README and index it from its parent. The [agent harness support policy](conventions/agent-harness-support.md) records the verified behavior per directory; check it, and test the tool, before adding the file.
+Two exemptions apply. A skill directory needs none: its `SKILL.md` names the skill and when to use it, and `skills/README.md` registers it. Second, a harness registers some directories by filename, so an index placed there becomes a command or an agent. Add the README only where the tool ignores it or offers a flag that keeps it inert. Where neither holds, index that directory from its parent. The [agent harness support policy](conventions/agent-harness-support.md) records the verified behavior per directory; check it, and test the tool, before adding the file.
 
 ## Required Indexing
 
@@ -19,7 +19,7 @@ Each README must register its immediate Markdown documents, excluding itself, wi
 
 Every Markdown document under `docs/` or `repo-governance/`, except `repo-governance/README.md`, must begin with YAML frontmatter containing `tldr` and `when_to_use`. Keep both values short enough to help a reader decide whether to open the document.
 
-`repo-governance/README.md` is the exception because it is the governance entry index. Every link there must state both the linked document's short description and when a reader should use it.
+`repo-governance/README.md` is the exception because it is the governance entry index. Every index entry there must state both the linked document's short description and when a reader should use it.
 
 ## When an Index Reaches the Word Limit
 

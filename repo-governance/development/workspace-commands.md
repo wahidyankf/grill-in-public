@@ -27,7 +27,7 @@ go -C apps/badakmini-cli test ./internal/governance -run TestName
 npx nx affected -t test:quick --base=origin/main --head=HEAD
 ```
 
-TypeScript projects compile with `tsc` into `<project>/dist`, and tests run against that compiled JavaScript, never `src/`. `test:quick` therefore declares `dependsOn: ["build", "typecheck", "lint"]`, so running one test file directly needs a build first. See the [testing policy](testing-policy.md).
+TypeScript projects compile with `tsc` into `<project>/dist`, and tests run against that compiled JavaScript, never `src/`, so running one test file directly needs a build first. The [testing policy](testing-policy.md) owns what `test:quick` depends on.
 
 ## Formatting
 
@@ -40,7 +40,7 @@ TypeScript projects compile with `tsc` into `<project>/dist`, and tests run agai
 - `npm run check:markdown-links` validates repository-local Markdown links. It reads Git-tracked files, so `git add -N` a new document before trusting a local run.
 - `npm run check:project-targets` verifies every Nx project defines the test and quality targets the [testing policy](testing-policy.md) requires.
 - `npm run check:rule-change` announces the [rules-propagation](../workflows/rules-propagation.md) workflow for staged rule paths, and [harness-alignment](../workflows/harness-alignment.md) when a harness reads that path. It reports without blocking.
-- `npm audit --audit-level=low` checks the locked dependency tree.
+- `npm audit --audit-level=low` checks the locked dependency tree, and `npm run check:go-vulnerabilities` scans the Go module dependencies.
 
 [Badak Mini](../../apps/badakmini-cli/README.md) implements the repository `check:` commands. When a check fails, read the [Badak Mini policy](badakmini-cli-policy.md) before changing it; the usual fix is the document, not the checker.
 

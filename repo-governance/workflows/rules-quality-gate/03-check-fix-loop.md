@@ -32,7 +32,7 @@ It may:
 It may not:
 
 - resolve a contradiction by choosing a side
-- change what a rule requires, or narrow its scope
+- change what a rule requires, or narrow or widen its scope
 - delete a rule to make a finding disappear
 - edit a prompt in a way that changes what its role does, rather than what it says
 

@@ -9,13 +9,13 @@ Every plan uses five documents. Each owns one concern, so a reader looking for t
 
 ```text
 plans/<stage>/<identifier>/
-├── README.md        overview, scope, links to the rest
-├── brd.md           why this matters
-├── prd.md           what it must do, in user stories and Gherkin
-├── tech-docs.md     how it is built
-├── delivery.md      the phased checklist that drives execution
-├── learnings.md     (transient) running log, drained before archival
-└── evidence/        (optional) command output and artifacts referenced from delivery.md
++-- README.md        overview, scope, links to the rest
++-- brd.md           why this matters
++-- prd.md           what it must do, in user stories and Gherkin
++-- tech-docs.md     how it is built
++-- delivery.md      the phased checklist that drives execution
++-- learnings.md     (transient) running log, drained before archival
++-- evidence/        (optional) command output and artifacts referenced from delivery.md
 ```
 
 ## What Each File Owns
@@ -28,7 +28,7 @@ plans/<stage>/<identifier>/
 
 **`tech-docs.md`** — architecture, design decisions with their rationale, the annotated file-impact tree, dependencies, risks, and the rollback path. No checklist.
 
-**`delivery.md`** — the phased, ticked checklist that execution reads and `plan-execution-checker` verifies; see [delivery checklists](delivery-checklists.md).
+**`delivery.md`** — the phased, ticked checklist that execution reads and `plan-checker` verifies; see [delivery checklists](delivery-checklists.md).
 
 **`learnings.md`** — the transient running log described in [knowledge capture](knowledge-capture.md).
 

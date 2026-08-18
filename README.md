@@ -8,7 +8,7 @@ This repository is where I practice, review, and document the craft of software 
 
 This README and [`docs/`](docs/README.md) are for people. AI agents use [`AGENTS.md`](AGENTS.md) and related instruction files; shared repository governance in [`repo-governance/`](repo-governance/README.md) applies to both.
 
-Three agent harnesses are supported: Claude Code, Codex, and opencode. Codex and opencode read `AGENTS.md` directly, Claude Code reads [`CLAUDE.md`](CLAUDE.md), and each tool keeps its configuration and shared `drill-reviewer` and `repo-explorer` subagents under `.claude/`, `.codex/`, and `.opencode/`. See the [agent harness support policy](repo-governance/conventions/agent-harness-support.md).
+Three agent harnesses are supported: Claude Code, Codex, and opencode. Codex and opencode read `AGENTS.md` directly, Claude Code reads [`CLAUDE.md`](CLAUDE.md), and each tool keeps its configuration and the shared subagents under `.claude/`, `.codex/`, and `.opencode/`, with skills the tools share in `.agents/`. See the [agent harness support policy](repo-governance/conventions/agent-harness-support.md).
 
 ## Hands-On by Design
 
@@ -46,7 +46,7 @@ The repository uses Nx as a raw task runner for its npm workspaces:
 
 The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes [`@grind-in-public/dummy-lib`](libs/dummy-lib/README.md). Run it with `npm run run:dummy`; build all projects with `npm run build`; and run quick checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md) for the full workflow. This workspace deliberately does not use framework or language-specific Nx plugins. TypeScript projects use project-local ESLint commentary checks alongside Biome; passing lint complements, but does not replace human review of explanatory comments.
 
-[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI that checks governance-document word limits and repository-local Markdown links. Run `npm run check:governance` or `npm run check:markdown-links`.
+[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI behind the repository checks: governance-document word limits, repository-local Markdown links, rule-change announcements, harness capability parity, and project targets. [Workspace commands](repo-governance/development/workspace-commands.md) lists the `npm run check:` command for each one.
 
 ## Plans and Specs
 
