@@ -3,7 +3,7 @@ tldr: "Reviews affected human-facing READMEs for accuracy before a thematic comm
 when_to_use: "Use when a change affects repository, project, documentation, or governance discoverability."
 ---
 
-# Refresh READMEs
+# README Refresh
 
 ## Purpose
 

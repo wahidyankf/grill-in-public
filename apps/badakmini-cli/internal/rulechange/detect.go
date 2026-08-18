@@ -1,5 +1,5 @@
 // Package rulechange detects edits to the repository's rules so the
-// propagate-rules workflow is announced instead of being remembered.
+// rules-propagation workflow is announced instead of being remembered.
 package rulechange
 
 import (
@@ -14,11 +14,11 @@ import (
 
 // Workflow is the procedure every rule change must follow. The notice points
 // at it rather than restating its steps, so the workflow stays the one source.
-const Workflow = "repo-governance/workflows/propagate-rules.md"
+const Workflow = "repo-governance/workflows/rules-propagation.md"
 
 // HarnessWorkflow proves the harnesses stayed equal after a change to one of
 // them. A harness change is also a rule change, so both workflows can apply.
-const HarnessWorkflow = "repo-governance/workflows/align-agent-harnesses.md"
+const HarnessWorkflow = "repo-governance/workflows/harness-alignment.md"
 
 // harnessFiles and harnessDirectories are the paths a harness reads: the agent
 // instruction files, each tool's configuration, and the directories holding its

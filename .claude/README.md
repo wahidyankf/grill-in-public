@@ -4,7 +4,7 @@ This directory holds the Claude Code configuration for Grind in Public. Claude C
 
 ## Contents
 
-- `settings.json` — project settings. It disables commit and pull-request attribution, as the [commit hook policy](../repo-governance/development/commit-hook-policy.md) requires, and registers the `PreToolUse` hook that announces the propagate-rules workflow before an edit to a rule file; see the [rule change trigger policy](../repo-governance/development/rule-change-trigger-policy.md).
+- `settings.json` — project settings. It disables commit and pull-request attribution, as the [commit hook policy](../repo-governance/development/commit-hook-policy.md) requires, and registers the `PreToolUse` hook that announces the rules-propagation workflow before an edit to a rule file; see the [rule change trigger policy](../repo-governance/development/rule-change-trigger-policy.md).
 - [`agents/`](agents/README.md) — the shared subagents available in this repository.
 - [`skills/`](skills/README.md) — the shared skills available in this repository.
 

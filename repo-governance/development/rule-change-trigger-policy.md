@@ -7,7 +7,7 @@ when_to_use: "Use when changing the rule paths, the pre-commit announcement, or 
 
 ## Scope
 
-This policy covers the automation that announces the [Propagate Rules](../workflows/propagate-rules.md) and [Align Agent Harnesses](../workflows/align-agent-harnesses.md) workflows. Each workflow owns what to do once announced.
+This policy covers the automation that announces the [Rules Propagation](../workflows/rules-propagation.md) and [Harness Alignment](../workflows/harness-alignment.md) workflows. Each workflow owns what to do once announced.
 
 ## Rule Paths
 

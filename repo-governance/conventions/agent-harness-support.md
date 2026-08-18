@@ -40,4 +40,4 @@ A permission control that one harness lacks is recorded where it is missing. Cod
 
 ## Verification
 
-Run the [Align Agent Harnesses](../workflows/align-agent-harnesses.md) workflow after changing any instruction file, harness config, or subagent. Test a new tool's discovery behavior yourself before relying on it, because support changes between releases.
+Run the [Harness Alignment](../workflows/harness-alignment.md) workflow after changing any instruction file, harness config, or subagent. Test a new tool's discovery behavior yourself before relying on it, because support changes between releases.

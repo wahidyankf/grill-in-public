@@ -44,7 +44,7 @@ const usage = `Usage:
 
 Validate governance Markdown word limits, repository-local Markdown links, or
 the subagents, skills, and commands every harness exposes, or announce the
-propagate-rules workflow when a rule changes. The rule-change validate form
+rules-propagation workflow when a rule changes. The rule-change validate form
 reads the staged paths; its hook form reads a pre-edit payload on stdin.
 `
 

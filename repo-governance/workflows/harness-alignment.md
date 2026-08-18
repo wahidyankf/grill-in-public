@@ -3,7 +3,7 @@ tldr: "Verifies every harness receives the same rules through its instruction fi
 when_to_use: "Use after changing AGENTS.md, governance, tooling, or any harness's instruction file, config, or subagents."
 ---
 
-# Align Agent Harnesses
+# Harness Alignment
 
 ## Purpose
 
@@ -16,6 +16,10 @@ Use it after changing `AGENTS.md`, a `repo-governance/` document, an instruction
 ## Automatic Triggers
 
 A change to an instruction file, `opencode.json`, or a harness directory announces this workflow, at pre-commit and in a harness pre-edit hook. The [rule change trigger policy](../development/rule-change-trigger-policy.md) owns those paths and mechanisms. An announcement is not the work.
+
+## Composition
+
+The [rules-quality-gate](rules-quality-gate.md) workflow runs this one as a step rather than restating it, so the five cases below have a single implementation. Running this workflow directly is still correct when only a harness changed.
 
 ## Prerequisites
 
@@ -30,12 +34,7 @@ Run `npm install` so the validation commands work.
    ls .claude/agents .codex/agents .opencode/agents
    ```
 
-2. Read `AGENTS.md` first, then each derivative. For every rule, command, path, and link in a derivative, decide which case applies:
-   - **Equal** — it matches canonical guidance. Leave it.
-   - **Contradiction** — it differs in requirement, scope, or verification. Resolve it at the canonical source with the [Propagate Rules](propagate-rules.md) workflow, then correct the derivative.
-   - **Duplication** — it restates a canonical rule in words that can drift. Replace it with a link.
-   - **Orphan** — it describes tooling, a path, or a policy that no longer exists. Delete or correct it.
-   - **Gap** — it is genuine tool-specific operational detail missing from that harness. Add it there only.
+2. Read `AGENTS.md` first, then each derivative. Classify every rule, command, path, and link in a derivative as equal, contradiction, duplication, orphan, or gap, per the [finding taxonomy](rules-quality-gate/finding-taxonomy.md). Leave what is equal; replace duplication with a link; correct or delete an orphan; add a gap only to the harness that needs it. Resolve a contradiction at the canonical source with the [Rules Propagation](rules-propagation.md) workflow, then correct the derivative.
 
 3. Verify every command quoted in an instruction file exists in `package.json` or a `project.json` target, and that every referenced path exists.
 
