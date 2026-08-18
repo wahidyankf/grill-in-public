@@ -13,11 +13,13 @@ Integrate a new or changed rule into the correct governance location without dup
 
 Use it when introducing, changing, moving, or removing a rule for contributors, agents, skills, validation, or workflows.
 
+Run it directly for a correction, a clarification, or a rule confined to one document. Substantial rule work, a new policy area or a change landing across several documents, is planned first; the [plans organization policy](../conventions/plans-organization-policy.md) owns that boundary.
+
 ## Automatic Triggers
 
-The repository announces this workflow rather than relying on memory: pre-commit names it whenever a staged change touches a rule path, and each harness announces it while the edit is still being written. A change to a harness path announces the [Harness Alignment](harness-alignment.md) workflow as well. The [rule change trigger policy](../development/rule-change-trigger-policy.md) owns those paths and mechanisms.
+The repository announces this workflow rather than relying on memory: pre-commit names it when a staged change touches a rule path, and each harness announces it while the edit is being written. A harness path announces [Harness Alignment](harness-alignment.md) as well. The [rule change trigger policy](../development/rule-change-trigger-policy.md) owns those paths and mechanisms.
 
-An announcement is not the work. It reports that this workflow applies; carrying out the steps below is still yours.
+An announcement is not the work; carrying out the steps below is still yours.
 
 ## Prerequisites
 
@@ -39,7 +41,7 @@ State the rule in one sentence: its scope, trigger, and required behavior. Keep 
    - Put repeatable procedures in `repo-governance/workflows/`.
    - Put directory-specific rules in the nearest scoped `AGENTS.md`.
    - Put capability-specific guidance in the relevant `SKILL.md`.
-   - Create and categorize a focused document or subdirectory in `repo-governance/` when no existing location is a suitable canonical home, and update the relevant README so people and agents can discover it; do not create empty categories. The [documentation index policy](../documentation-index-policy.md) owns the README, index, and frontmatter requirements that follow from that.
+   - Create and categorize a focused document or subdirectory in `repo-governance/` when no existing location suits, and do not create empty categories. The [documentation index policy](../documentation-index-policy.md) owns the README, index, and frontmatter requirements that follow.
 
 3. Search the inventory for equivalent, overlapping, or inverse rules. Merge them into the canonical source, update references, and remove redundant wording only when its meaning is fully preserved.
 
@@ -49,7 +51,7 @@ State the rule in one sentence: its scope, trigger, and required behavior. Keep 
 
 ## Verification
 
-Confirm the rule has one canonical source, references are accurate, and no contradictory guidance remains in the applicable files. When the change touched many documents, run the [rules-quality-gate](rules-quality-gate.md) workflow to check the corpus rather than the diff. Run:
+Confirm the rule has one canonical source and accurate references, and that no contradictory guidance remains. When the change touched many documents, run the [rules-quality-gate](rules-quality-gate.md) workflow to check the corpus rather than the diff. Run:
 
 ```sh
 npm run format:check

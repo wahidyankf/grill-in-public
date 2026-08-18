@@ -11,7 +11,7 @@ This policy governs `plans/`, the repository's working record of change. A plan 
 
 ## When a Plan Is Required
 
-A plan is required for application work, infrastructure work, and repository rule changes. Drills and study are not planned: the owner practices by hand and tracks the session in a harness task list, as the [task tracking policy](task-tracking-policy.md) requires. A drill becomes plan-worthy only when it stops being practice and starts being repository work.
+A plan is required for application work, infrastructure work, and substantial rule work: a new policy area, or a change that lands across several documents. A correction, a clarification, or a rule confined to one document goes through the [rules-propagation](../workflows/rules-propagation.md) workflow alone, because writing a five-document plan to fix a sentence costs more than the sentence. Drills and study are not planned: the owner practices by hand and tracks the session in a harness task list, as the [task tracking policy](task-tracking-policy.md) requires. A drill becomes plan-worthy only when it stops being practice and starts being repository work.
 
 ## Rules
 

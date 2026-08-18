@@ -25,7 +25,7 @@ The [workspace commands](repo-governance/development/workspace-commands.md) docu
 
 ## Planning
 
-Application, infrastructure, and rule work is planned; drills are not. Plans live in `plans/` as five documents and move through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Run [plan-planning](repo-governance/workflows/plan-planning.md), then [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), then [plan-execution](repo-governance/workflows/plan-execution.md). The gate uses the `plan-checker` and `plan-fixer` subagents in `.claude/agents/`; phases deliver directly to `main`.
+Application, infrastructure, and substantial rule work is planned; drills are not. Plans live in `plans/` as five documents and move through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Run [plan-planning](repo-governance/workflows/plan-planning.md), then [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), then [plan-execution](repo-governance/workflows/plan-execution.md). The gate uses the `plan-checker` and `plan-fixer` subagents in `.claude/agents/`; phases deliver directly to `main`.
 
 ## Architecture
 

@@ -28,7 +28,7 @@ Keep implementation and tests under `src/`; use lowercase-hyphenated project dir
 
 ## Planning
 
-Application, infrastructure, and rule work is planned before it starts; drills are not. A plan is five documents in `plans/`, staged through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
+Application, infrastructure, and substantial rule work is planned before it starts; drills are not. A plan is five documents in `plans/`, staged through `ideas/`, `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
 
 ## Nx and Coding Conventions
 

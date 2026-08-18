@@ -1,6 +1,6 @@
 ---
 tldr: "Turns a described change into a validated five-document plan under plans/."
-when_to_use: "Use when application, infrastructure, or rule work needs a plan before anyone starts it."
+when_to_use: "Use when application, infrastructure, or substantial rule work needs a plan before anyone starts it."
 ---
 
 # Plan Planning
@@ -11,7 +11,7 @@ Turn a described change into a five-document plan that another session could exe
 
 ## When to Use
 
-Use it for application work, infrastructure work, and repository rule changes; the [plans organization policy](../conventions/plans-organization-policy.md) states the trigger. Do not use it for a drill: practice is tracked in a harness task list, not planned.
+Use it for application work, infrastructure work, and substantial rule work; the [plans organization policy](../conventions/plans-organization-policy.md) states the trigger and the line below which a rule change skips planning. Do not use it for a drill: practice is tracked in a harness task list, not planned.
 
 ## Prerequisites
 

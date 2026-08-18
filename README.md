@@ -50,7 +50,7 @@ The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes [`@grind-in-pu
 
 ## Plans and Specs
 
-Application, infrastructure, and rule work is planned before it starts; drills are not, because working them out by hand is the point. A plan is five documents in [`plans/`](plans/README.md), moving from `ideas/` through `backlog/` and `in-progress/` to `done/`, and delivering directly to `main` at each phase gate. What the software should do is described as Gherkin in [`specs/`](specs/README.md), separate from the code that implements it.
+Application, infrastructure, and substantial rule work is planned before it starts; drills are not, because working them out by hand is the point. A plan is five documents in [`plans/`](plans/README.md), moving from `ideas/` through `backlog/` and `in-progress/` to `done/`, and delivering directly to `main` at each phase gate. What the software should do is described as Gherkin in [`specs/`](specs/README.md), separate from the code that implements it.
 
 ## Documentation
 
