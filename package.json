@@ -17,6 +17,7 @@
     "check:governance": "nx run badakmini-cli:governance",
     "check:harness-parity": "nx run badakmini-cli:capability-parity",
     "check:markdown-links": "nx run badakmini-cli:markdown-links",
+    "check:project-targets": "nx run badakmini-cli:project-targets",
     "check:rule-change": "nx run badakmini-cli:rule-change",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

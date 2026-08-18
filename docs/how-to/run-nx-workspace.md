@@ -46,9 +46,10 @@ Run the governance check after changing the agent instruction files, `AGENTS.md`
 npm run check:governance
 npm run check:harness-parity
 npm run check:markdown-links
+npm run check:project-targets
 ```
 
-The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md) Go CLI and runs automatically during a push that changes those paths. The parity command compares the subagents, skills, and commands each harness exposes, and runs during a push that changes a harness directory. The link command validates every Git-tracked Markdown file and runs during every push. A fourth command, `npm run check:rule-change`, runs during pre-commit and names the [Rules Propagation](../../repo-governance/workflows/rules-propagation.md) workflow when a staged change touches a rule path, plus [Harness Alignment](../../repo-governance/workflows/harness-alignment.md) when a harness reads that path; it reports without blocking. It cannot see an untracked new document, so run `git add -N <file>` before trusting a local run on newly created Markdown.
+The governance command uses the [Badak Mini](../../apps/badakmini-cli/README.md) Go CLI and runs automatically during a push that changes those paths. The parity command compares the subagents, skills, and commands each harness exposes, and runs during a push that changes a harness directory. The link command validates every Git-tracked Markdown file and runs during every push. The project-targets command verifies that every Nx project defines `test:quick`, `lint`, and `typecheck` and wires the last two into `test:quick`, and runs during a push that changes a `project.json` or `nx.json`. A fifth command, `npm run check:rule-change`, runs during pre-commit and names the [Rules Propagation](../../repo-governance/workflows/rules-propagation.md) workflow when a staged change touches a rule path, plus [Harness Alignment](../../repo-governance/workflows/harness-alignment.md) when a harness reads that path; it reports without blocking. It cannot see an untracked new document, so run `git add -N <file>` before trusting a local run on newly created Markdown.
 
 Before each push, Nx runs cached `test:quick` targets for projects affected relative to `origin/main`. See the shared [testing policy](../../repo-governance/development/testing-policy.md) for the target rules.
 

@@ -24,7 +24,7 @@
 ## Phase 1: Libraries
 
 - [ ] [AI] Create `libs/ts-env-loader/` per D1, renaming the package to `@grind-in-public/ts-env-loader`. Acceptance: `libs/ts-env-loader/package.json` exists with the new name.
-- [ ] [AI] Add `libs/ts-env-loader/project.json` with `build`, `typecheck`, `lint`, `test:quick`, and `test:integration` targets as raw `command` targets, following `libs/dummy-lib/project.json`. Acceptance: `npx nx show project ts-env-loader` lists all five.
+- [ ] [AI] Add `libs/ts-env-loader/project.json` with `build`, `typecheck`, `lint`, and `test:quick` targets as raw `command` targets, following `libs/dummy-lib/project.json`. Add `test:integration` only if the library's behavior crosses a boundary; a placeholder that echoes and exits is forbidden by the [testing policy](../../../repo-governance/development/testing-policy.md). Acceptance: `npx nx show project ts-env-loader` lists the four, and `npm run check:project-targets` passes.
 - [ ] [AI] RED — **Gherkin (underpins)** the env-loader's existing unit tests. Port them and run `npx nx run ts-env-loader:test:quick`. Acceptance: the suite runs and fails only where behavior genuinely differs.
 - [ ] [AI] GREEN — resolve each failure until `npx nx run ts-env-loader:test:quick` exits 0.
 - [ ] [AI] REFACTOR — remove any `ose-public`-specific path or name left in the ported code. Acceptance: `grep -rn "open-sharia-enterprise" libs/ts-env-loader` returns nothing.
@@ -47,7 +47,7 @@
 - [ ] [AI] Copy `apps/wahidyankf-www/` from `ose-public`, excluding `node_modules`, `.next`, and build output. Acceptance: `apps/wahidyankf-www/package.json` exists here.
 - [ ] [AI] Rewrite the site's imports from `@open-sharia-enterprise/*` to `@grind-in-public/*`. Acceptance: `grep -rn "@open-sharia-enterprise" apps/wahidyankf-www/src` returns nothing.
 - [ ] [AI] Apply D3 to the `lint` target and D4 to the TypeScript version. Acceptance: `npx nx run wahidyankf-www:lint` and `npx nx run wahidyankf-www:typecheck` both exit 0.
-- [ ] [AI] Add `apps/wahidyankf-www/project.json` with the site's targets as raw `command` targets, omitting `specs:structure-validation` until D2 is implemented. Acceptance: `npx nx show project wahidyankf-www` lists `build`, `dev`, `typecheck`, `lint`, `test:unit`, `test:coverage`, `test:quick`.
+- [ ] [AI] Add `apps/wahidyankf-www/project.json` with the site's targets as raw `command` targets, omitting `specs:structure-validation` until D2 is implemented, and dropping the source repository's no-op `test:integration` echo rather than copying it. Acceptance: `npx nx show project wahidyankf-www` lists `build`, `dev`, `typecheck`, `lint`, `test:unit`, `test:coverage`, `test:quick`; `test:quick` declares `typecheck` and `lint` in `dependsOn`; and `npm run check:project-targets` passes.
 - [ ] [AI] RED — **Gherkin (binds)** "The site builds from this repository"
 
 ```gherkin

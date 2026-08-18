@@ -20,6 +20,10 @@
       "cache": false,
       "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness capability-parity validate"
     },
+    "project-targets": {
+      "cache": false,
+      "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness project-targets validate"
+    },
     "rule-change": {
       "cache": false,
       "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness rule-change validate"

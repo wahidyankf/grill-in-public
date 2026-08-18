@@ -1,7 +1,8 @@
 # Run cached quick quality gates for every project affected since origin/main.
 # Validate every local Markdown link, check governance word limits only when the
-# pushed commits change that guidance, and compare the harness capabilities only
-# when the pushed commits change a harness directory.
+# pushed commits change that guidance, compare the harness capabilities only when
+# the pushed commits change a harness directory, and verify project targets only
+# when the pushed commits change a project's configuration.
 ZERO_SHA="0000000000000000000000000000000000000000"
 # Git represents a newly created remote ref with the all-zero object ID. Its
 # empty tree lets git diff evaluate the first push using normal range logic.
@@ -10,6 +11,7 @@ EMPTY_TREE=$(git hash-object -t tree /dev/null)
 # check until every update has established whether governance changed.
 SHOULD_CHECK=0
 SHOULD_CHECK_PARITY=0
+SHOULD_CHECK_TARGETS=0
 
 if ! git rev-parse --verify --quiet origin/main >/dev/null; then
   printf 'ERROR: origin/main is required for affected pre-push checks.\n' >&2
@@ -45,6 +47,12 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   if ! git diff --quiet "$base_sha" "$local_sha" -- .claude .codex .opencode .agents; then
     SHOULD_CHECK_PARITY=1
   fi
+
+  # Only a project's own configuration, or the workspace defaults it inherits,
+  # can leave a project without the targets the testing policy requires.
+  if ! git diff --quiet "$base_sha" "$local_sha" -- '*project.json' nx.json; then
+    SHOULD_CHECK_TARGETS=1
+  fi
 done
 
 if [ "$SHOULD_CHECK" -eq 1 ]; then
@@ -55,6 +63,11 @@ fi
 if [ "$SHOULD_CHECK_PARITY" -eq 1 ]; then
   # A subagent, skill, or command added for one harness must reach them all.
   npm exec nx -- run badakmini-cli:capability-parity
+fi
+
+if [ "$SHOULD_CHECK_TARGETS" -eq 1 ]; then
+  # A project missing test:quick is a project this very hook silently skips.
+  npm exec nx -- run badakmini-cli:project-targets
 fi
 
 # Link targets elsewhere can break when any file is moved or deleted, so this

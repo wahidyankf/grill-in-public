@@ -14,6 +14,7 @@ import (
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/governance"
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/markdownlinks"
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/parity"
+	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/projecttargets"
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/rulechange"
 )
 
@@ -25,6 +26,7 @@ const (
 	ruleChangeValidateCommand = "harness rule-change validate"
 	ruleChangeHookCommand     = "harness rule-change hook"
 	capabilityParityCommand   = "harness capability-parity validate"
+	projectTargetsCommand     = "harness project-targets validate"
 )
 
 var supportedCommands = []string{
@@ -33,6 +35,7 @@ var supportedCommands = []string{
 	ruleChangeValidateCommand,
 	ruleChangeHookCommand,
 	capabilityParityCommand,
+	projectTargetsCommand,
 }
 
 const usage = `Usage:
@@ -41,11 +44,13 @@ const usage = `Usage:
   badak-mini harness rule-change validate
   badak-mini harness rule-change hook
   badak-mini harness capability-parity validate
+  badak-mini harness project-targets validate
 
-Validate governance Markdown word limits, repository-local Markdown links, or
-the subagents, skills, and commands every harness exposes, or announce the
-rules-propagation workflow when a rule changes. The rule-change validate form
-reads the staged paths; its hook form reads a pre-edit payload on stdin.
+Validate governance Markdown word limits, repository-local Markdown links, the
+subagents, skills, and commands every harness exposes, or the test and quality
+targets every Nx project defines, or announce the rules-propagation workflow
+when a rule changes. The rule-change validate form reads the staged paths; its
+hook form reads a pre-edit payload on stdin.
 `
 
 func main() {
@@ -96,6 +101,8 @@ func run(
 		return announceHookRuleChange(root, os.Stdin, stdout)
 	case capabilityParityCommand:
 		return validateCapabilityParity(root, stdout, stderr)
+	case projectTargetsCommand:
+		return validateProjectTargets(root, stdout, stderr)
 	}
 	return validateMarkdownLinks(root, stdout, stderr)
 }
@@ -220,6 +227,34 @@ func validateCapabilityParity(root string, stdout io.Writer, stderr io.Writer) i
 		}
 	}
 	if err := writef(stderr, "See repo-governance/conventions/harness-capability-parity-policy.md.\n"); err != nil {
+		return 1
+	}
+	return 1
+}
+
+// validateProjectTargets fails when a project omits a target the testing policy
+// requires. Pre-push runs only what a project declares, so an undeclared check
+// is one the repository stops performing without ever reporting a failure.
+func validateProjectTargets(root string, stdout io.Writer, stderr io.Writer) int {
+	findings, err := projecttargets.Check(root)
+	if err != nil {
+		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+			return 1
+		}
+		return 1
+	}
+	if len(findings) == 0 {
+		if err := writef(stdout, "Every Nx project defines the required test and quality targets.\n"); err != nil {
+			return 1
+		}
+		return 0
+	}
+	for _, finding := range findings {
+		if err := writef(stderr, "ERROR: %s\n", finding.Message()); err != nil {
+			return 1
+		}
+	}
+	if err := writef(stderr, "See repo-governance/development/testing-policy.md.\n"); err != nil {
 		return 1
 	}
 	return 1
