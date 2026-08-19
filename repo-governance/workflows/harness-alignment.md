@@ -19,7 +19,7 @@ A change to an instruction file, `opencode.json`, or a harness directory announc
 
 ## Composition
 
-The [rules-quality-gate](rules-quality-gate.md) workflow runs this one as a step rather than restating it, so the five cases below have a single implementation. Running this workflow directly is still correct when only a harness changed.
+The [rules-quality-gate](rules-quality-gate.md) workflow runs this one as a step rather than restating it, so the five cases it classifies have a single implementation. Running this workflow directly is still correct when only a harness changed.
 
 ## Prerequisites
 
@@ -27,22 +27,17 @@ Run `npm install` so the validation commands work.
 
 ## Steps
 
-1. Inventory the instruction files, harness configs, subagents, and skills:
+1. Inventory what every harness reads; see [inventory](harness-alignment/01-inventory.md).
 
-   ```sh
-   rg --files -g 'AGENTS.md' -g 'CLAUDE.md' -g 'GEMINI.md' -g 'COPILOT.md' -g '.cursorrules' -g 'SKILL.md' -g '!node_modules'
-   ls .claude/agents .codex/agents .opencode/agents .claude/skills .agents/skills .opencode/skills
-   ```
+2. Classify every difference between a derivative and `AGENTS.md`; see [derivative comparison](harness-alignment/02-derivative-comparison.md).
 
-2. Read `AGENTS.md` first, then each derivative. Classify every rule, command, path, and link in a derivative as equal, contradiction, duplication, orphan, or gap, per the [finding taxonomy](rules-quality-gate/02-finding-taxonomy.md). Leave what is equal; replace duplication with a link; correct or delete an orphan; add a gap only to the harness that needs it. Resolve a contradiction at the canonical source with the [Rules Propagation](rules-propagation.md) workflow, then correct the derivative.
+3. Verify the commands and paths that an instruction file quotes; same document.
 
-3. Verify every command quoted in an instruction file exists in `package.json` or a `project.json` target, and that every referenced path exists.
+4. Confirm each derivative's statement of authority; same document.
 
-4. Confirm each derivative names `AGENTS.md` as authoritative and links to it.
+5. Compare the shared subagents, skills, and commands; see [capability and config parity](harness-alignment/03-capability-and-config-parity.md).
 
-5. Compare the shared subagents, skills, and commands as the [harness capability parity policy](../conventions/harness-capability-parity-policy.md) requires. Each description must say what the agent does and when to use it.
-
-6. Confirm each project config holds only documented settings, and that each directory is indexed as the [documentation index policy](../documentation-index-policy.md) requires, exemptions included.
+6. Confirm each project config and each directory index; same document.
 
 7. Apply the edits to every affected instruction file, harness config, README, and subagent in the same change.
 
@@ -55,7 +50,7 @@ npm run check:harness-parity
 npm run check:markdown-links
 ```
 
-Every governed document must stay within the 500-word limit; split one rather than trim a required rule.
+The [document word limit policy](../conventions/document-word-limit-policy.md) governs the limit every governed document lives under, and how a document that has reached it is fixed.
 
 [Workspace commands](../development/workspace-commands.md#repository-checks) records the caveats of running these checks locally.
 

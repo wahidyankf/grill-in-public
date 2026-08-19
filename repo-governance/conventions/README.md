@@ -9,15 +9,16 @@ This directory contains stable, cross-cutting standards that make repository wor
 
 ## Available Conventions
 
-- [Agent Harness Support Policy](agent-harness-support.md) — which harnesses are supported and where each reads its instructions and config. Use it when adding or configuring a harness.
+- [Agent Harness Support Policy](agent-harness-support.md) — which harnesses are supported and where each reads its instructions and config. Use it when adding or configuring a harness; its per-harness tables live in [`agent-harness-support/`](agent-harness-support/README.md).
 - [Harness Capability Parity Policy](harness-capability-parity-policy.md) — the subagents, skills, and commands every harness must expose alike, and where each lives. Use it when adding, renaming, or removing one.
 - [Agent Vocabulary](agent-vocabulary.md) — what harness, agent, instruction file, and subagent mean here. Use it when writing or reviewing any text about agents.
 - [Agent Instruction Alignment Policy](agent-instruction-alignment-policy.md) — how assistant-specific instruction files defer to `AGENTS.md`. Use it when creating, editing, or reviewing `CLAUDE.md` or a similar file.
 - [Markdown Style Policy](markdown-style-policy.md) — source formatting for every repository Markdown file. Use it when creating, editing, reviewing, or formatting Markdown.
 - [Document Naming Policy](document-naming-policy.md) — how Markdown documents and their child directories are named. Use it when creating, renaming, or splitting a document.
+- [Document Word Limit Policy](document-word-limit-policy.md) — the word limit every governed document lives under, and how a document that reaches it is fixed. Use it before shortening one.
 - [Task Tracking Policy](task-tracking-policy.md) — how granular a task list must be and when it must be updated. Use it when starting or reviewing work that takes more than one step.
 - [Grilling-With-Options Policy](grilling-with-options-policy.md) — the structured form an agent must use to resolve an open decision with the owner. Use it before asking the owner to decide anything.
-- [Grilling Harness Binding](grilling-harness-binding.md) — the question tool each harness uses and the Markdown fallback. Use it when asking a decision question or adding a harness.
+- [Grilling Harness Binding](grilling-harness-binding.md) — the question tool each harness uses and the Markdown fallback. Use it when asking a decision question or adding a harness; its per-harness detail lives in [`grilling-harness-binding/`](grilling-harness-binding/README.md).
 - [Plans Organization Policy](plans-organization-policy.md) — how a plan is staged, named, structured, and archived under `plans/`. Use it when creating, executing, or archiving a plan; its detail lives in [`plans-organization-policy/`](plans-organization-policy/README.md).
 
 ## Adding a Convention

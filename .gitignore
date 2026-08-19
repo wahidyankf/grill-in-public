@@ -5,3 +5,5 @@ libs/*/dist/
 .memsearch/
 # Untracked working area: gate logs and other machine-local records.
 local-tmp/
+# Personal harness overrides: never repository rules.
+.claude/settings.local.json

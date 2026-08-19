@@ -6,22 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 [`AGENTS.md`](AGENTS.md) is authoritative and links to detailed policies in [`repo-governance/`](repo-governance/README.md). Read it first. This file adds only Claude Code-specific detail and must never contradict or restate canonical guidance. See the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md), and run the [Harness Alignment](repo-governance/workflows/harness-alignment.md) workflow whenever canonical guidance changes.
 
-Like `AGENTS.md`, this file has a hard 500-word limit enforced by `npm run check:governance`. Link to a focused document rather than growing it.
+Like `AGENTS.md`, this file lives under the [document word limit policy](repo-governance/conventions/document-word-limit-policy.md), which sets the limit and states how a document that reaches it is fixed.
 
 Claude Code is one of three supported harnesses; Codex and opencode read `AGENTS.md`. See the [agent harness support policy](repo-governance/conventions/agent-harness-support.md) and the [agent vocabulary](repo-governance/conventions/agent-vocabulary.md). The subagents in `.claude/agents/` are mirrored for both, as the [harness capability parity policy](repo-governance/conventions/harness-capability-parity-policy.md) requires.
 
-Review, format, and give feedback by default rather than solving the owner's drills in this hands-on lifelong-learning workspace.
+Default to reviewing and giving feedback rather than solving: `AGENTS.md` states the drill rule this follows from.
 
 ## Commands
 
-```sh
-npm install                  # pinned deps and Husky hooks
-npm run build                # nx run-many -t build
-npm test                     # cached test:quick
-npm run format               # Prettier, formatting source of truth
-```
-
-The [workspace commands](repo-governance/development/workspace-commands.md) document is canonical for every command, narrower run, repository check, and hook.
+The [workspace commands](repo-governance/development/workspace-commands.md) document is canonical for every command, narrower run, repository check, and hook. It is not summarized here, because a summary is what drifts.
 
 ## Planning
 
@@ -34,7 +27,7 @@ apps/dummy-app  --depends on-->  libs/dummy-lib   (@grind-in-public/dummy-lib)
 apps/badakmini-cli                                (Go validation CLI)
 ```
 
-Every Nx target is a raw `command` target: no plugins, generators, or executors; see the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md).
+Every Nx target is a raw `command` target; the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md) owns what that forbids and the one exception.
 
 Tests run against compiled output rather than `src/`, so running one test file directly needs a build first; [workspace commands](repo-governance/development/workspace-commands.md#build-and-test) shows the invocation, and the [testing policy](repo-governance/development/testing-policy.md) owns what `test:quick` depends on.
 
@@ -46,7 +39,7 @@ The [commit hook policy](repo-governance/development/commit-hook-policy.md) forb
 
 ## Quality Gates
 
-Pre-commit formats staged files and announces the [Rules Propagation](repo-governance/workflows/rules-propagation.md) workflow when a staged path carries rules, and [Harness Alignment](repo-governance/workflows/harness-alignment.md) when a harness reads that path; a `PreToolUse` hook says the same before an edit. Commit messages go through commitlint. [Workspace commands](repo-governance/development/workspace-commands.md#hooks) lists what each hook runs and the caveats of running those checks locally; the [commit hook policy](repo-governance/development/commit-hook-policy.md) governs bypasses.
+Pre-commit formats staged files and announces the [Rules Propagation](repo-governance/workflows/rules-propagation.md) workflow, plus [Harness Alignment](repo-governance/workflows/harness-alignment.md) where it applies; a `PreToolUse` hook says the same before an edit. The [rule change trigger policy](repo-governance/development/rule-change-trigger-policy.md) owns which paths announce which. Commit messages go through commitlint. [Workspace commands](repo-governance/development/workspace-commands.md#hooks) lists what each hook runs and the caveats of running those checks locally; the [commit hook policy](repo-governance/development/commit-hook-policy.md) governs bypasses.
 
 ## Writing Here
 

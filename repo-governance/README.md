@@ -12,7 +12,7 @@ This directory contains shared repository governance for human contributors and 
 
 - [Governance Conventions](conventions/README.md) — shared standards for repository content and practices. Use them when creating or reviewing work covered by a convention.
 - [Development Governance](development/README.md) — policies for code, testing, hooks, Nx, and validation. Use it when changing executable code or tooling.
-- [Documentation Index Policy](documentation-index-policy.md) — README and metadata requirements for repository documents. Use it when adding, moving, or maintaining Markdown under `docs/` or `repo-governance/`.
+- [Documentation Index Policy](documentation-index-policy.md) — README and metadata requirements for repository documents. Use it when adding, moving, or maintaining Markdown under `docs/`, `repo-governance/`, `cv/`, `scripts/`, or a harness directory.
 - [Governance Principles](principles/README.md) — foundations every policy and workflow must follow. Use them before resolving a governance conflict.
 - [Repository Workflows](workflows/README.md) — repeatable repository procedures. Use the relevant workflow whenever a task has a defined process.
 
@@ -23,7 +23,7 @@ This directory contains shared repository governance for human contributors and 
 
 ## Gate History
 
-Each [rules-quality-gate](workflows/rules-quality-gate.md) run appends one line to `local-tmp/gate-history/rules-quality-gate.md`, which is untracked. The log grows without bound, and this index does not, so neither rule has to give way. An open finding is written into the affected document as well, where a reader of the rule will meet it.
+Each [rules-quality-gate](workflows/rules-quality-gate.md) run appends one line to `local-tmp/gate-history/rules-quality-gate.md`, which is untracked. The [findings report](workflows/rules-quality-gate/05-findings-report.md) owns what a run records and what an open finding requires.
 
 ## How to Use This Directory
 
@@ -34,7 +34,7 @@ Each [rules-quality-gate](workflows/rules-quality-gate.md) run appends one line 
 
 ## Document Conventions
 
-Name each document for its subject, in lowercase with hyphens, following the [document naming policy](conventions/document-naming-policy.md). Group related documents into a subdirectory — `conventions/` for stable shared standards, `development/` for code, testing, Nx, hook, and validation policies, `principles/` for foundational rules, and `workflows/` for repeatable procedures.
+Name each document as the [document naming policy](conventions/document-naming-policy.md) requires. Group related documents into a subdirectory — `conventions/` for stable shared standards, `development/` for code, testing, Nx, hook, and validation policies, `principles/` for foundational rules, and `workflows/` for repeatable procedures.
 
 Each document should state its scope, give actionable rules, and link to any source-of-truth files or commands. Avoid duplicating `AGENTS.md`; keep shared rules there and move only extended context here.
 

@@ -9,12 +9,12 @@ This directory contains repeatable procedures for working in Grind in Public. Us
 
 ## Adding a Workflow
 
-Create one Markdown file per procedure, named as a domain-prefixed noun phrase such as `rules-propagation.md` or `plan-execution.md`; see the [document naming policy](../conventions/document-naming-policy.md). A workflow that outgrows one file splits into a directory of the same name whose children carry `NN-` prefixes, because they are the steps. Keep each workflow narrowly scoped; link to related governance guidance instead of duplicating it.
+Create one Markdown file per procedure. The [document naming policy](../conventions/document-naming-policy.md) owns what to name it, and how a workflow that outgrows one file splits into a child directory. Keep each workflow narrowly scoped; link to related governance guidance instead of duplicating it.
 
 ## Available Workflows
 
-- [Harness Alignment](harness-alignment.md) verifies that every supported harness receives the same rules through its instruction file, config, and subagents.
-- [Rules Propagation](rules-propagation.md) integrates changed repository rules without duplication or contradictions.
+- [Harness Alignment](harness-alignment.md) verifies that every supported harness receives the same rules through its instruction file, config, and subagents. Its detail lives in [`harness-alignment/`](harness-alignment/README.md).
+- [Rules Propagation](rules-propagation.md) integrates changed repository rules without duplication or contradictions. Its detail lives in [`rules-propagation/`](rules-propagation/README.md).
 - [README Refresh](readme-refresh.md) keeps root, project, documentation, and governance READMEs accurate before a thematic commit.
 - [Rules Quality Gate](rules-quality-gate.md) runs `rules-checker` and `rules-fixer` over every rule-bearing file until no findings remain, composing Harness Alignment as a step. Its detail lives in [`rules-quality-gate/`](rules-quality-gate/README.md).
 - [Plan Planning](plan-planning.md) turns a described change into a validated five-document plan under `plans/`.

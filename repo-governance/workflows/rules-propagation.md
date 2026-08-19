@@ -27,25 +27,13 @@ State the rule in one sentence: its scope, trigger, and required behavior. Keep 
 
 ## Steps
 
-1. Inventory applicable guidance before editing. Start with `AGENTS.md`, `repo-governance/`, and its `principles/`; also search for instruction and skill files:
+1. Inventory applicable guidance before editing; see [inventory](rules-propagation/01-inventory.md).
 
-   ```sh
-   rg --files -g 'AGENTS.md' -g 'SKILL.md' -g 'CLAUDE.md' -g 'GEMINI.md' \
-     -g 'COPILOT.md' -g '!node_modules'
-   ```
+2. Choose one canonical home for the rule; see [canonical home](rules-propagation/02-canonical-home.md).
 
-2. Choose one canonical home:
-   - Put universal, short requirements in root `AGENTS.md`.
-   - Put detailed or conditional policy in `repo-governance/`.
-   - Put stable, cross-cutting standards in `repo-governance/conventions/`.
-   - Put repeatable procedures in `repo-governance/workflows/`.
-   - Put directory-specific rules in the nearest scoped `AGENTS.md`.
-   - Put capability-specific guidance in the relevant `SKILL.md`.
-   - Create and categorize a focused document or subdirectory in `repo-governance/` when no existing location suits, and do not create empty categories. The [documentation index policy](../documentation-index-policy.md) owns the README, index, and frontmatter requirements that follow.
+3. Merge equivalent, overlapping, or inverse rules into that source; see [conflict resolution](rules-propagation/03-conflict-resolution.md).
 
-3. Search the inventory for equivalent, overlapping, or inverse rules. Merge them into the canonical source, update references, and remove redundant wording only when its meaning is fully preserved.
-
-4. Resolve contradictions before writing. Never silently choose between rules that differ in requirement, scope, or verification. Present the conflicting text, its practical effect, and a recommended resolution to the owner, and wait when the conflict is substantive.
+4. Resolve contradictions before writing, and never settle one alone; same document.
 
 5. Integrate the approved rule using direct, testable language. Link from a concise document to its detailed source instead of copying the same rule. When creating or editing Markdown, follow the [Markdown style policy](../conventions/markdown-style-policy.md).
 
@@ -60,4 +48,4 @@ npm run check:governance
 
 ## Recovery
 
-If scope or precedence stays unclear, leave the rules unchanged and ask. Split an overlong document into focused files to preserve progressive disclosure.
+If scope or precedence stays unclear, leave the rules unchanged and ask. For an overlong document, follow the [document word limit policy](../conventions/document-word-limit-policy.md); [progressive disclosure](../principles/progressive-disclosure.md) states when a document is split.

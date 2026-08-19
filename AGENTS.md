@@ -10,7 +10,7 @@ Use [ose-public](https://github.com/wahidyankf/ose-public) and [ose-primer](http
 
 ## Rule Changes and Audience
 
-Before changing repository rules, follow the [`rules-propagation` workflow](repo-governance/workflows/rules-propagation.md); a change to what a harness reads also requires the [`harness-alignment` workflow](repo-governance/workflows/harness-alignment.md). `README.md` and `docs/` serve people; instruction files serve agents; `repo-governance/` serves both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
+Before changing repository rules, follow the [`rules-propagation` workflow](repo-governance/workflows/rules-propagation.md); a change to what a harness reads also requires the [`harness-alignment` workflow](repo-governance/workflows/harness-alignment.md). `README.md` and `docs/` serve people; instruction files serve agents; `repo-governance/` serves both. `CLAUDE.md` must defer to this file; see the [agent instruction alignment policy](repo-governance/conventions/agent-instruction-alignment-policy.md). Every `docs/`, `repo-governance/`, `cv/`, `scripts/`, and harness directory requires an indexed README; see the [documentation index policy](repo-governance/documentation-index-policy.md).
 
 ## Project Structure
 
@@ -23,7 +23,7 @@ Keep implementation and tests under `src/`; use lowercase-hyphenated project dir
 
 ## Commands
 
-`npm install`, `npm run build`, and `npm test` cover the common loop; `npm run format` is the formatting source of truth. [Workspace commands](repo-governance/development/workspace-commands.md) is canonical for every command, check, and hook.
+[Workspace commands](repo-governance/development/workspace-commands.md) is canonical for every command, check, and hook: the common loop, the narrower runs, and what each Git hook does.
 
 ## Planning
 
@@ -33,7 +33,7 @@ Application, infrastructure, and substantial rule work is planned before it star
 
 Use Nx only as a raw task runner with `command` targets. Add no plugin, executor, or generator without explicit owner direction; see the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md).
 
-Use strict TypeScript with CommonJS-compatible Node output. Badak Mini is the standard-library Go CLI for repository-local validation; follow the [Badak Mini policy](repo-governance/development/badakmini-cli-policy.md) before extending it. Prettier is the source of truth; Markdown uses unwrapped paragraphs and terminal-first ASCII diagrams—see the [Markdown style policy](repo-governance/conventions/markdown-style-policy.md). Use two-space indentation, `camelCase` variables and functions, `PascalCase` classes, and descriptive file names. Import internal libraries by package name, not relative cross-project paths.
+Prettier is the source of truth; Markdown uses unwrapped paragraphs and terminal-first ASCII diagrams—see the [Markdown style policy](repo-governance/conventions/markdown-style-policy.md). The language target, naming, indentation, and import style follow the [code style policy](repo-governance/development/code-style-policy.md).
 
 Comments must explain intent, flow, and non-obvious decisions without narrating syntax; see the [code commentary policy](repo-governance/development/code-commentary-policy.md).
 
