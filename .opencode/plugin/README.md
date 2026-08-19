@@ -1,6 +1,6 @@
 # opencode Plugins
 
-opencode loads every plugin in this directory. It reads JavaScript and TypeScript here, so this README is not loaded as a plugin.
+opencode loads every plugin in this directory. It reads JavaScript and TypeScript here, so this README is inert; the [agent harness support policy](../../repo-governance/conventions/agent-harness-support.md) records that behavior.
 
 ## Contents
 

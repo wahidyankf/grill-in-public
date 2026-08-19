@@ -5,7 +5,7 @@ when_to_use: "Use before creating or resolving conflicts among governance polici
 
 # Governance Principles
 
-These principles are the foundation of `repo-governance/`. All governance policies, workflows, and future documents must follow them. When a conflict is found, resolve it before adopting the lower-level guidance; do not leave contradictory rules in place.
+These principles are the foundation of `repo-governance/`. All governance policies, workflows, and future documents must follow them. When a conflict is found, resolve it before adopting the lower-level guidance; do not leave contradictory rules in place. Resolving it is never choosing a side yourself: [conflict resolution](../workflows/rules-propagation/03-conflict-resolution.md) owns how a conflict reaches the owner.
 
 ## Principles
 

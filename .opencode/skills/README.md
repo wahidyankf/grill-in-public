@@ -6,4 +6,4 @@ This directory is intentionally empty of shared skills. opencode loads `skills/*
 
 None. The shared skills live in [`.claude/skills/`](../../.claude/skills/README.md) and [`.agents/skills/`](../../.agents/skills/README.md).
 
-Add a skill here only if opencode alone needs it. A skill every harness needs goes in the two canonical directories instead.
+Do not add a skill only here. Claude Code and Codex both load skills, so the parity policy requires all three harnesses to expose the same entries, and `npm run check:harness-parity` fails on a skill the others lack. Every skill goes in the two canonical directories.

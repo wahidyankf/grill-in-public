@@ -41,6 +41,8 @@ bad:   plans/backlog/2026-08-18__wahidyankf-www-migration/   date before complet
 bad:   plans/done/2026-08-18_wahidyankf_www_migration/       single underscore, underscores
 ```
 
+Every `plan-checker` prompt states this stage-aware naming rule in the imperative, because a subagent prompt has to stand alone. Change it in the same edit, in all three harness copies.
+
 ## Ideas
 
 An idea is a file, not a folder: `plans/ideas/<slug>.md`, kebab-case, no date. It gains a folder only when promoted to `backlog/`.

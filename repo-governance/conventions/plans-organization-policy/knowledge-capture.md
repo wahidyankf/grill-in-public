@@ -26,6 +26,8 @@ The final phase of every substantive plan, immediately before archival, is Knowl
 
 Before routing, every surviving entry passes two checks: it contains no secret or sensitive detail, and it is relevant to this repository rather than to one incident.
 
+Every `plan-checker` prompt states this capture phase in the imperative, because a subagent prompt has to stand alone. Change it in the same edit, in all three harness copies.
+
 ## Archival Is Blocked
 
 A plan does not move to `done/` until every `learnings.md` entry has reached a terminal state — routed or discarded with a reason — or the plan records the explicit escape `No generalizable learnings — <reason>`.

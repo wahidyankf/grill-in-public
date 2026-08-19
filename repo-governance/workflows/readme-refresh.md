@@ -7,7 +7,7 @@ when_to_use: "Use when a change affects repository, project, documentation, or g
 
 ## Purpose
 
-Keep human-facing READMEs accurate as the repository changes. Review the root `README.md` and every existing README below `apps/`, `libs/`, `docs/`, `repo-governance/`, and the harness directories recursively; update the smallest affected set in the same thematic commit as the change it explains.
+Keep human-facing READMEs accurate as the repository changes. Review the root `README.md` and every existing README below `apps/`, `libs/`, `docs/`, `repo-governance/`, `cv/`, `scripts/`, and the harness directories recursively; update the smallest affected set in the same thematic commit as the change it explains.
 
 ## When to Use
 
@@ -22,14 +22,14 @@ Run this workflow before committing a change that alters purpose, directory layo
    git diff --name-status
    git diff --cached --name-status
    printf '%s\n' README.md
-   rg --files apps libs docs repo-governance .agents .claude .codex .opencode -g 'README.md' | sort
+   rg --files apps libs docs repo-governance cv scripts .agents .claude .codex .opencode -g 'README.md' | sort
    ```
 
 2. Map each changed behavior to its human entry point. The root README explains the workspace; app and library READMEs explain each project's purpose, use, and contracts; `docs/` READMEs navigate Diátaxis content; and `repo-governance/` READMEs explain shared rules. Create a project README when a new runnable or reusable project needs a human starting point.
 
 3. Read each affected README as a newcomer. Confirm names, commands, versions, paths, links, prerequisites, outputs, and claims match the implementation. Link to canonical detailed documents instead of copying rules. Keep agent instructions in `AGENTS.md`-style files; repository governance applies to both audiences.
 
-4. Follow the [documentation index policy](../documentation-index-policy.md) everywhere it applies, which is `docs/`, `repo-governance/`, and the harness directories. It owns which directories need a README, what each must register, the frontmatter requirement, and the exemptions.
+4. Follow the [documentation index policy](../documentation-index-policy.md) everywhere it applies, which is `docs/`, `repo-governance/`, `cv/`, `scripts/`, and the harness directories. It owns which directories need a README, what each must register, the frontmatter requirement, and the exemptions.
 
 5. Update only stale or missing material. Do not rewrite accurate prose, invent behavior, or mix unrelated documentation cleanup into the commit.
 

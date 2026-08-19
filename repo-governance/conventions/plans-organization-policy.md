@@ -11,7 +11,7 @@ This policy governs `plans/`, the repository's working record of change. A plan 
 
 ## When a Plan Is Required
 
-A plan is required for application work, infrastructure work, and substantial rule work: a new policy area, or a change that lands across several documents. A correction, a clarification, or a rule confined to one document goes through the [rules-propagation](../workflows/rules-propagation.md) workflow alone, because writing a five-document plan to fix a sentence costs more than the sentence. Drills and study are not planned: the owner practices by hand and tracks the session in a harness task list, as the [task tracking policy](task-tracking-policy.md) requires. A drill becomes plan-worthy only when it stops being practice and starts being repository work.
+A plan is required for application work, infrastructure work, and substantial rule work: a new policy area, or a change that lands across several documents. A correction, a clarification, or a rule confined to one document goes through the [rules-propagation](../workflows/rules-propagation.md) workflow alone, because writing a five-document plan to fix a sentence costs more than the sentence. Drills and study are not planned: the owner practices by hand and tracks the session in a harness task list, as the [task tracking policy](task-tracking-policy.md) requires. A drill becomes plan-worthy only when it stops being practice and starts being repository work. `rules-fixer` is exempt inside a [rules quality gate](../workflows/rules-quality-gate.md) run: it may create a receiving document and touch several documents in one pass without a plan, because it records both in the run's [findings report](../workflows/rules-quality-gate/05-findings-report.md).
 
 ## Rules
 
@@ -33,6 +33,8 @@ Plans deliver directly to `main`. This repository runs no pull-request flow, no 
 ## Diagrams and Secrets
 
 Plans follow the [Markdown style policy](markdown-style-policy.md) without exception, so diagrams are terminal-first ASCII, never Mermaid. Plan documents are committed, so they never carry a secret: name the variable and its location instead of its value.
+
+Every `plan-checker` prompt states this ASCII-diagram rule and this secrets rule in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.
 
 ## Verification
 

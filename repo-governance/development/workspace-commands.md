@@ -35,7 +35,7 @@ TypeScript projects compile with `tsc` into `<project>/dist`, and tests run agai
 
 ## Repository Checks
 
-- `npm run check:governance` enforces the 500-word limit on instruction files, `repo-governance/` documents, and harness READMEs.
+- `npm run check:governance` enforces the [document word limit policy](../conventions/document-word-limit-policy.md), which sets the limit and names every document it governs.
 - `npm run check:harness-parity` compares the subagents, skills, and commands each harness exposes.
 - `npm run check:markdown-links` validates repository-local Markdown links. It reads Git-tracked files, so `git add -N` a new document before trusting a local run.
 - `npm run check:project-targets` verifies every Nx project defines the test and quality targets the [testing policy](testing-policy.md) requires.
@@ -46,4 +46,4 @@ TypeScript projects compile with `tsc` into `<project>/dist`, and tests run agai
 
 ## Hooks
 
-Pre-commit formats staged files and announces the rule workflows. Pre-push requires `origin/main`, runs affected `test:quick`, runs the governance check when the push touches governance or a harness path, compares harness capabilities when a harness directory changes, verifies project targets when a `project.json` or `nx.json` changes, and always validates Markdown links. See the [commit hook policy](commit-hook-policy.md).
+Pre-commit formats staged files and announces the rule workflows. Pre-push requires `origin/main`, runs affected `test:quick`, runs the governance check when the push changes an instruction file, `repo-governance/`, or a harness directory, compares harness capabilities when a harness directory changes, verifies project targets when a `project.json` or `nx.json` changes, and always validates Markdown links. See the [commit hook policy](commit-hook-policy.md).

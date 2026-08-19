@@ -35,6 +35,8 @@ Immediately after each gate, a short Pause Safety note states the coherent state
 
 Phase 0 is environment setup and baseline. It records a clean starting state — dependencies installed, gates green before any change — so a later failure can be attributed to the work rather than to the machine. Its gate is that recorded baseline, and it commits nothing but the plan itself.
 
+Every `plan-checker` prompt states the phase gate, the Pause Safety note, and Phase 0 in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.
+
 ## Ordering
 
 Order phases so each builds on a green predecessor. Delivery to `main` happens at phase boundaries: the gate passes, then the phase's work is committed and pushed. A phase whose gate cannot be expressed as a command is a phase that has not been thought through.

@@ -4,11 +4,11 @@ This directory contains Wahidyan Kresna Fridayoka's career evidence and professi
 
 ## Sources and Derivatives
 
-- `cv-raw.md` is the evidence base. Preserve its dates, metrics, source wording, context, and notes about material that is not suitable for public use.
-- `cv-linkedin.md` is the long-form, copy-ready LinkedIn profile.
-- `cv-ats.md` is the concise ATS CV source; `cv-ats.pdf` is its two-page export.
+- [cv-raw.md](cv-raw.md) is the evidence base. Preserve its dates, metrics, source wording, context, and notes about material that is not suitable for public use.
+- [cv-linkedin.md](cv-linkedin.md) is the long-form, copy-ready LinkedIn profile.
+- [cv-ats.md](cv-ats.md) is the concise ATS CV source; `cv-ats.pdf` is its two-page export.
 - `generate-cv-ats-pdf.py` generates the PDF from `cv-ats.md`.
-- `linkedin-projects.md` contains draft LinkedIn project entries and publishing notes.
+- [linkedin-projects.md](linkedin-projects.md) contains draft LinkedIn project entries and publishing notes.
 
 ## Working Rules
 
@@ -22,6 +22,6 @@ uv run --with reportlab python cv/generate-cv-ats-pdf.py
 
 Inspect the generated PDF before sharing it.
 
-## Known Source Gap
+## Missing Sources
 
-`cv-raw.md` links to `hijra-bank-okr-2026-management-dashboard.md`, which is not currently present in this directory. Do not invent its contents; add the source or verify the affected claims with the owner before relying on it.
+Every source `cv-raw.md` links to is present in this directory today. If it comes to link to one that is not, do not invent its contents; add the source or verify the affected claims with the owner before relying on it.

@@ -28,3 +28,5 @@ plans/
 ## Index Requirement
 
 Every stage carries a `README.md` listing the plans it holds. The [documentation index policy](../../documentation-index-policy.md) does not reach `plans/`, so this rule is the one that governs a stage index, for the same reason: an unlisted plan is a plan nobody finds. A move between stages updates both the source and destination index in the same change, so no index describes a plan that is no longer there.
+
+Every `plan-checker` prompt states this index requirement in the imperative, because a subagent prompt has to stand alone. Change it in the same edit, in all three harness copies.

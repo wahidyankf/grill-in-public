@@ -40,6 +40,8 @@ Feature: Greeting
     Then the output is "Hello, Wahidyan!"
 ```
 
+Every `plan-checker` prompt states this cardinality rule in the imperative, because a subagent prompt has to stand alone. Change it in the same edit, in all three harness copies.
+
 ## Binding to Tests
 
 A scenario is not documentation: it binds to a test that fails when the behavior breaks, as the [TDD policy](tdd-policy.md) requires. A scenario with no test behind it is worse than no scenario, because it claims coverage that does not exist.
@@ -50,4 +52,4 @@ A plan that adds or changes behavior in `apps/` or `libs/` writes the scenarios 
 
 ## Verification
 
-No automated check reads `specs/` yet. `plan-checker` verifies that a plan's Gherkin follows the cardinality rule above and that each scenario names the test that binds it.
+No automated check reads `specs/` yet. `plan-checker` verifies that a plan's Gherkin follows the cardinality rule above, and that every RED step inlines its scenario verbatim from `prd.md`. It does not check that a scenario names the test that binds it, so the binding above holds by review.

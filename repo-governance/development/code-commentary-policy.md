@@ -29,6 +29,8 @@ These checks establish a minimum shape, not comment quality. They do not decide 
 
 Do not narrate self-evident statements or duplicate a precise name. Prefer a short comment immediately before the decision it explains. Keep comments true when code changes; stale explanations are defects.
 
+Every `drill-reviewer` prompt states this requirement — comments that explain intent and non-obvious decisions, not syntax narration — in the imperative, because a subagent prompt has to stand alone. Change it in the same edit, in all three harness copies.
+
 ## Review
 
 When adding or changing executable code, manually review the surrounding flow for the comments a learner would need to reconstruct the reasoning. A passing linter never replaces that review. Keep configuration, generated artifacts, lockfiles, and plain data free of explanatory noise unless their format supports and benefits from comments.

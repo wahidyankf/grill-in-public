@@ -7,7 +7,7 @@ when_to_use: "Use when creating, renaming, or splitting any Markdown document un
 
 ## Scope
 
-This policy governs the filenames of Markdown documents in `docs/`, `repo-governance/`, `plans/`, and `specs/`, and the names of the child directories a split document creates. Code identifiers are a separate concern and stay in `AGENTS.md`. Plan folder names are stage-dependent and belong to the [plans organization policy](plans-organization-policy/plan-naming.md).
+This policy governs the filenames of Markdown documents in `docs/`, `repo-governance/`, `plans/`, and `specs/`, and the names of the child directories a split document creates. Code identifiers are a separate concern and belong to the [code style policy](../development/code-style-policy.md). Plan folder names are stage-dependent and belong to the [plans organization policy](plans-organization-policy/plan-naming.md).
 
 ## Rules
 

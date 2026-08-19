@@ -44,13 +44,13 @@ The repository uses Nx as a raw task runner for its npm workspaces:
 - `apps/` holds runnable applications.
 - `libs/` holds reusable packages consumed by applications.
 
-The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes [`@grind-in-public/dummy-lib`](libs/dummy-lib/README.md). Run it with `npm run run:dummy`; build all projects with `npm run build`; and run quick checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md) for the full workflow. This workspace deliberately does not use framework or language-specific Nx plugins. TypeScript projects use project-local ESLint commentary checks alongside Biome; passing lint complements, but does not replace human review of explanatory comments.
+The [Dummy App](apps/dummy-app/README.md) TypeScript CLI consumes [`@grind-in-public/dummy-lib`](libs/dummy-lib/README.md). Run it with `npm run run:dummy`; build all projects with `npm run build`; and run quick checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md) for the full workflow. This workspace deliberately avoids technology-specific Nx plugins; the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md) states which kinds are excluded and the one exception. TypeScript projects use project-local ESLint commentary checks alongside Biome; passing lint complements, but does not replace human review of explanatory comments.
 
 [Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI behind the repository checks: governance-document word limits, repository-local Markdown links, rule-change announcements, harness capability parity, and project targets. [Workspace commands](repo-governance/development/workspace-commands.md) lists the `npm run check:` command for each one.
 
 ## Plans and Specs
 
-Application, infrastructure, and substantial rule work is planned before it starts; drills are not, because working them out by hand is the point. A plan is five documents in [`plans/`](plans/README.md), moving from `ideas/` through `backlog/` and `in-progress/` to `done/`, and delivering directly to `main` at each phase gate. What the software should do is described as Gherkin in [`specs/`](specs/README.md), separate from the code that implements it.
+Which work is planned before it starts, and which — drills among them — is not, is set by the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). A plan is five documents in [`plans/`](plans/README.md), moving from `ideas/` through `backlog/` and `in-progress/` to `done/`, and delivering directly to `main` at each phase gate. What the software should do is described as Gherkin in [`specs/`](specs/README.md), separate from the code that implements it.
 
 ## Documentation
 

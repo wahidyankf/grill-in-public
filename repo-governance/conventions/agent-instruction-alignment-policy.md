@@ -17,7 +17,7 @@ The [agent harness support policy](agent-harness-support.md) records which harne
 
 ## Word Limit
 
-`CLAUDE.md` shares the 500-word limit that governs `AGENTS.md` and `repo-governance/`, enforced by `npm run check:governance`. Keep every instruction file equally concise; move detail into a focused governance document and link to it rather than trimming a required rule. Badak Mini treats `AGENTS.md` and `CLAUDE.md` as required, so removing one fails the check.
+`CLAUDE.md` is one of the documents the [document word limit policy](document-word-limit-policy.md) governs; that policy sets the limit, names its scope, and states what to do when a document reaches it. Keep every instruction file equally concise. Badak Mini treats `AGENTS.md` and `CLAUDE.md` as required, so removing one fails the check.
 
 ## Required Alignment
 

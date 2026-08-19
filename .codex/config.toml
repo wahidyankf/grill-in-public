@@ -15,5 +15,5 @@ enabled = true
 # request_user_input, which Codex keeps off by default while the feature is
 # under development. The opt-in is documented; its effect is unverified here,
 # like the Codex pre-edit hook. See
-# repo-governance/conventions/grilling-harness-binding.md.
+# repo-governance/conventions/grilling-harness-binding/question-tools.md.
 default_mode_request_user_input = true

@@ -36,8 +36,10 @@ Good:
 
 Every checkbox states who can execute it. The tags are `[AI]`, `[HUMAN]`, and `[AI+HUMAN]`, matching `ose-public` so a migrated plan needs no translation.
 
-- **`[AI]`** — an agent can fully perform it. This is the default, and an untagged checkbox is read as `[AI]`.
+- **`[AI]`** — an agent can fully perform it. Write the tag out even here: an untagged checkbox is a defect, not an `[AI]` one.
 - **`[HUMAN]`** — only the owner: physical actions, out-of-band approvals, anything needing real credentials an agent must not hold, and any step the owner is doing by hand to learn it.
 - **`[AI+HUMAN]`** — an agent prepares, the owner approves or performs the irreversible step.
 
 Tag toward `[AI]`. Git-mechanical steps such as committing, pushing, or moving a plan folder are `[AI]` unless a specific reason says otherwise. A `delivery.md` opens with a one-line legend naming the three tags, so a reader meets them before the first checkbox.
+
+Every `plan-checker` prompt states one action per checkbox, execution-grade clarity, and the executor tags with their legend in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.

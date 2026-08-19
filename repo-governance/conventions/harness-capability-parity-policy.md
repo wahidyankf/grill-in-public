@@ -37,6 +37,6 @@ Where a harness cannot load a capability, record it in the table above rather th
 npm run check:harness-parity
 ```
 
-Badak Mini compares the entries per capability, ignores each directory's `README.md` index, and skips a capability that no harness uses yet. It runs during a push that touches a harness path, and the [Harness Alignment](../workflows/harness-alignment.md) workflow runs it too.
+Badak Mini compares the entries per capability, ignores each directory's `README.md` index, and skips a capability that no harness uses yet. It runs during a push that changes a harness directory, and the [Harness Alignment](../workflows/harness-alignment.md) workflow runs it too.
 
 The command proves the counts and names match. It cannot read intent, so still confirm by hand that a mirrored entry keeps the same purpose and permission posture.

@@ -7,7 +7,7 @@ when_to_use: "Use when looking up one specific plan rule rather than the whole p
 
 These documents hold the detail behind the [plans organization policy](../plans-organization-policy.md). Each owns one concern, so a reader loads only the rule the task needs.
 
-Filenames carry no number, because these are rules consulted individually rather than steps performed in order; see the [document naming policy](../document-naming-policy.md). The list below carries the order that helps a reader.
+Filenames carry no number; the [document naming policy](../document-naming-policy.md) says why. The list below carries the order that helps a reader.
 
 ## Contents
 

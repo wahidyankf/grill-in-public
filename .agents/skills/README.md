@@ -1,6 +1,6 @@
 # Shared Skills
 
-Codex and opencode both discover these skills automatically from this directory; see the [shared agent directory](../README.md). Discovery ignores this README because the file is not a `SKILL.md`.
+Codex and opencode both discover these skills automatically from this directory; see the [shared agent directory](../README.md). Discovery ignores this README; the [agent harness support policy](../../repo-governance/conventions/agent-harness-support.md) records that behavior.
 
 ## Available Skills
 

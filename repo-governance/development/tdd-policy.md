@@ -40,10 +40,12 @@ Bundling several scenarios into one cycle hides which behavior a failure belongs
 
 Pure data or calculation tests that underpin several scenarios use `**Gherkin (underpins)**` and may name a list.
 
+Every `plan-checker` prompt states this rule in the imperative, because a subagent prompt has to stand alone. Change it in the same edit, in all three harness copies.
+
 ## Regression Tests
 
 Every bug fix begins with a test that reproduces the bug and fails. A fix without one asserts that the bug is gone without ever having shown that it was there.
 
 ## Verification
 
-`test:quick` and `test:integration` run the resulting tests, per the [testing policy](testing-policy.md). `plan-checker` flags a behavior cycle that lacks a RED step, inlines no scenario, or names more than one scenario.
+`test:quick` and `test:integration` run the resulting tests, per the [testing policy](testing-policy.md). `plan-checker` flags a RED step that inlines no scenario or names more than one, because its rule 4 quantifies over the RED steps a plan contains. A behavior cycle with no RED step at all reaches no check, so that part of the cycle above holds by review.
