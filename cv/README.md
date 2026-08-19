@@ -12,7 +12,7 @@ This directory contains Wahidyan Kresna Fridayoka's career evidence and professi
 
 ## Working Rules
 
-Treat `cv-raw.md` as the factual source of truth. Keep public-facing CV and LinkedIn content accurate, contextualized, and consistent with it. Do not publish or promote sensitive notes marked for exclusion without explicit owner direction.
+Treat `cv-raw.md` as the factual source of truth. Keep public-facing CV and LinkedIn content accurate, contextualized, and consistent with it. Do not publish or promote sensitive notes marked for exclusion without explicit owner direction. If `cv-raw.md` links to a source that is not in this directory, do not invent its contents; add the source or verify the affected claims with the owner before relying on it.
 
 Regenerate `cv-ats.pdf` after changing `cv-ats.md` with:
 
@@ -21,7 +21,3 @@ uv run --with reportlab python cv/generate-cv-ats-pdf.py
 ```
 
 Inspect the generated PDF before sharing it.
-
-## Missing Sources
-
-Every source `cv-raw.md` links to is present in this directory today. If it comes to link to one that is not, do not invent its contents; add the source or verify the affected claims with the owner before relying on it.

@@ -18,7 +18,7 @@ Governance has no per-run home the way a plan does, so a run appends one line to
 - 2026-09-02 — strict — 7 cycles — fail (1 contradiction open, AGENTS.md vs testing-policy.md)
 ```
 
-Date, level, cycles, status, and for anything short of a pass, the open findings in one clause each. Keep every line: a corpus that needs seven cycles twice in a row is telling you something a single status cannot.
+Date, level, cycles, status, and for anything short of a pass, the open findings in one clause each. A settled run has none, so its clause names the fixes no cycle re-read instead; that is what the next run verifies first, and this line is what it reads before opening anything. Keep every line: a corpus that needs seven cycles twice in a row is telling you something a single status cannot.
 
 ## Statuses
 

@@ -21,3 +21,5 @@ An idea lives in `plans/ideas/<slug>.md` and stays at roughly two printed pages.
 ## Discipline
 
 Two pages is the point. An idea that needs five pages to be understood is a plan wearing an idea's clothes: promote it and write the five documents, or cut it until the core argument stands alone.
+
+No `plan-checker` rule restates these sections, because the checker reads plans rather than ideas, so nothing here has a harness copy to keep in step. That is checked rather than overlooked: a rule that gains one gets the notice its siblings carry.

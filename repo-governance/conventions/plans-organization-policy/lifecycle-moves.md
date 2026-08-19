@@ -40,3 +40,5 @@ Tick a checkbox only after the change it describes exists. Ticking ahead of the 
 ## Reopening
 
 If a defect surfaces after archival, move the folder back to `in-progress/`, strip the date prefix, and add a dated note in `README.md` stating what broke. A reopened plan is honest history; a quietly edited `done/` plan is not.
+
+No `plan-checker` rule restates any move above, so nothing here has a harness copy to keep in step. That is checked rather than overlooked: a rule that gains one gets the notice its siblings carry.
