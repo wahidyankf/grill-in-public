@@ -15,7 +15,7 @@ plan-checker --> findings --> plan-fixer --> plan-checker --> clean twice --> pa
 
 Reads every document in the plan folder and reports findings with a severity, a `file:line` citation, and the specific rule the finding violates. It edits nothing. A finding without a cited rule is an opinion, and the checker does not report opinions.
 
-The checker verifies the plan against itself as well as against the rules: a command named in `delivery.md` must exist, every path the checklist names must appear in the file-impact tree, and a scenario in `delivery.md` must match the one in `prd.md` verbatim.
+The checker verifies the plan against itself as well as against the rules: a command named in `delivery.md` must exist, every path the checklist names must appear in the file-impact tree, and scenarios must bind both ways — one in `delivery.md` matching the one in `prd.md` verbatim, and one in `prd.md` inlined by a RED step.
 
 Every `plan-checker` prompt states this reporting rule and these internal-consistency checks in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.
 
@@ -47,6 +47,6 @@ The `plan-fixer` prompt states these two lists verbatim and carries the same she
 
 ## Why Both
 
-Separating the roles keeps the checker honest. A single agent that both finds and fixes has an incentive to find only what it can fix, and the findings it cannot fix are the ones that matter most.
+[Role separation](03-role-separation.md) says why the checker and the fixer are two agents rather than one.
 
 The loop's bounds are in the [workflow](../plan-quality-gate.md#loop-bounds), beside its recovery guidance.

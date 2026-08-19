@@ -52,4 +52,4 @@ A plan that adds or changes behavior in `apps/` or `libs/` writes the scenarios 
 
 ## Verification
 
-No automated check reads `specs/` yet. `plan-checker` verifies that a plan's Gherkin follows the cardinality rule above, and that every RED step inlines its scenario verbatim from `prd.md`. It does not check that a scenario names the test that binds it, so the binding above holds by review.
+No automated check reads `specs/` yet. `plan-checker` verifies that a plan's Gherkin follows the cardinality rule above, that every RED step inlines its scenario verbatim from `prd.md`, and that every scenario in `prd.md` is inlined by some RED step. It does not check that a scenario names the test that binds it, so the binding above holds by review.

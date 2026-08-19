@@ -16,3 +16,4 @@ Detail behind the [rules-quality-gate](../rules-quality-gate.md) workflow. Filen
 - [Findings Report](05-findings-report.md) — what a run records when it finishes.
 - [Survival Taxonomy](06-survival-taxonomy.md) — the five reasons a finding survived earlier cycles.
 - [Recovery](07-recovery.md) — the loop's bounds, what to do when a contradiction is found or the loop will not converge, and why a run keeps finding things.
+- [Run Statuses](08-run-statuses.md) — the four statuses a run can close with, chosen once the loop and any recovery have finished.

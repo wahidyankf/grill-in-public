@@ -48,4 +48,4 @@ Every bug fix begins with a test that reproduces the bug and fails. A fix withou
 
 ## Verification
 
-`test:quick` and `test:integration` run the resulting tests, per the [testing policy](testing-policy.md). `plan-checker` flags a RED step that inlines no scenario or names more than one, because its rule 4 quantifies over the RED steps a plan contains. A behavior cycle with no RED step at all reaches no check, so that part of the cycle above holds by review.
+`test:quick` and `test:integration` run the resulting tests, per the [testing policy](testing-policy.md). `plan-checker` flags a RED step that inlines no scenario or names more than one, and a `prd.md` scenario that no RED step inlines, because its rule 4 runs in both directions. Behavior that reaches neither document escapes it, and whether a RED step truly failed first holds by review.

@@ -15,7 +15,7 @@ Check against these rules, in this order:
 1. Structure. Five documents exist, the folder is named per the stage, and the stage index lists it.
 2. Delivery checklist. One action per checkbox; each names a path, a verbatim command, and an observable acceptance criterion; each carries an `[AI]`, `[HUMAN]`, or `[AI+HUMAN]` tag; the file opens with the tag legend.
 3. Phases. Every phase ends with a `### Phase N Gate` whose items state commands and acceptance, followed by a Pause Safety note. Phase 0 records a baseline and changes nothing else.
-4. Behavior cycles. Every RED step binds exactly one Gherkin scenario, inlined verbatim and matching `prd.md` word for word. Every scenario uses one primary Given, one When, and one Then.
+4. Behavior cycles. The binding runs both ways: every RED step binds exactly one Gherkin scenario, inlined verbatim and matching `prd.md` word for word, and every scenario in `prd.md` is inlined by some RED step in `delivery.md`. Every scenario uses one primary Given, one When, and one Then.
 5. Internal consistency. Every command named exists in a `project.json` or `package.json` target. Every path in the checklist appears in the file-impact tree in `tech-docs.md`.
 6. Knowledge Capture. The final phase before archival triages `learnings.md`.
 7. Safety. No secret value appears in any document. No step deletes something the plan never restores.

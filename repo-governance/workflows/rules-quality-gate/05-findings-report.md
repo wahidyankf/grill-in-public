@@ -22,11 +22,7 @@ Date, level, cycles, status, and for anything short of a pass, the open findings
 
 ## Statuses
 
-**pass** — two consecutive clean runs at the chosen level.
-
-**partial** — the loop ended with findings open, none of them a contradiction. Each open finding is listed with its case and location.
-
-**fail** — a contradiction remains unresolved, or the checker could not read the corpus. A failing gate is not a reason to stop working; it is a reason not to claim the guidance is coherent.
+The [run statuses](08-run-statuses.md) document defines the four a run can close with, and which of them obliges the next run to verify the last fixes.
 
 ## Open Findings
 

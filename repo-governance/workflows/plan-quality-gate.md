@@ -24,7 +24,7 @@ The plan exists with all five documents and has been through the [structural rev
 3. Run `plan-fixer` on the findings at or above that level. It edits the plan documents only; it never touches the code the plan describes, and it runs the [fixer discipline](rules-quality-gate/04-fixer-discipline.md) before each edit lands.
 4. Re-run `plan-checker`. A fix that introduced a new finding is caught here rather than at execution.
 5. Repeat until two consecutive runs report nothing at the chosen level, or seven cycles have passed.
-6. Record the outcome in the plan's `README.md`: the level used, the cycles run, and the final status; see the [findings report](plan-quality-gate/03-findings-report.md).
+6. Record the outcome in the plan's `README.md`: the level used, the cycles run, and the final status; see the [findings report](plan-quality-gate/04-findings-report.md).
 
 ## Verification
 

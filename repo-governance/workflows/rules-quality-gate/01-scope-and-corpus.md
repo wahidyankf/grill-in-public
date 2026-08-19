@@ -16,7 +16,10 @@ A rule is any sentence that tells a contributor or an agent what they must, may,
 
 ## In Scope, Judged Narrowly
 
-- `docs/` — read only for two failures: a requirement stated there that belongs in `repo-governance/`, and a reference to a rule, path, or workflow that no longer exists under that name. The gate does not judge tutorial quality, Diátaxis fit, or prose style. A governance gate that starts reviewing how-to guides stops being one.
+These surfaces are read for two failures only: a requirement stated there that belongs in `repo-governance/`, and a reference to a rule, path, or workflow that no longer exists under that name. The gate judges neither their prose style nor duplication among them.
+
+- `docs/` — the gate does not judge tutorial quality or Diátaxis fit either. A governance gate that starts reviewing how-to guides stops being one.
+- `cv/`, `scripts/`, and the root `README.md` — each carries rule sentences, and `AGENTS.md` routes agents into `cv/README.md`, so a stale reference there misdirects an agent.
 
 ## Out of Scope
 
@@ -27,10 +30,6 @@ A rule is any sentence that tells a contributor or an agent what they must, may,
 ## Harness Directories
 
 The gate reads harness files as rule documents, because a prompt tells an agent what to do. It does not repeat the sweep: the [Harness Alignment](../harness-alignment.md) workflow owns the inventory, the per-item comparison, the command and path verification, and the parity check, and the gate runs it as a step rather than doing that work twice. A gap the gate notices while reading is still its finding to report; the systematic search for gaps is alignment's.
-
-## Unclassified Surfaces
-
-Open finding, gate run 3: the sections above classify neither `cv/`, `scripts/`, nor the root `README.md`, though each carries rule sentences by the definition this document opens with, and `AGENTS.md` routes agents into `cv/README.md`. Classifying them either way changes what `rules-checker` covers, so the owner decides it. Run 3 found a copied rule and a stale reference on two of those surfaces.
 
 ## Prompts Are Rules
 

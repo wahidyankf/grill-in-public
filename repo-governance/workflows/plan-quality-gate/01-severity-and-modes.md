@@ -11,7 +11,7 @@ One severity vocabulary across both gates means a report reads the same way whic
 
 **CRITICAL** — the plan would do damage or cannot be executed at all. A secret in a document, a step that deletes something the plan never restores, a missing document, or a phase whose gate cannot pass.
 
-**HIGH** — the plan would be executed wrongly. A checkbox with no acceptance criterion, a checkbox hiding several actions, a behavior cycle binding more than one scenario or none, a phase without a gate, or a command that does not exist in any `project.json` or `package.json`.
+**HIGH** — the plan would be executed wrongly. A checkbox with no acceptance criterion, a checkbox hiding several actions, a behavior cycle binding more than one scenario or none, a scenario in `prd.md` that no RED step binds, a phase without a gate, or a command that does not exist in any `project.json` or `package.json`.
 
 **MEDIUM** — the plan would be executed correctly but slowly or with guesswork. A missing file path where one is knowable, a gate lacking a concrete command, a missing Pause Safety note, or a file-impact tree that omits a path the checklist touches.
 
