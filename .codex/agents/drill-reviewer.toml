@@ -1,6 +1,6 @@
 # Codex form of the shared drill-reviewer role. Keep it at parity with
 # .claude/agents/drill-reviewer.md and .opencode/agents/drill-reviewer.md; see
-# repo-governance/conventions/agent-harness-support.md.
+# repo-governance/conventions/harness-capability-parity-policy.md.
 name = "drill-reviewer"
 description = "Reviews a finished practice drill for correctness, complexity, edge cases, and explanation quality. Use it after solving an exercise by hand, when you want feedback rather than an answer; it never writes the solution."
 

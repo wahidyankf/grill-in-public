@@ -5,7 +5,7 @@ when_to_use: "Use when performing or reviewing one step of plan authoring."
 
 # Plan Planning Steps
 
-Detail behind the [plan-planning](../plan-planning.md) workflow. Each document covers one step.
+Detail behind the [plan-planning](../plan-planning.md) workflow. Filenames are numbered; the [document naming policy](../../conventions/document-naming-policy.md) says why. Each document covers one step.
 
 ## Contents
 

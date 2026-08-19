@@ -1,5 +1,5 @@
 ---
-tldr: "Divides the gate's work between plan-checker and plan-fixer and bounds the loop."
+tldr: "Divides the gate's work between plan-checker and plan-fixer, and links the loop's bounds."
 when_to_use: "Use when running the gate or reviewing what each subagent may do."
 ---
 
@@ -15,22 +15,38 @@ plan-checker --> findings --> plan-fixer --> plan-checker --> clean twice --> pa
 
 Reads every document in the plan folder and reports findings with a severity, a `file:line` citation, and the specific rule the finding violates. It edits nothing. A finding without a cited rule is an opinion, and the checker does not report opinions.
 
-The checker verifies the plan against itself as well as against the rules: a command named in `delivery.md` must exist, a path in the file-impact tree must be plausible, and a scenario in `delivery.md` must match the one in `prd.md` verbatim.
+The checker verifies the plan against itself as well as against the rules: a command named in `delivery.md` must exist, every path the checklist names must appear in the file-impact tree, and a scenario in `delivery.md` must match the one in `prd.md` verbatim.
+
+Every `plan-checker` prompt states this reporting rule and these internal-consistency checks in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.
 
 ## plan-fixer
 
 Edits plan documents to resolve findings. Its mandate is clarity, not authority:
 
-- It may add a missing path, command, acceptance criterion, executor tag, gate, or Pause Safety note.
-- It may split a coarse checkbox, or a behavior cycle binding several scenarios.
-- It may not change a decision the owner made, alter scope, or remove a step to make a finding disappear.
+It may:
+
+- add a missing file path, verbatim command, acceptance criterion, or executor tag
+- split a checkbox that hides several actions, or a behavior cycle binding several scenarios
+- add a missing `### Phase N Gate`, gate item, or Pause Safety note
+- inline a Gherkin scenario verbatim from `prd.md`
+- correct a file-impact tree that omits a path the checklist touches
+- fix a link, a heading, or a diagram that uses Mermaid instead of ASCII
+
+It may not:
+
+- change a decision the owner made, or the reasoning recorded for it
+- widen or narrow the plan's scope
+- delete a step, or weaken an acceptance criterion, to make a finding disappear
+- invent a command, a path, or a metric you have not verified exists
+
+It uses the shell to verify, never to build: to check that a command, path, or target it is about to write into the plan actually exists, and never to run the work the plan describes.
 
 A finding it cannot fix within that mandate is left open and reported, not silently dropped.
 
-## Loop Bounds
-
-Two consecutive clean runs end the loop. Seven cycles end it too, with the remaining findings reported. Cycle five raises a warning: a plan still finding new problems that late is usually structurally wrong rather than imprecise.
+The `plan-fixer` prompt states these two lists verbatim and carries the same shell rule in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies, or the fixer and the workflow start authorizing different things.
 
 ## Why Both
 
 Separating the roles keeps the checker honest. A single agent that both finds and fixes has an incentive to find only what it can fix, and the findings it cannot fix are the ones that matter most.
+
+The loop's bounds are in the [workflow](../plan-quality-gate.md#loop-bounds), beside its recovery guidance.

@@ -5,7 +5,7 @@ when_to_use: "Use when looking up task synchronization, the phase loop, pushes, 
 
 # Plan Execution Details
 
-Detail behind the [plan-execution](../plan-execution.md) workflow.
+Detail behind the [plan-execution](../plan-execution.md) workflow. Filenames are numbered; the [document naming policy](../../conventions/document-naming-policy.md) says why.
 
 ## Contents
 

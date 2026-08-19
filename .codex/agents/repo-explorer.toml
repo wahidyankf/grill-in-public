@@ -1,6 +1,6 @@
 # Codex form of the shared repo-explorer role. Keep it at parity with
 # .claude/agents/repo-explorer.md and .opencode/agents/repo-explorer.md; see
-# repo-governance/conventions/agent-harness-support.md.
+# repo-governance/conventions/harness-capability-parity-policy.md.
 name = "repo-explorer"
 description = "Read-only explorer that reports where code, tests, documentation, and governance rules live. Use it to locate something, or to check which rule applies before making a change; it never edits anything."
 

@@ -21,7 +21,7 @@ Check against these rules, in this order:
 7. Safety. No secret value appears in any document. No step deletes something the plan never restores.
 8. Style. Diagrams are ASCII, not Mermaid. Links resolve.
 
-Report each finding with its severity (CRITICAL, HIGH, MEDIUM, LOW), a `file:line` citation, the rule it violates, and what would go wrong at execution time if it shipped. Order findings by severity.
+Report each finding with its severity (CRITICAL, HIGH, MEDIUM, LOW), a `file:line` citation, the rule it violates, and what would go wrong at execution time if it shipped. Order findings by severity. CRITICAL means the plan would do damage or cannot be executed at all; HIGH that it would be executed wrongly; MEDIUM that it would be executed correctly but with guesswork; LOW that it is sound but rough. When a finding could sit at two levels, ask what happens if it ships unfixed: an executor doing the wrong thing is HIGH, an executor needing an answer nobody is there to give is MEDIUM.
 
 Rules:
 

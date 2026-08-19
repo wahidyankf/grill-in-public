@@ -20,8 +20,8 @@ The plan exists with all five documents and has been through the [structural rev
 ## Steps
 
 1. Run `plan-checker` against the plan folder. It reads every document and reports findings by severity, citing `file:line`; see the [check and fix loop](plan-quality-gate/02-check-fix-loop.md).
-2. Stop if no finding meets the chosen level. Otherwise continue.
-3. Run `plan-fixer` on the findings at or above that level. It edits the plan documents only; it never touches the code the plan describes.
+2. Skip the next step if no finding meets the chosen level. A clean run does not end the gate; step 5 says what does.
+3. Run `plan-fixer` on the findings at or above that level. It edits the plan documents only; it never touches the code the plan describes, and it runs the [fixer discipline](rules-quality-gate/04-fixer-discipline.md) before each edit lands.
 4. Re-run `plan-checker`. A fix that introduced a new finding is caught here rather than at execution.
 5. Repeat until two consecutive runs report nothing at the chosen level, or seven cycles have passed.
 6. Record the outcome in the plan's `README.md`: the level used, the cycles run, and the final status; see the [findings report](plan-quality-gate/03-findings-report.md).
@@ -29,6 +29,10 @@ The plan exists with all five documents and has been through the [structural rev
 ## Verification
 
 The gate passes when two consecutive `plan-checker` runs report no finding at the chosen level. One clean run is not enough: a single pass can reflect a checker that stopped early rather than a plan that is sound.
+
+## Loop Bounds
+
+Two consecutive clean runs end the loop. Seven cycles end it too, with the remaining findings reported. Cycle five raises a warning: a plan still finding new problems that late is usually structurally wrong rather than imprecise.
 
 ## Recovery
 

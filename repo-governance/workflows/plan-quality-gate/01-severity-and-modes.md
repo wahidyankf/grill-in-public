@@ -5,6 +5,8 @@ when_to_use: "Use when choosing a gate level or classifying a finding."
 
 # Severity and Modes
 
+One severity vocabulary across both gates means a report reads the same way whichever produced it.
+
 ## Severities
 
 **CRITICAL** — the plan would do damage or cannot be executed at all. A secret in a document, a step that deletes something the plan never restores, a missing document, or a phase whose gate cannot pass.
@@ -29,3 +31,7 @@ Strict is the default because MEDIUM findings are precisely the ones that turn i
 ## Classification Rule
 
 When a finding could sit at two levels, ask what happens if it ships unfixed. If an executor would do the wrong thing, it is HIGH. If an executor would do the right thing after asking a question nobody will be there to answer, it is MEDIUM.
+
+Every `plan-checker` prompt states these four severities and this rule in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.
+
+Every `rules-checker` prompt names the same four severities, for the same reason, so a change to the vocabulary reaches all six prompts. The case floors the rules gate adds on top of them belong to its [finding taxonomy](../rules-quality-gate/02-finding-taxonomy.md).

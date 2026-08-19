@@ -5,7 +5,7 @@ when_to_use: "Use when looking up a severity level, the loop rules, or the repor
 
 # Plan Quality Gate Details
 
-Detail behind the [plan-quality-gate](../plan-quality-gate.md) workflow.
+Detail behind the [plan-quality-gate](../plan-quality-gate.md) workflow. Filenames are numbered; the [document naming policy](../../conventions/document-naming-policy.md) says why.
 
 ## Contents
 

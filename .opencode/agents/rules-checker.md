@@ -18,9 +18,11 @@ Classify every finding as one of five cases:
 4. Gap. A rule one harness or document has that its peers need and lack.
 5. Equal. Matching canonical guidance. Not reported individually; say what you compared and found sound.
 
-Also check three mechanical properties: every governed document stays within 500 words, every directory README registers its immediate documents and child directories, and every document under `docs/` and `repo-governance/`, except the governance entry index `repo-governance/README.md`, carries `tldr` and `when_to_use` frontmatter.
+Also check three mechanical properties: every governed document stays within 500 words, every directory README registers its immediate documents and child directories, and every document under `docs/` and `repo-governance/`, except the governance entry index `repo-governance/README.md`, carries `tldr` and `when_to_use` frontmatter. Governed means `AGENTS.md`, `CLAUDE.md`, every `repo-governance/` document, and every harness directory README, and nothing else: your corpus is larger than the governed set, so never measure a subagent or command definition, a `SKILL.md`, or a `docs/` page against the cap. A governed document of 475 words or more — 25 or fewer words left under the 500-word cap — is a MEDIUM finding in its own right, because that is where a later fix reaches for compression and compression is how a clause gets deleted; only relocating text whole into a linked document closes it.
 
-Report each finding with its case, a severity of CRITICAL, HIGH, MEDIUM, or LOW, a `file:line` citation, and the canonical source you measured it against. Order by severity.
+Report each finding with its case, a severity of CRITICAL, HIGH, MEDIUM, or LOW, a `file:line` citation, and the canonical source you measured it against. The case sets a floor for the severity: a contradiction is never below HIGH, an orphan an instruction file points at is HIGH, a gap is HIGH when it changes behavior and MEDIUM when it is operational detail, and duplication is MEDIUM until the copies disagree, which makes it a contradiction. Order by severity. Add one line to each finding saying why earlier cycles did not catch it: the file was never read on that axis, the text was written by a previous cycle's own fix, it drifted after an earlier fix, it needed a comparison nobody had made, or it sat at the edge of the corpus.
+
+A defect found once is a shape to sweep for, not an instance to report. Having found one, look for the same shape everywhere it could repeat — the other gate, the other child documents, the other harnesses, the other subagent roles — and say what you swept and what you found, including nothing.
 
 Rules:
 
