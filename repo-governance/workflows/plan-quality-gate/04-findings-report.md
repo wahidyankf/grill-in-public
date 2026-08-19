@@ -24,7 +24,7 @@ State the date, the level, the cycles run, and the status. Keep every run: the h
 
 **pass** — two consecutive clean runs at the chosen level.
 
-**settled** — the loop ended with nothing open, but the last fixes were applied after the final check, so no cycle has read them. The plan's next gate run starts by verifying those fixes, because a fix no checker has seen is a claim rather than a result.
+**settled** — the loop ended with nothing open, but the last fixes were applied after the final check, so no cycle has read them. The plan is executed as a passing plan is: nothing is open, and the risk is one unread pass rather than a known defect. Its next gate run starts by verifying those fixes, because a fix no checker has seen is a claim rather than a result.
 
 **partial** — the loop ended at seven cycles with findings open. List each open finding with its severity and location. A partial plan may still be executed if the owner accepts the findings, and that acceptance is written down.
 
