@@ -17,7 +17,7 @@ This directory contains stable, cross-cutting standards that make repository wor
 - [Document Naming Policy](document-naming-policy.md) — how Markdown documents and their child directories are named. Use it when creating, renaming, or splitting a document.
 - [Document Word Limit Policy](document-word-limit-policy.md) — the word limit every governed document lives under, and how a document that reaches it is fixed. Use it before shortening one.
 - [Task Tracking Policy](task-tracking-policy.md) — how granular a task list must be and when it must be updated. Use it when starting or reviewing work that takes more than one step.
-- [Grilling-With-Options Policy](grilling-with-options-policy.md) — the structured form an agent must use to resolve an open decision with the owner. Use it before asking the owner to decide anything.
+- [Grilling-With-Options Policy](grilling-with-options-policy.md) — the structured form an agent must use to resolve an open decision with the owner. Use it before asking the owner to decide anything; its validation checklist lives in [`grilling-with-options-policy/`](grilling-with-options-policy/README.md).
 - [Grilling Harness Binding](grilling-harness-binding.md) — the question tool each harness uses and the Markdown fallback. Use it when asking a decision question or adding a harness; its per-harness detail lives in [`grilling-harness-binding/`](grilling-harness-binding/README.md).
 - [Plans Organization Policy](plans-organization-policy.md) — how a plan is staged, named, structured, and archived under `plans/`. Use it when creating, executing, or archiving a plan; its detail lives in [`plans-organization-policy/`](plans-organization-policy/README.md).
 

@@ -13,11 +13,11 @@ Activate when the owner says "grill me", asks for a plan or design to be stress-
 
 ## Rules
 
-The [grilling-with-options policy](../../../repo-governance/conventions/grilling-with-options-policy.md) is normative. Read it rather than working from memory. In short: explore first, offer two to four mutually exclusive options, give each a specific trade-off, mark exactly one Recommended, ask one decision per question, and always carry the write-in and chat options.
+The [grilling-with-options policy](../../../repo-governance/conventions/grilling-with-options-policy.md) is normative. Read it rather than working from memory. In short: explore first, offer two to four mutually exclusive options, give each a specific trade-off, mark exactly one Recommended in that option's label, ask one decision per question, and always carry the write-in and chat options.
 
 ## Mechanism
 
-Use the question tool your harness provides, whenever the session is interactive. The [question tools](../../../repo-governance/conventions/grilling-harness-binding/question-tools.md) table names the tool for each harness and the setting it needs, and the [Markdown fallback](../../../repo-governance/conventions/grilling-harness-binding/markdown-fallback.md) covers a session that cannot ask. Read the row for the harness you are running in rather than assuming a tool name: this file is shared, and the harness reading it is not always the one it was written from.
+Use the question tool your harness provides, whenever the session is interactive. The [question tools](../../../repo-governance/conventions/grilling-harness-binding/question-tools.md) table names the tool for each harness and the setting it needs, and the [Markdown fallback](../../../repo-governance/conventions/grilling-harness-binding/markdown-fallback.md) covers a session that cannot ask. Read the row for the harness you are running in rather than assuming a tool name: this file is shared, and the harness reading it is not always the one it was written from. [Shaping a question](../../../repo-governance/conventions/grilling-harness-binding.md#shaping-a-question) owns the rest of the form, including the `(Recommended)` suffix and the twelve-character header.
 
 Shape the question as the [harness binding](../../../repo-governance/conventions/grilling-harness-binding.md) says under Shaping a Question, and follow that table's row for your harness on whether the client supplies the free-text write-in or you must add it yourself.
 

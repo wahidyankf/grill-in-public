@@ -14,7 +14,7 @@ This policy governs how an agent questions the owner to resolve an open decision
 1. **Explore before asking.** Read the repository first. A question the code, a policy, or the Git history already answers must not be asked.
 2. **Two to four substantive options,** mutually exclusive, together covering the realistic decision space. Fewer than two is a yes-or-no confirmation, not a decision; more than four means the space was never pruned.
 3. **Each option states its own trade-off** in one sentence, specific to this decision. "Simpler" is not a trade-off.
-4. **Exactly one option is marked Recommended,** with a reason grounded in repository state or a stated constraint. Recommending nothing withholds the judgment the question exists to supply; recommending two is the same evasion in disguise.
+4. **Exactly one option is marked Recommended,** in that option's own label rather than by its position in the list, and with a reason grounded in repository state or a stated constraint. The [harness binding](grilling-harness-binding.md) owns the form the mark takes, because a mark the owner has to infer is one they can read past. Recommending nothing withholds the judgment the question exists to supply; recommending two is the same evasion in disguise.
 5. **One decision per question.** Batch only decisions where one answer constrains the other. Unrelated decisions are separate questions.
 6. **Use the harness's native question tool** when the session is interactive, and the Markdown fallback only when it is not.
 7. **A write-in answer counts as much as a listed option.** When it opens a new branch, grill that branch before proceeding.
@@ -22,16 +22,7 @@ This policy governs how an agent questions the owner to resolve an open decision
 
 ## Validation
 
-A question is valid when every line holds:
-
-- two to four substantive options, each with a specific trade-off
-- exactly one marked Recommended
-- exactly one decision addressed
-- options grounded in what the repository actually contains
-- the native tool used when available
-- the write-in and the chat option both present
-
-It is invalid when it presents no real choice, bundles unrelated decisions, invents options, or drops either standing option.
+A drafted question is checked before it is asked; [validation](grilling-with-options-policy/validation.md) holds the checklist and what makes a question invalid.
 
 ## Verification
 
