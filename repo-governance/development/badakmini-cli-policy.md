@@ -11,7 +11,8 @@ Badak Mini is this repository's small, standard-library-only Go CLI for reposito
 
 ## Rules
 
-- Add a new recurring repository-local check to Badak Mini rather than a new standalone shell checker, unless the repository owner directs otherwise.
+- Do not create a Badak Mini command merely because a rule can be automated. First reuse an existing command, hook, standard tool, or clear manual review. A new command requires explicit repository-owner approval plus evidence that the failure is recurring, materially affects repository-wide correctness, and that centralized enforcement returns more value than its code, tests, documentation, execution time, false positives, upgrades, and eventual removal will cost.
+- When an approved recurring repository-local check truly needs custom executable code, add it to Badak Mini rather than creating a standalone shell checker.
 - Keep validation deterministic and offline so it can run in pre-push. Inspect the Git-tracked repository state when the check concerns committed content.
 - Keep Badak Mini's production imports standard-library-only. Owner-approved, exact-pinned Go `tool` dependencies may support build, lint, test, or vulnerability checks, but must not become runtime dependencies.
 - For each new check, add a focused command, an Nx target, unit tests, and human-facing usage documentation.

@@ -11,6 +11,14 @@ This policy applies to every contributor and AI agent working in this repository
 
 Do not bypass Git hooks with `--no-verify`, including for `git commit` and `git push`. Hooks enforce formatting, Conventional Commit messages, and the repository checks that [workspace commands](workspace-commands.md#hooks) lists for each hook. A failure must be investigated and resolved before continuing.
 
+## Public Repository Safety
+
+Treat every committed byte as public. Before committing, inspect the complete staged diff and remove credentials, secret values, authentication material, private machine or network identifiers, and user-specific absolute paths. This includes passwords, tokens, private keys, cookies, authorization headers, connection strings, home-directory user names, hostnames, and private addresses. Never place a real sensitive value in a fixture, example, comment, document, generated artifact, or commit message.
+
+Use environment-variable names without values, unmistakably fake placeholders, and repository-relative paths. Standard non-identifying system paths such as `/dev/null` and an owner's already-public identity in a public repository URL are not machine-secret disclosures. When context makes a value uncertain, leave it unstaged until the owner confirms it is public.
+
+Immediately before every commit, run `git diff --cached --check`, inspect `git diff --cached --no-ext-diff`, and search the staged additions for credential-shaped values and user-specific home paths. These checks supplement judgment; a clean pattern search never proves that arbitrary content is safe.
+
 ## Markdown Link Validation
 
 Pre-push validates every Git-tracked repository Markdown file, not only changed documents, because a rename breaks links in files the change never touched. The [workspace commands](workspace-commands.md#repository-checks) reference states what the check reads and the `git add -N` caveat for a new document.

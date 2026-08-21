@@ -2,7 +2,7 @@
 
 ## Purpose and Working Style
 
-Grind in Public is a personal lifelong-learning workspace for software engineering. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Before starting any task, create a granular task list and keep it synchronized as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
+Grind in Public is a personal lifelong-learning workspace for software engineering. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Before starting any task, create a granular task list and keep it synchronized as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Treat maintained code and tooling as liabilities that must prove net recurring value; see [maintenance value](repo-governance/principles/maintenance-value.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
 
 ## Reference Repositories
 
@@ -39,6 +39,6 @@ Comments must explain intent, flow, and non-obvious decisions without narrating 
 
 ## Testing and Commits
 
-Each Nx project must define a cacheable `test:quick` target, and an uncached `test:integration` target only for boundary-crossing behavior; see the [testing policy](repo-governance/development/testing-policy.md). Behavior is specified as Gherkin in `specs/` and implemented test-first, one scenario per red-green-refactor cycle; see the [specs policy](repo-governance/development/specs-policy.md) and the [TDD policy](repo-governance/development/tdd-policy.md).
+Each Nx project follows the [testing policy](repo-governance/development/testing-policy.md). Behavior is specified as Gherkin in `specs/` and implemented test-first, one scenario per red-green-refactor cycle; see the [specs policy](repo-governance/development/specs-policy.md) and the [TDD policy](repo-governance/development/tdd-policy.md).
 
-Use Conventional Commits and split unrelated work into thematic commits. The [commit hook policy](repo-governance/development/commit-hook-policy.md) governs commit messages, pull-request content, attribution, and `--no-verify`. Do not commit secrets, `node_modules/`, or unreviewed dependency updates.
+Use Conventional Commits and split unrelated work into thematic commits. Follow the [commit hook policy](repo-governance/development/commit-hook-policy.md) for public-repository safety, attribution, and hook requirements. Do not commit `node_modules/` or unreviewed dependency updates.

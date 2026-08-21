@@ -9,5 +9,6 @@ These principles are the foundation of `repo-governance/`. All governance polici
 
 ## Principles
 
+- [Maintenance Value](maintenance-value.md) — require every maintained surface to prove more recurring benefit than upkeep cost.
 - [Progressive Disclosure](progressive-disclosure.md) — keep guidance focused and load only what the task needs.
 - [Root Cause Orientation](root-cause-orientation.md) — fix the responsible cause rather than suppressing its symptoms.
