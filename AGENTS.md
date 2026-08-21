@@ -6,7 +6,7 @@ Grind in Public is a personal lifelong-learning workspace for software engineeri
 
 ## Reference Repositories
 
-Use [ose-public](https://github.com/wahidyankf/ose-public) and [ose-primer](https://github.com/wahidyankf/ose-primer) as read-only references; local rules govern. For CV work, read [cv/README.md](cv/README.md).
+Use [ose-public](https://github.com/wahidyankf/ose-public), [ose-primer](https://github.com/wahidyankf/ose-primer), and [beaver-nest](https://github.com/wahidyankf/beaver-nest) as read-only references; local rules govern. For CV work, read [cv/README.md](cv/README.md).
 
 ## Rule Changes and Audience
 
