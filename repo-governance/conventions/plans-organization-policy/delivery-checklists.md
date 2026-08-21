@@ -16,7 +16,7 @@ One checkbox equals one concrete, independently verifiable action. The test: can
 Each checkbox carries every element that applies:
 
 - **The file path**, exactly, when it is known. When a new file's location is implementation-dependent, give the parent directory, the naming pattern, and a sibling to imitate.
-- **The command**, verbatim — `npx nx run dummy-lib:test:quick`, not "run the tests".
+- **The command**, verbatim — `npx nx run badakmini-cli:test:quick`, not "run the tests".
 - **An acceptance criterion** stating the observable outcome that proves it done. No bare "implement", "set up", or "configure".
 - **One Gherkin scenario** per behavior cycle, inlined verbatim, as the [TDD policy](../../development/tdd-policy.md) requires.
 
@@ -29,7 +29,7 @@ Bad, because it names no file, no command, and no observable outcome:
 Good:
 
 ```markdown
-- [ ] [AI] Edit `apps/dummy-app/src/index.ts`: memoize `createApp`. Verify with `npx nx run dummy-app:test:quick` — the suite exits 0.
+- [ ] [AI] Edit `apps/badakmini-cli/internal/rulechange/detect.go`: preserve one rule-change path after normalization. Verify with `npx nx run badakmini-cli:test:quick` — the suite exits 0.
 ```
 
 ## Executor Tags

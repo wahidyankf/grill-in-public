@@ -23,8 +23,8 @@ Every behavior cycle targets exactly one Gherkin scenario from the [specs policy
 
 ```text
 - [ ] [AI] RED — **Gherkin (binds)** "The app greets the configured name". Add the failing
-      test to `apps/dummy-app/src/index.test.ts`. Verify with
-      `npx nx run dummy-app:test:quick` — the new test fails. Scenario:
+      test to `apps/badakmini-cli/internal/rulechange/detect_test.go`. Verify with
+      `npx nx run badakmini-cli:test:quick` — the new test fails. Scenario:
 
 ~~~gherkin
 Scenario: The app greets the configured name

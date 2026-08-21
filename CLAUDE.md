@@ -23,8 +23,7 @@ The [workspace commands](repo-governance/development/workspace-commands.md) docu
 ## Architecture
 
 ```text
-apps/dummy-app  --depends on-->  libs/dummy-lib   (@grind-in-public/dummy-lib)
-apps/badakmini-cli                                (Go validation CLI)
+apps/badakmini-cli  (Go validation CLI)
 ```
 
 Every Nx target is a raw `command` target; the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md) owns what that forbids and the one exception.

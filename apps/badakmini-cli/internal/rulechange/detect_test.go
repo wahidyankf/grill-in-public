@@ -18,7 +18,7 @@ func TestRulePathsSelectsRuleCarryingPaths(t *testing.T) {
 		".husky/pre-push",
 		// Ordinary work carries no rules and must stay silent, or the notice
 		// becomes noise that contributors learn to skip.
-		"apps/dummy-app/src/index.ts",
+		"apps/badakmini-cli/cmd/badak-mini/main.go",
 		"docs/how-to/run-nx-workspace.md",
 		"README.md",
 	})

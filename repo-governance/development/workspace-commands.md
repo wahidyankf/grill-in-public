@@ -16,18 +16,15 @@ This document is the canonical command reference. `AGENTS.md` and `CLAUDE.md` li
 - `npm run build`, `npm run typecheck`, and `npm run lint` run the matching Nx targets.
 - `npm test` runs cached `test:quick` targets.
 - `npm run test:integration` runs the uncached integration targets; pre-push skips them.
-- `npm run run:dummy` runs the demo CLI.
 
 Narrower runs:
 
 ```sh
-npx nx run dummy-lib:test:quick
-node --test apps/dummy-app/dist/index.test.js   # build first
 go -C apps/badakmini-cli test ./internal/governance -run TestName
 npx nx affected -t test:quick --base=origin/main --head=HEAD
 ```
 
-TypeScript projects compile with `tsc` into `<project>/dist`, and tests run against that compiled JavaScript, never `src/`, so running one test file directly needs a build first. The [testing policy](testing-policy.md) owns what `test:quick` depends on.
+The [testing policy](testing-policy.md) owns what `test:quick` depends on.
 
 ## Formatting
 
