@@ -26,9 +26,9 @@ The [workspace commands](repo-governance/development/workspace-commands.md) docu
 apps/badakmini-cli  (Go validation CLI)
 ```
 
-Every Nx target is a raw `command` target; the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md) owns what that forbids and the one exception.
+Nx targets use raw commands; ordered aggregates use only Nx's built-in command runner. The [Nx workspace policy](repo-governance/development/nx-workspace-policy.md) owns the exact forms and the plugin prohibition.
 
-Tests run against compiled output rather than `src/`, so running one test file directly needs a build first; [workspace commands](repo-governance/development/workspace-commands.md#build-and-test) shows the invocation, and the [testing policy](repo-governance/development/testing-policy.md) owns what `test:quick` depends on.
+The [workspace commands](repo-governance/development/workspace-commands.md#build-and-test) document shows full and focused test invocations, and the [testing policy](repo-governance/development/testing-policy.md) owns the ordered quick gate.
 
 `apps/badakmini-cli` owns repository-local checks, including the limit above. `cv/` holds career evidence; read [cv/README.md](cv/README.md) before touching it.
 

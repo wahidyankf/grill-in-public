@@ -11,13 +11,19 @@ import (
 	"strings"
 )
 
-// skillManifest marks a skill directory. A skill is a directory rather than a
-// file, so its name comes from the directory holding this manifest.
-const skillManifest = "SKILL.md"
-
-// indexName is each directory's own index. It documents the directory instead of
-// defining a capability, so counting it would report a difference that is not one.
-const indexName = "README"
+const (
+	// skillManifest marks a skill directory. A skill is a directory rather than a
+	// file, so its name comes from the directory holding this manifest.
+	skillManifest = "SKILL.md"
+	// indexName is each directory's own index. It documents the directory instead
+	// of defining a capability, so counting it would report a false difference.
+	indexName          = "README"
+	markdownExtension  = ".md"
+	claudeHarness      = "Claude Code"
+	codexHarness       = "Codex"
+	opencodeHarness    = "opencode"
+	subagentCapability = "subagent"
+)
 
 // source is one directory a harness loads a capability from, together with the
 // file extension that defines an entry there. An empty extension means the
@@ -47,21 +53,21 @@ type capability struct {
 // policy. Change them together, or the check stops describing the repository.
 var capabilities = []capability{
 	{
-		name: "subagent",
+		name: subagentCapability,
 		surfaces: []surface{
-			{harness: "Claude Code", sources: []source{{directory: ".claude/agents", extension: ".md"}}},
-			{harness: "Codex", sources: []source{{directory: ".codex/agents", extension: ".toml"}}},
-			{harness: "opencode", sources: []source{{directory: ".opencode/agents", extension: ".md"}}},
+			{harness: claudeHarness, sources: []source{{directory: ".claude/agents", extension: markdownExtension}}},
+			{harness: codexHarness, sources: []source{{directory: ".codex/agents", extension: ".toml"}}},
+			{harness: opencodeHarness, sources: []source{{directory: ".opencode/agents", extension: markdownExtension}}},
 		},
 	},
 	{
 		name: "skill",
 		surfaces: []surface{
-			{harness: "Claude Code", sources: []source{{directory: ".claude/skills"}}},
-			{harness: "Codex", sources: []source{{directory: ".agents/skills"}}},
+			{harness: claudeHarness, sources: []source{{directory: ".claude/skills"}}},
+			{harness: codexHarness, sources: []source{{directory: ".agents/skills"}}},
 			// opencode reads its own directory and both shared ones, so a skill
 			// mirrored for the other two harnesses already reaches it.
-			{harness: "opencode", sources: []source{
+			{harness: opencodeHarness, sources: []source{
 				{directory: ".opencode/skills"},
 				{directory: ".claude/skills"},
 				{directory: ".agents/skills"},
@@ -70,13 +76,13 @@ var capabilities = []capability{
 	},
 	{
 		name:      "command",
-		unsupport: "Codex has no project command directory",
+		unsupport: codexHarness + " has no project command directory",
 		surfaces: []surface{
 			// Only the explicit command directories count here. Claude Code also
 			// answers a skill as `/name`, but treating that as a command would
 			// demand an opencode command for every shared skill.
-			{harness: "Claude Code", sources: []source{{directory: ".claude/commands", extension: ".md"}}},
-			{harness: "opencode", sources: []source{{directory: ".opencode/commands", extension: ".md"}}},
+			{harness: claudeHarness, sources: []source{{directory: ".claude/commands", extension: markdownExtension}}},
+			{harness: opencodeHarness, sources: []source{{directory: ".opencode/commands", extension: markdownExtension}}},
 		},
 	},
 }

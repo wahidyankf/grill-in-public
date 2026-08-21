@@ -46,7 +46,7 @@ The repository uses Nx as a raw task runner for its npm workspaces:
 
 Build all projects with `npm run build` and run quick checks with `npm test`. See [the Nx workspace guide](docs/how-to/run-nx-workspace.md) for the full workflow. This workspace deliberately avoids technology-specific Nx plugins; the [Nx workspace policy](repo-governance/development/nx-workspace-policy.md) states which kinds are excluded and the one exception.
 
-[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI behind the repository checks: governance-document word limits, repository-local Markdown links, rule-change announcements, harness capability parity, and project targets. [Workspace commands](repo-governance/development/workspace-commands.md) lists the `npm run check:` command for each one.
+[Badak Mini](apps/badakmini-cli/README.md) is a small Go CLI behind the repository checks: governance-document word limits, repository-local Markdown links, rule-change announcements, and harness capability parity. [Workspace commands](repo-governance/development/workspace-commands.md) lists the `npm run check:` command for each one.
 
 ## Plans and Specs
 

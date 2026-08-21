@@ -20,10 +20,6 @@
       "cache": false,
       "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness capability-parity validate"
     },
-    "project-targets": {
-      "cache": false,
-      "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness project-targets validate"
-    },
     "rule-change": {
       "cache": false,
       "command": "go -C apps/badakmini-cli run ./cmd/badak-mini harness rule-change validate"
@@ -31,9 +27,23 @@
     "lint": {
       "command": "go -C apps/badakmini-cli tool golangci-lint run"
     },
-    "test:quick": {
-      "dependsOn": ["typecheck", "lint"],
+    "test:unit": {
       "command": "go -C apps/badakmini-cli test ./..."
+    },
+    "test:coverage": {
+      "command": "mkdir -p local-tmp && go -C apps/badakmini-cli test -coverprofile=../../local-tmp/badakmini-coverage.out ./... && go -C apps/badakmini-cli tool cover -func=../../local-tmp/badakmini-coverage.out | awk '/^total:/ { coverage=$3; sub(/%$/, \"\", coverage); printf \"total statement coverage: %.1f%%\\n\", coverage; found=1; if (coverage + 0 < 95) { printf \"coverage threshold not met: %.1f%% < 95.0%%\\n\", coverage > \"/dev/stderr\"; exit 1 } } END { if (!found) exit 1 }'"
+    },
+    "test:quick": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npm exec nx -- run badakmini-cli:typecheck",
+          "npm exec nx -- run badakmini-cli:lint",
+          "npm exec nx -- run badakmini-cli:test:unit",
+          "npm exec nx -- run badakmini-cli:test:coverage"
+        ],
+        "parallel": false
+      }
     },
     "typecheck": {
       "command": "go -C apps/badakmini-cli vet ./..."

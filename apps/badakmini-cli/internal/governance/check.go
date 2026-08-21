@@ -38,52 +38,20 @@ type Finding struct {
 // governance documents below root. It returns every over-limit document so
 // contributors can fix all of them in one pass.
 func Check(root string) ([]Finding, error) {
-	// Fail fast for the repository structures this policy promises to govern; a
-	// missing structure is a setup error, not a zero-word success.
-	for _, instructionFile := range instructionFiles {
-		if err := requireFile(filepath.Join(root, instructionFile), instructionFile); err != nil {
-			return nil, err
-		}
-	}
-	if err := requireDirectory(filepath.Join(root, governanceDirectory), governanceDirectory); err != nil {
+	if err := requireGovernanceStructure(root); err != nil {
 		return nil, err
 	}
 
-	var findings []Finding
-	for _, instructionFile := range instructionFiles {
-		fileFindings, err := checkFile(root, instructionFile)
-		if err != nil {
-			return nil, err
-		}
-		findings = append(findings, fileFindings...)
-	}
-
-	governancePath := filepath.Join(root, governanceDirectory)
-	// Walk recursively because progressive disclosure permits nested, focused
-	// policies. Restricting the scan to Markdown leaves code and data untouched.
-	err := filepath.WalkDir(governancePath, func(path string, entry os.DirEntry, walkErr error) error {
-		if walkErr != nil {
-			return walkErr
-		}
-		if entry.IsDir() || filepath.Ext(entry.Name()) != ".md" {
-			return nil
-		}
-
-		relativePath, err := filepath.Rel(root, path)
-		if err != nil {
-			return fmt.Errorf("determine the path for %s: %w", path, err)
-		}
-
-		fileFindings, err := checkFile(root, relativePath)
-		if err != nil {
-			return err
-		}
-		findings = append(findings, fileFindings...)
-		return nil
-	})
+	findings, err := checkInstructionFiles(root)
 	if err != nil {
-		return nil, fmt.Errorf("read %s: %w", governanceDirectory, err)
+		return nil, err
 	}
+
+	governanceFindings, err := checkGovernanceDocuments(root)
+	if err != nil {
+		return nil, err
+	}
+	findings = append(findings, governanceFindings...)
 
 	harnessFindings, err := checkHarnessReadmes(root)
 	if err != nil {
@@ -94,6 +62,72 @@ func Check(root string) ([]Finding, error) {
 	return findings, nil
 }
 
+// requireGovernanceStructure distinguishes a missing policy surface from an
+// empty, valid one before any word-count work begins.
+func requireGovernanceStructure(root string) error {
+	for _, instructionFile := range instructionFiles {
+		if err := requireFile(filepath.Join(root, instructionFile), instructionFile); err != nil {
+			return err
+		}
+	}
+
+	return requireDirectory(filepath.Join(root, governanceDirectory), governanceDirectory)
+}
+
+func checkInstructionFiles(root string) ([]Finding, error) {
+	var findings []Finding
+	for _, instructionFile := range instructionFiles {
+		fileFindings, err := checkFile(root, instructionFile)
+		if err != nil {
+			return nil, err
+		}
+		findings = append(findings, fileFindings...)
+	}
+
+	return findings, nil
+}
+
+func checkGovernanceDocuments(root string) ([]Finding, error) {
+	var findings []Finding
+	governancePath := filepath.Join(root, governanceDirectory)
+	err := filepath.WalkDir(governancePath, func(path string, entry os.DirEntry, walkErr error) error {
+		return visitGovernanceDocument(root, path, entry, walkErr, &findings)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("read %s: %w", governanceDirectory, err)
+	}
+
+	return findings, nil
+}
+
+// visitGovernanceDocument limits the recursive scan to authored Markdown.
+func visitGovernanceDocument(
+	root, path string,
+	entry os.DirEntry,
+	walkErr error,
+	findings *[]Finding,
+) error {
+	if walkErr != nil {
+		return walkErr
+	}
+	if entry.IsDir() || filepath.Ext(entry.Name()) != ".md" {
+		return nil
+	}
+
+	relativePath, err := filepath.Rel(root, path)
+	if err != nil {
+		return fmt.Errorf("determine the path for %s: %w", path, err)
+	}
+
+	fileFindings, err := checkFile(root, relativePath)
+	if err != nil {
+		return err
+	}
+	*findings = append(*findings, fileFindings...)
+
+	return nil
+}
+
 // checkHarnessReadmes measures the README index in every harness directory. A
 // harness that this repository does not configure is absent rather than empty,
 // so a missing directory is skipped instead of failing the run.
@@ -101,51 +135,70 @@ func checkHarnessReadmes(root string) ([]Finding, error) {
 	var findings []Finding
 
 	for _, harnessDirectory := range harnessDirectories {
-		harnessPath := filepath.Join(root, harnessDirectory)
-		if _, err := os.Stat(harnessPath); err != nil {
-			if os.IsNotExist(err) {
-				continue
-			}
-			return nil, fmt.Errorf("inspect %s: %w", harnessDirectory, err)
-		}
-
-		err := filepath.WalkDir(harnessPath, func(path string, entry os.DirEntry, walkErr error) error {
-			if walkErr != nil {
-				return walkErr
-			}
-			if entry.IsDir() {
-				// A harness may install dependencies or caches beside its own
-				// configuration. That content is vendored, not repository guidance,
-				// so descending into it would report documents nobody here wrote.
-				if path != harnessPath && isVendoredDirectory(entry.Name()) {
-					return filepath.SkipDir
-				}
-				return nil
-			}
-			// Only the index is governed here. Agent and command definitions are
-			// prompts, and a useful prompt is often longer than a concise index.
-			if entry.Name() != readmeFile {
-				return nil
-			}
-
-			relativePath, err := filepath.Rel(root, path)
-			if err != nil {
-				return fmt.Errorf("determine the path for %s: %w", path, err)
-			}
-
-			fileFindings, err := checkFile(root, relativePath)
-			if err != nil {
-				return err
-			}
-			findings = append(findings, fileFindings...)
-			return nil
-		})
+		harnessFindings, err := checkHarnessDirectory(root, harnessDirectory)
 		if err != nil {
-			return nil, fmt.Errorf("read %s: %w", harnessDirectory, err)
+			return nil, err
 		}
+		findings = append(findings, harnessFindings...)
 	}
 
 	return findings, nil
+}
+
+func checkHarnessDirectory(root, harnessDirectory string) ([]Finding, error) {
+	harnessPath := filepath.Join(root, harnessDirectory)
+	if _, err := os.Stat(harnessPath); err != nil {
+		if os.IsNotExist(err) {
+			return nil, nil
+		}
+
+		return nil, fmt.Errorf("inspect %s: %w", harnessDirectory, err)
+	}
+
+	var findings []Finding
+	err := filepath.WalkDir(harnessPath, func(path string, entry os.DirEntry, walkErr error) error {
+		return visitHarnessReadme(root, harnessPath, path, entry, walkErr, &findings)
+	})
+	if err != nil {
+		return nil, fmt.Errorf("read %s: %w", harnessDirectory, err)
+	}
+
+	return findings, nil
+}
+
+func visitHarnessReadme(
+	root, harnessPath, path string,
+	entry os.DirEntry,
+	walkErr error,
+	findings *[]Finding,
+) error {
+	if walkErr != nil {
+		return walkErr
+	}
+	if entry.IsDir() {
+		// Harness-local dependency and cache directories are not authored indexes.
+		if path != harnessPath && isVendoredDirectory(entry.Name()) {
+			return filepath.SkipDir
+		}
+
+		return nil
+	}
+	if entry.Name() != readmeFile {
+		return nil
+	}
+
+	relativePath, err := filepath.Rel(root, path)
+	if err != nil {
+		return fmt.Errorf("determine the path for %s: %w", path, err)
+	}
+
+	fileFindings, err := checkFile(root, relativePath)
+	if err != nil {
+		return err
+	}
+	*findings = append(*findings, fileFindings...)
+
+	return nil
 }
 
 // isVendoredDirectory reports whether a directory inside a harness holds
@@ -155,7 +208,7 @@ func isVendoredDirectory(name string) bool {
 	return name == "node_modules" || strings.HasPrefix(name, ".")
 }
 
-func requireFile(path string, displayPath string) error {
+func requireFile(path, displayPath string) error {
 	info, err := os.Stat(path)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -170,7 +223,7 @@ func requireFile(path string, displayPath string) error {
 	return nil
 }
 
-func requireDirectory(path string, displayPath string) error {
+func requireDirectory(path, displayPath string) error {
 	info, err := os.Stat(path)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -185,7 +238,8 @@ func requireDirectory(path string, displayPath string) error {
 	return nil
 }
 
-func checkFile(root string, relativePath string) ([]Finding, error) {
+func checkFile(root, relativePath string) ([]Finding, error) {
+	// #nosec G304 -- relativePath is either a fixed policy path or emitted by a walk rooted under root.
 	contents, err := os.ReadFile(filepath.Join(root, relativePath))
 	if err != nil {
 		return nil, fmt.Errorf("read %s: %w", relativePath, err)

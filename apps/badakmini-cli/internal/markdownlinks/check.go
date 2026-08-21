@@ -47,6 +47,7 @@ func Check(root string) ([]Finding, error) {
 
 	findings := make([]Finding, 0)
 	for _, sourcePath := range markdownFiles {
+		// #nosec G304 -- sourcePath comes from Git's tracked paths inside root.
 		contents, err := os.ReadFile(filepath.Join(root, sourcePath))
 		if err != nil {
 			return nil, fmt.Errorf("read %s: %w", sourcePath, err)
@@ -78,6 +79,7 @@ func Check(root string) ([]Finding, error) {
 func findTrackedFiles(root string) (map[string]struct{}, error) {
 	// NUL delimiters preserve unusual but valid filenames that contain spaces or
 	// newlines; splitting ordinary line output would corrupt those paths.
+	// #nosec G204 -- the executable and operation are fixed; root is only a Git working-directory argument.
 	output, err := exec.Command("git", "-C", root, "ls-files", "-z").Output()
 	if err != nil {
 		return nil, fmt.Errorf("list tracked repository files: %w", err)
@@ -167,42 +169,66 @@ func extractLineLinks(line string, lineNumber int, references map[string]string)
 			continue
 		}
 
-		labelEnd, ok := matchingBracket(line, position)
-		if !ok {
-			continue
-		}
-		label := line[position+1 : labelEnd]
-		next := labelEnd + 1
-		if next < len(line) && line[next] == '(' {
-			destination, end, ok := inlineDestination(line, next)
-			if ok {
-				links = append(links, link{destination: destination, line: lineNumber})
-				position = end
-			}
-			continue
-		}
-
-		// A non-inline link can be a full, collapsed, or shortcut reference. The
-		// normalized definition map determines whether it is a link at all.
-		reference := ""
-		if next < len(line) && line[next] == '[' {
-			referenceEnd, ok := matchingBracket(line, next)
-			if !ok {
-				continue
-			}
-			reference = line[next+1 : referenceEnd]
-			if reference == "" {
-				reference = label
-			}
-			position = referenceEnd
-		} else {
-			reference = label
-		}
-		if destination, exists := references[normalizeReference(reference)]; exists {
-			links = append(links, link{destination: destination, line: lineNumber})
+		candidate, end, ok := parseLinkAt(line, position, lineNumber, references)
+		if ok {
+			links = append(links, candidate)
+			position = end
 		}
 	}
 	return links
+}
+
+func parseLinkAt(line string, position, lineNumber int, references map[string]string) (link, int, bool) {
+	labelEnd, ok := matchingBracket(line, position)
+	if !ok {
+		return link{}, position, false
+	}
+
+	label := line[position+1 : labelEnd]
+	next := labelEnd + 1
+	if next < len(line) && line[next] == '(' {
+		return parseInlineLink(line, next, lineNumber)
+	}
+
+	return parseReferenceLink(line, label, labelEnd, next, lineNumber, references)
+}
+
+func parseInlineLink(line string, openingParenthesis, lineNumber int) (link, int, bool) {
+	destination, end, ok := inlineDestination(line, openingParenthesis)
+	if !ok {
+		return link{}, openingParenthesis, false
+	}
+
+	return link{destination: destination, line: lineNumber}, end, true
+}
+
+// parseReferenceLink handles full, collapsed, and shortcut references against
+// the complete definition map assembled during extractLinks' first pass.
+func parseReferenceLink(
+	line, label string,
+	labelEnd, next, lineNumber int,
+	references map[string]string,
+) (link, int, bool) {
+	reference := label
+	end := labelEnd
+	if next < len(line) && line[next] == '[' {
+		referenceEnd, ok := matchingBracket(line, next)
+		if !ok {
+			return link{}, labelEnd, false
+		}
+		reference = line[next+1 : referenceEnd]
+		if reference == "" {
+			reference = label
+		}
+		end = referenceEnd
+	}
+
+	destination, exists := references[normalizeReference(reference)]
+	if !exists {
+		return link{}, end, false
+	}
+
+	return link{destination: destination, line: lineNumber}, end, true
 }
 
 func matchingBracket(value string, start int) (int, bool) {
@@ -227,31 +253,44 @@ func matchingBracket(value string, start int) (int, bool) {
 }
 
 func inlineDestination(value string, openingParenthesis int) (string, int, bool) {
-	position := openingParenthesis + 1
-	for position < len(value) && (value[position] == ' ' || value[position] == '\t') {
-		position++
-	}
+	position := skipInlineWhitespace(value, openingParenthesis+1)
 	if position >= len(value) {
 		return "", 0, false
 	}
 	if value[position] == '<' {
-		// Angle-bracket destinations may contain spaces; their closing angle bracket
-		// is the delimiter rather than the first whitespace character.
-		end := strings.IndexByte(value[position+1:], '>')
-		if end < 0 {
-			return "", 0, false
-		}
-		end += position + 1
-		closing := strings.IndexByte(value[end+1:], ')')
-		if closing < 0 {
-			return "", 0, false
-		}
-		return value[position+1 : end], end + closing + 1, true
+		return angleBracketDestination(value, position)
 	}
 
-	start := position
+	return unbracketedDestination(value, position)
+}
+
+func skipInlineWhitespace(value string, position int) int {
+	for position < len(value) && (value[position] == ' ' || value[position] == '\t') {
+		position++
+	}
+
+	return position
+}
+
+func angleBracketDestination(value string, position int) (string, int, bool) {
+	// Angle-bracket destinations may contain spaces; their closing angle bracket
+	// is the delimiter rather than the first whitespace character.
+	end := strings.IndexByte(value[position+1:], '>')
+	if end < 0 {
+		return "", 0, false
+	}
+	end += position + 1
+	closing := strings.IndexByte(value[end+1:], ')')
+	if closing < 0 {
+		return "", 0, false
+	}
+
+	return value[position+1 : end], end + closing + 1, true
+}
+
+func unbracketedDestination(value string, start int) (string, int, bool) {
 	depth := 0
-	for ; position < len(value); position++ {
+	for position := start; position < len(value); position++ {
 		if isEscaped(value, position) {
 			continue
 		}
@@ -267,12 +306,9 @@ func inlineDestination(value string, openingParenthesis int) (string, int, bool)
 			if depth == 0 {
 				// A title follows an unbracketed destination after whitespace. Return
 				// only the destination but skip through the closing parenthesis.
-				destinationEnd := position
-				for position < len(value) && value[position] != ')' {
-					position++
-				}
-				if position < len(value) {
-					return value[start:destinationEnd], position, true
+				closing := strings.IndexByte(value[position:], ')')
+				if closing >= 0 {
+					return value[start:position], position + closing, true
 				}
 			}
 		}
@@ -280,97 +316,141 @@ func inlineDestination(value string, openingParenthesis int) (string, int, bool)
 	return "", 0, false
 }
 
-func checkLink(root string, sourcePath string, candidate link) *Finding {
+func checkLink(root, sourcePath string, candidate link) *Finding {
 	// Network validation would make pre-push slow and nondeterministic; this
 	// checker owns only repository-local references.
 	if isExternal(candidate.destination) {
 		return nil
 	}
 
-	parsed, err := url.Parse(candidate.destination)
-	if err != nil {
-		return finding(sourcePath, candidate, "has an invalid URL")
-	}
-	// Parse URL structure before mapping to disk so #fragment and percent escapes
-	// cannot be confused with literal filename characters.
-	path, err := url.PathUnescape(parsed.EscapedPath())
-	if err != nil {
-		return finding(sourcePath, candidate, "has an invalid escaped path")
-	}
-	fragment, err := url.PathUnescape(parsed.EscapedFragment())
-	if err != nil {
-		return finding(sourcePath, candidate, "has an invalid escaped fragment")
+	path, fragment, problem := decodeLocalDestination(candidate.destination)
+	if problem != "" {
+		return finding(sourcePath, candidate, problem)
 	}
 
-	// Start at the source document: Markdown relative links are not relative to
-	// the repository root. A leading slash is intentionally repository-relative.
-	targetPath := filepath.Join(root, filepath.FromSlash(sourcePath))
-	if path == "" {
-		targetPath = filepath.Join(root, filepath.FromSlash(sourcePath))
-	} else if strings.HasPrefix(path, "/") {
-		targetPath = filepath.Join(root, filepath.FromSlash(strings.TrimPrefix(path, "/")))
-	} else {
-		targetPath = filepath.Join(filepath.Dir(targetPath), filepath.FromSlash(path))
-	}
-	targetPath = filepath.Clean(targetPath)
+	targetPath := localTargetPath(root, sourcePath, path)
 	// Reject lexical traversal before touching the filesystem; this also produces
 	// a clearer diagnostic than a later failed stat.
 	if !isWithin(root, targetPath) {
 		return finding(sourcePath, candidate, "points outside this repository")
 	}
 
-	info, err := os.Stat(targetPath)
-	if err != nil {
-		if os.IsNotExist(err) {
-			return finding(sourcePath, candidate, "targets a file that does not exist")
-		}
-		return finding(sourcePath, candidate, "cannot inspect its target")
-	}
-	// Lexical containment is not enough: a symlink inside the repository could
-	// resolve outside it, so validate both the root and target after resolution.
-	resolvedRoot, err := filepath.EvalSymlinks(root)
-	if err != nil {
-		return finding(sourcePath, candidate, "cannot resolve the repository root")
-	}
-	resolvedTarget, err := filepath.EvalSymlinks(targetPath)
-	if err != nil {
-		return finding(sourcePath, candidate, "cannot resolve its target")
-	}
-	if !isWithin(resolvedRoot, resolvedTarget) {
-		return finding(sourcePath, candidate, "resolves outside this repository")
+	info, resolvedRoot, problem := inspectLocalTarget(root, targetPath)
+	if problem != "" {
+		return finding(sourcePath, candidate, problem)
 	}
 	if fragment == "" {
 		// Existing local files are sufficient when the link does not promise a
 		// particular document location.
 		return nil
 	}
+
+	problem = checkFragmentTarget(targetPath, fragment, info, resolvedRoot)
+	if problem != "" {
+		return finding(sourcePath, candidate, problem)
+	}
+
+	return nil
+}
+
+func decodeLocalDestination(destination string) (string, string, string) {
+	parsed, err := url.Parse(destination)
+	if err != nil {
+		return "", "", "has an invalid URL"
+	}
+	// Parse URL structure before mapping to disk so #fragment and percent escapes
+	// cannot be confused with literal filename characters.
+	path, err := url.PathUnescape(parsed.EscapedPath())
+	if err != nil {
+		return "", "", "has an invalid escaped path"
+	}
+	fragment, err := url.PathUnescape(parsed.EscapedFragment())
+	if err != nil {
+		return "", "", "has an invalid escaped fragment"
+	}
+
+	return path, fragment, ""
+}
+
+func localTargetPath(root, sourcePath, path string) string {
+	// Markdown paths begin at the source document unless a leading slash makes
+	// them repository-relative.
+	sourceFile := filepath.Join(root, filepath.FromSlash(sourcePath))
+	if path == "" {
+		return filepath.Clean(sourceFile)
+	}
+	if repositoryPath, ok := strings.CutPrefix(path, "/"); ok {
+		return filepath.Clean(filepath.Join(root, filepath.FromSlash(repositoryPath)))
+	}
+
+	return filepath.Clean(filepath.Join(filepath.Dir(sourceFile), filepath.FromSlash(path)))
+}
+
+func inspectLocalTarget(root, targetPath string) (os.FileInfo, string, string) {
+	info, err := os.Stat(targetPath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil, "", "targets a file that does not exist"
+		}
+
+		return nil, "", "cannot inspect its target"
+	}
+	// Lexical containment is not enough: a symlink inside the repository could
+	// resolve outside it, so validate both root and target after resolution.
+	resolvedRoot, err := filepath.EvalSymlinks(root)
+	if err != nil {
+		return nil, "", "cannot resolve the repository root"
+	}
+	resolvedTarget, err := filepath.EvalSymlinks(targetPath)
+	if err != nil {
+		return nil, "", "cannot resolve its target"
+	}
+	if !isWithin(resolvedRoot, resolvedTarget) {
+		return nil, "", "resolves outside this repository"
+	}
+
+	return info, resolvedRoot, ""
+}
+
+func checkFragmentTarget(targetPath, fragment string, info os.FileInfo, resolvedRoot string) string {
 	if info.IsDir() {
-		// Repository directory links conventionally render README.md; use that same
-		// target when checking a fragment supplied on a directory link.
-		targetPath = filepath.Join(targetPath, "README.md")
-		info, err = os.Stat(targetPath)
-		if err != nil {
-			return finding(sourcePath, candidate, "targets a directory without README.md for its fragment")
-		}
-		resolvedTarget, err = filepath.EvalSymlinks(targetPath)
-		if err != nil {
-			return finding(sourcePath, candidate, "cannot resolve its target")
-		}
-		if !isWithin(resolvedRoot, resolvedTarget) {
-			return finding(sourcePath, candidate, "resolves outside this repository")
+		var problem string
+		targetPath, info, problem = directoryFragmentTarget(targetPath, resolvedRoot)
+		if problem != "" {
+			return problem
 		}
 	}
 	if strings.ToLower(filepath.Ext(targetPath)) != markdownExtension || !info.Mode().IsRegular() {
-		return finding(sourcePath, candidate, "uses a fragment on a non-Markdown target")
+		return "uses a fragment on a non-Markdown target"
 	}
+	// #nosec G304 -- targetPath passed lexical and resolved containment checks above.
 	contents, err := os.ReadFile(targetPath)
 	if err != nil {
-		return finding(sourcePath, candidate, "cannot read its fragment target")
+		return "cannot read its fragment target"
 	}
 	if !hasAnchor(string(contents), fragment) {
-		return finding(sourcePath, candidate, "targets a heading that does not exist")
+		return "targets a heading that does not exist"
 	}
-	return nil
+
+	return ""
+}
+
+func directoryFragmentTarget(targetPath, resolvedRoot string) (string, os.FileInfo, string) {
+	// Repository directory links render README.md, so fragments use that file.
+	readmePath := filepath.Join(targetPath, "README.md")
+	info, err := os.Stat(readmePath)
+	if err != nil {
+		return "", nil, "targets a directory without README.md for its fragment"
+	}
+	resolvedTarget, err := filepath.EvalSymlinks(readmePath)
+	if err != nil {
+		return "", nil, "cannot resolve its target"
+	}
+	if !isWithin(resolvedRoot, resolvedTarget) {
+		return "", nil, "resolves outside this repository"
+	}
+
+	return readmePath, info, ""
 }
 
 func isExternal(destination string) bool {
@@ -380,14 +460,14 @@ func isExternal(destination string) bool {
 	return err == nil && (parsed.Scheme != "" || parsed.Host != "" || strings.HasPrefix(destination, "//"))
 }
 
-func isWithin(root string, target string) bool {
+func isWithin(root, target string) bool {
 	// filepath.Rel is platform-aware, unlike string-prefix checks that would
 	// incorrectly accept siblings such as /repo-copy when root is /repo.
 	relativePath, err := filepath.Rel(root, target)
 	return err == nil && relativePath != ".." && !strings.HasPrefix(relativePath, ".."+string(filepath.Separator))
 }
 
-func hasAnchor(contents string, fragment string) bool {
+func hasAnchor(contents, fragment string) bool {
 	anchors := make(map[string]struct{})
 	counts := make(map[string]int)
 	insideFence := false
@@ -498,5 +578,10 @@ func isEscaped(value string, index int) bool {
 }
 
 func finding(sourcePath string, candidate link, problem string) *Finding {
-	return &Finding{Path: filepath.ToSlash(sourcePath), Line: candidate.line, Destination: candidate.destination, Problem: problem}
+	return &Finding{
+		Path:        filepath.ToSlash(sourcePath),
+		Line:        candidate.line,
+		Destination: candidate.destination,
+		Problem:     problem,
+	}
 }

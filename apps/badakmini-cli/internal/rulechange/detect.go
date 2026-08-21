@@ -63,7 +63,7 @@ func HarnessPaths(paths []string) []string {
 	return selectPaths(paths, harnessFiles, harnessDirectories)
 }
 
-func selectPaths(paths []string, files []string, directories []string) []string {
+func selectPaths(paths, files, directories []string) []string {
 	seen := make(map[string]struct{}, len(paths))
 	var matches []string
 
@@ -88,6 +88,7 @@ func selectPaths(paths []string, files []string, directories []string) []string 
 func StagedPaths(root string) ([]string, error) {
 	// -z keeps paths intact when a name contains a space or a newline, which
 	// splitting on plain newlines would corrupt.
+	// #nosec G204 -- the executable and operation are fixed; root is only a Git working-directory argument.
 	output, err := exec.Command("git", "-C", root, "diff", "--cached", "--name-only", "-z").Output()
 	if err != nil {
 		return nil, fmt.Errorf("list staged paths: %w", err)
@@ -129,7 +130,8 @@ var patchHeaders = []string{
 // an error, because a notice must never break the edit it comments on.
 func HookPaths(payload []byte, root string) []string {
 	var event HookEvent
-	if err := json.Unmarshal(payload, &event); err != nil {
+	err := json.Unmarshal(payload, &event)
+	if err != nil {
 		return nil
 	}
 
@@ -189,7 +191,7 @@ func Notice(paths []string) string {
 	)
 }
 
-func matchesAny(path string, files []string, directories []string) bool {
+func matchesAny(path string, files, directories []string) bool {
 	if slices.Contains(files, path) {
 		return true
 	}
@@ -204,7 +206,8 @@ func matchesAny(path string, files []string, directories []string) bool {
 // normalize turns a path into the repository-relative slash form the rule lists
 // use, so Windows separators and ./ prefixes still match.
 func normalize(path string) string {
-	cleaned := filepath.ToSlash(filepath.Clean(strings.TrimSpace(path)))
+	trimmed := strings.ReplaceAll(strings.TrimSpace(path), `\`, "/")
+	cleaned := filepath.ToSlash(filepath.Clean(trimmed))
 	if cleaned == "." {
 		return ""
 	}
@@ -213,7 +216,7 @@ func normalize(path string) string {
 
 // relativeTo converts an absolute hook path into a repository-relative one and
 // leaves anything outside the repository untouched, where it will not match.
-func relativeTo(root string, path string) string {
+func relativeTo(root, path string) string {
 	if !filepath.IsAbs(path) {
 		return path
 	}

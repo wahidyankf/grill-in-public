@@ -98,6 +98,23 @@ func TestCheckRequiresASkillInEveryHarnessDirectory(t *testing.T) {
 	}
 }
 
+func TestCheckIgnoresNonCapabilitiesInHarnessDirectories(t *testing.T) {
+	root := t.TempDir()
+	writeSubagents(t, root, "drill-reviewer")
+	writeFile(t, filepath.Join(root, ".claude/agents/notes.txt"), "notes")
+	writeFile(t, filepath.Join(root, ".claude/agents/nested/planner.md"), "nested")
+	writeFile(t, filepath.Join(root, ".claude/skills/reference/notes.md"), "supporting material")
+	writeFile(t, filepath.Join(root, ".claude/skills/standalone.md"), "not a skill directory")
+
+	findings, err := Check(root)
+	if err != nil {
+		t.Fatalf("expected a completed check, got %v", err)
+	}
+	if len(findings) != 0 {
+		t.Fatalf("expected non-capability entries to be ignored, got %#v", findings)
+	}
+}
+
 func TestCheckReadsOpencodeSkillsFromTheSharedDirectories(t *testing.T) {
 	// opencode loads .claude/skills and .agents/skills as well as its own, so a
 	// skill mirrored for the other two harnesses already reaches it.
@@ -142,6 +159,34 @@ func TestFindingMessageNamesTheCapabilityAndHarness(t *testing.T) {
 	}
 }
 
+func TestFindingMessagePluralizesMultipleEntries(t *testing.T) {
+	message := Finding{
+		Capability: "command",
+		Harness:    "opencode",
+		Missing:    []string{"plan", "review"},
+	}.Message()
+
+	if !strings.Contains(message, "commands") || !strings.Contains(message, "plan, review") {
+		t.Fatalf("expected a plural capability and both entries, got %q", message)
+	}
+}
+
+func TestCheckReportsHarnessDirectoryReadFailure(t *testing.T) {
+	root := t.TempDir()
+	if err := os.Mkdir(filepath.Join(root, ".claude"), 0o750); err != nil {
+		t.Fatalf("create Claude harness directory: %v", err)
+	}
+	agentsPath := filepath.Join(root, ".claude", "agents")
+	if err := os.Symlink(agentsPath, agentsPath); err != nil {
+		t.Fatalf("create cyclic agents symlink: %v", err)
+	}
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "read .claude/agents") {
+		t.Fatalf("expected a harness directory read error, got %v", err)
+	}
+}
+
 func writeSubagents(t *testing.T, root string, names ...string) {
 	t.Helper()
 	for _, name := range names {
@@ -151,12 +196,12 @@ func writeSubagents(t *testing.T, root string, names ...string) {
 	}
 }
 
-func writeFile(t *testing.T, path string, contents string) {
+func writeFile(t *testing.T, path, contents string) {
 	t.Helper()
-	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(path), 0o750); err != nil {
 		t.Fatalf("create the directory for %s: %v", path, err)
 	}
-	if err := os.WriteFile(path, []byte(contents), 0o644); err != nil {
+	if err := os.WriteFile(path, []byte(contents), 0o600); err != nil {
 		t.Fatalf("write %s: %v", path, err)
 	}
 }

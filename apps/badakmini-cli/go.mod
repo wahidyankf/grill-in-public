@@ -1,6 +1,6 @@
 module github.com/wahidyankf/grind-in-public/apps/badakmini-cli
 
-go 1.26.5
+go 1.26.6
 
 tool (
 	github.com/golangci/golangci-lint/v2/cmd/golangci-lint

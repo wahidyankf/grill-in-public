@@ -3,15 +3,55 @@ version: "2"
 
 formatters:
   enable:
-    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gofumpt:
+      extra-rules: true
 
 linters:
-  default: standard
-  enable:
-    - nolintlint
-    - revive
+  default: all
+  disable:
+    # Callers report validation errors directly and never branch on error identity.
+    - err113
+    # Requiring explicit zero fields makes fixtures brittle whenever an internal struct grows.
+    - exhaustruct
+    # Package-level immutable command tables are clearer than allocation-returning wrapper functions.
+    - gochecknoglobals
+    # gomodguard is deprecated; its maintained gomodguard_v2 replacement stays enabled.
+    - gomodguard
+    # test:quick runs the standalone go vet target first, so repeating the same analyzers wastes time.
+    - govet
+    # gofumpt owns whitespace; mandatory blank lines before returns add lines without signal.
+    - nlreturn
+    # Local Git subprocesses have no request context to propagate; a background context adds no cancellation.
+    - noctx
+    # Splitting short error checks into declarations adds scope and lines without clarifying these flows.
+    - noinlineerr
+    # This small filesystem-heavy suite gains no useful speed from concurrency scaffolding.
+    - paralleltest
+    # Badak Mini intentionally uses same-package white-box tests for unexported validation behavior.
+    - testpackage
+    # External hook input is snake_case while Codex and Claude hook output is camelCase by protocol.
+    - tagliatelle
+    # wsl is deprecated; the maintained replacement is considered separately below.
+    - wsl
+    # gofumpt owns whitespace; subjective statement cuddling adds churn without correctness value.
+    - wsl_v5
   settings:
+    depguard:
+      rules:
+        standard-library-only:
+          files:
+            - $all
+          allow:
+            - $gostd
+            - github.com/wahidyankf/grind-in-public/apps/badakmini-cli
+    goconst:
+      # Test literals should state their input directly instead of hiding it behind production constants.
+      ignore-tests: true
     nolintlint:
+      allow-unused: false
       require-explanation: true
       require-specific: true
     revive:
@@ -22,6 +62,13 @@ linters:
       rules:
         - name: exported
           severity: error
+  exclusions:
+    generated: strict
+    warn-unused: true
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
 
 run:
   modules-download-mode: readonly

@@ -14,7 +14,6 @@ import (
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/governance"
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/markdownlinks"
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/parity"
-	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/projecttargets"
 	"github.com/wahidyankf/grind-in-public/apps/badakmini-cli/internal/rulechange"
 )
 
@@ -26,7 +25,7 @@ const (
 	ruleChangeValidateCommand = "harness rule-change validate"
 	ruleChangeHookCommand     = "harness rule-change hook"
 	capabilityParityCommand   = "harness capability-parity validate"
-	projectTargetsCommand     = "harness project-targets validate"
+	invalidInvocationExitCode = 2
 )
 
 var supportedCommands = []string{
@@ -35,7 +34,6 @@ var supportedCommands = []string{
 	ruleChangeValidateCommand,
 	ruleChangeHookCommand,
 	capabilityParityCommand,
-	projectTargetsCommand,
 }
 
 const usage = `Usage:
@@ -44,13 +42,11 @@ const usage = `Usage:
   badak-mini harness rule-change validate
   badak-mini harness rule-change hook
   badak-mini harness capability-parity validate
-  badak-mini harness project-targets validate
 
 Validate governance Markdown word limits, repository-local Markdown links, the
-subagents, skills, and commands every harness exposes, or the test and quality
-targets every Nx project defines, or announce the rules-propagation workflow
-when a rule changes. The rule-change validate form reads the staged paths; its
-hook form reads a pre-edit payload on stdin.
+subagents, skills, and commands every harness exposes, or announce the
+rules-propagation workflow when a rule changes. The rule-change validate form
+reads the staged paths; its hook form reads a pre-edit payload on stdin.
 `
 
 func main() {
@@ -65,34 +61,48 @@ func run(
 	stderr io.Writer,
 	rootFinder func() (string, error),
 ) int {
-	// Help is successful even outside a repository because it does not need to
-	// inspect files; validation commands must establish the repository boundary.
-	if len(args) == 1 && (args[0] == "--help" || args[0] == "-h") {
-		if err := writef(stdout, usage); err != nil {
-			return 1
-		}
-		return 0
-	}
-
-	if !matchesCommand(args) {
-		// Exit status 2 distinguishes an invalid invocation from a failed check.
-		if err := writef(stderr, usage); err != nil {
-			return 1
-		}
-		return 2
+	if exitCode, handled := handleUsage(args, stdout, stderr); handled {
+		return exitCode
 	}
 
 	root, err := rootFinder()
 	if err != nil {
-		if writeErr := writef(stderr, "ERROR: could not find the Git repository root: %v\n", err); writeErr != nil {
+		writeErr := writef(stderr, "ERROR: could not find the Git repository root: %v\n", err)
+		if writeErr != nil {
 			return 1
 		}
 		return 1
 	}
 
-	// Command matching stays explicit while the CLI has a handful of narrowly
-	// scoped workflows. Add a dedicated branch when a command needs new output.
-	switch strings.Join(args, " ") {
+	return executeCommand(strings.Join(args, " "), root, stdout, stderr)
+}
+
+// handleUsage separates invocations that need no repository from validation.
+func handleUsage(args []string, stdout, stderr io.Writer) (int, bool) {
+	// Help is successful even outside a repository because it does not inspect
+	// files; invalid commands fail before doing an unnecessary root lookup.
+	if len(args) == 1 && (args[0] == "--help" || args[0] == "-h") {
+		if err := writef(stdout, usage); err != nil {
+			return 1, true
+		}
+
+		return 0, true
+	}
+	if matchesCommand(args) {
+		return 0, false
+	}
+	if err := writef(stderr, usage); err != nil {
+		return 1, true
+	}
+
+	// Exit status 2 distinguishes invalid input from a failed validation.
+	return invalidInvocationExitCode, true
+}
+
+// executeCommand keeps command routing separate from repository discovery and
+// usage handling, so each stage has one failure domain.
+func executeCommand(command, root string, stdout, stderr io.Writer) int {
+	switch command {
 	case instructionSizeCommand:
 		return validateInstructionSize(root, stdout, stderr)
 	case ruleChangeValidateCommand:
@@ -101,19 +111,19 @@ func run(
 		return announceHookRuleChange(root, os.Stdin, stdout)
 	case capabilityParityCommand:
 		return validateCapabilityParity(root, stdout, stderr)
-	case projectTargetsCommand:
-		return validateProjectTargets(root, stdout, stderr)
+	default:
+		return validateMarkdownLinks(root, stdout, stderr)
 	}
-	return validateMarkdownLinks(root, stdout, stderr)
 }
 
 // announceStagedRuleChange reports a staged rule change to a contributor. It
 // succeeds either way: the workflow is the author's next step, not a gate that
 // a hook can decide has been satisfied.
-func announceStagedRuleChange(root string, stdout io.Writer, stderr io.Writer) int {
+func announceStagedRuleChange(root string, stdout, stderr io.Writer) int {
 	staged, err := rulechange.StagedPaths(root)
 	if err != nil {
-		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+		writeErr := writef(stderr, "ERROR: %v\n", err)
+		if writeErr != nil {
 			return 1
 		}
 		return 1
@@ -170,16 +180,18 @@ type hookResponse struct {
 	SystemMessage string `json:"systemMessage"`
 }
 
-func validateInstructionSize(root string, stdout io.Writer, stderr io.Writer) int {
+func validateInstructionSize(root string, stdout, stderr io.Writer) int {
 	findings, err := governance.Check(root)
 	if err != nil {
-		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+		writeErr := writef(stderr, "ERROR: %v\n", err)
+		if writeErr != nil {
 			return 1
 		}
 		return 1
 	}
 	if len(findings) == 0 {
-		if err := writef(stdout, "Governance word counts are within the %d-word limit.\n", governance.MaxWords); err != nil {
+		err := writef(stdout, "Governance word counts are within the %d-word limit.\n", governance.MaxWords)
+		if err != nil {
 			return 1
 		}
 		return 0
@@ -187,7 +199,14 @@ func validateInstructionSize(root string, stdout io.Writer, stderr io.Writer) in
 	for _, finding := range findings {
 		// Report every over-limit document in one run so a contributor can repair
 		// the complete guidance set before retrying the hook.
-		if err := writef(stderr, "ERROR: %s contains %d words; the limit is %d.\n", finding.Path, finding.WordCount, governance.MaxWords); err != nil {
+		err := writef(
+			stderr,
+			"ERROR: %s contains %d words; the limit is %d.\n",
+			finding.Path,
+			finding.WordCount,
+			governance.MaxWords,
+		)
+		if err != nil {
 			return 1
 		}
 	}
@@ -200,29 +219,33 @@ func validateInstructionSize(root string, stdout io.Writer, stderr io.Writer) in
 // validateCapabilityParity fails when one harness exposes a capability another
 // supporting harness lacks, because an agent that exists for one tool and not
 // the next makes the repository behave differently depending on who runs it.
-func validateCapabilityParity(root string, stdout io.Writer, stderr io.Writer) int {
+func validateCapabilityParity(root string, stdout, stderr io.Writer) int {
 	findings, err := parity.Check(root)
 	if err != nil {
-		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+		writeErr := writef(stderr, "ERROR: %v\n", err)
+		if writeErr != nil {
 			return 1
 		}
 		return 1
 	}
 	if len(findings) == 0 {
-		if err := writef(stdout, "Every harness exposes the same subagents, skills, and commands.\n"); err != nil {
+		err := writef(stdout, "Every harness exposes the same subagents, skills, and commands.\n")
+		if err != nil {
 			return 1
 		}
 		for _, note := range parity.UnsupportedNotes() {
 			// Naming the exemption keeps an absent harness from reading as an
 			// oversight the next time someone compares the directories.
-			if err := writef(stdout, "Exempt, %s.\n", note); err != nil {
+			err := writef(stdout, "Exempt, %s.\n", note)
+			if err != nil {
 				return 1
 			}
 		}
 		return 0
 	}
 	for _, finding := range findings {
-		if err := writef(stderr, "ERROR: %s\n", finding.Message()); err != nil {
+		err := writef(stderr, "ERROR: %s\n", finding.Message())
+		if err != nil {
 			return 1
 		}
 	}
@@ -232,44 +255,18 @@ func validateCapabilityParity(root string, stdout io.Writer, stderr io.Writer) i
 	return 1
 }
 
-// validateProjectTargets fails when a project omits a target the testing policy
-// requires. Pre-push runs only what a project declares, so an undeclared check
-// is one the repository stops performing without ever reporting a failure.
-func validateProjectTargets(root string, stdout io.Writer, stderr io.Writer) int {
-	findings, err := projecttargets.Check(root)
-	if err != nil {
-		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
-			return 1
-		}
-		return 1
-	}
-	if len(findings) == 0 {
-		if err := writef(stdout, "Every Nx project defines the required test and quality targets.\n"); err != nil {
-			return 1
-		}
-		return 0
-	}
-	for _, finding := range findings {
-		if err := writef(stderr, "ERROR: %s\n", finding.Message()); err != nil {
-			return 1
-		}
-	}
-	if err := writef(stderr, "See repo-governance/development/testing-policy.md.\n"); err != nil {
-		return 1
-	}
-	return 1
-}
-
-func validateMarkdownLinks(root string, stdout io.Writer, stderr io.Writer) int {
+func validateMarkdownLinks(root string, stdout, stderr io.Writer) int {
 	findings, err := markdownlinks.Check(root)
 	if err != nil {
-		if writeErr := writef(stderr, "ERROR: %v\n", err); writeErr != nil {
+		writeErr := writef(stderr, "ERROR: %v\n", err)
+		if writeErr != nil {
 			return 1
 		}
 		return 1
 	}
 	if len(findings) == 0 {
-		if err := writef(stdout, "Repository-local Markdown links are valid.\n"); err != nil {
+		err := writef(stdout, "Repository-local Markdown links are valid.\n")
+		if err != nil {
 			return 1
 		}
 		return 0
@@ -277,7 +274,8 @@ func validateMarkdownLinks(root string, stdout io.Writer, stderr io.Writer) int 
 	for _, finding := range findings {
 		// Source path and one-based line number make a hook failure actionable in
 		// a terminal or CI log without requiring a separate report file.
-		if err := writef(stderr, "ERROR: %s:%d: %q %s.\n", finding.Path, finding.Line, finding.Destination, finding.Problem); err != nil {
+		err := writef(stderr, "ERROR: %s:%d: %q %s.\n", finding.Path, finding.Line, finding.Destination, finding.Problem)
+		if err != nil {
 			return 1
 		}
 	}
@@ -288,7 +286,11 @@ func validateMarkdownLinks(root string, stdout io.Writer, stderr io.Writer) int 
 // caller cannot receive their validation result.
 func writef(writer io.Writer, format string, arguments ...any) error {
 	_, err := fmt.Fprintf(writer, format, arguments...)
-	return err
+	if err != nil {
+		return fmt.Errorf("write formatted output: %w", err)
+	}
+
+	return nil
 }
 
 func matchesCommand(args []string) bool {

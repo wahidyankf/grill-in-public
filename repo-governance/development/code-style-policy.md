@@ -7,7 +7,7 @@ when_to_use: "Use when writing or reviewing code in any project, or when adding 
 
 ## Scope
 
-This policy covers how source code is written: the language target, and the naming, indentation, and import conventions every project shares. Formatting is not covered — Prettier is the source of truth for that, and the [Markdown style policy](../conventions/markdown-style-policy.md) covers prose. What a comment must explain belongs to the [code commentary policy](code-commentary-policy.md).
+This policy covers how source code is written: the language target, naming, indentation, imports, and language-native formatting. Prettier is the source of truth for the file types it supports, and the [Markdown style policy](../conventions/markdown-style-policy.md) covers prose. What a comment must explain belongs to the [code commentary policy](code-commentary-policy.md).
 
 ## Language Target
 
@@ -15,13 +15,17 @@ Use strict TypeScript with CommonJS-compatible Node output. Badak Mini is the st
 
 ## Naming and Layout
 
-Use two-space indentation, `camelCase` variables and functions, `PascalCase` classes, and descriptive file names.
+TypeScript uses two-space indentation, `camelCase` variables and functions, `PascalCase` classes, and descriptive lower-hyphenated file names.
+
+Go uses `gofumpt` and `goimports` as enforced by the project lint target. Follow Go's idiomatic `MixedCaps` naming, keep package names short and lowercase, and use lowercase file names with underscores only when they improve grouping. Do not hand-format code in a style the configured formatters will replace.
 
 A descriptive file name is one a reader can act on without opening the file. `parse-project-file.ts` says what it holds; `utils.ts` says only that someone had nowhere to put it.
 
 ## Imports
 
-Import internal libraries by package name, not by relative cross-project paths. A relative path across a project boundary compiles, so nothing stops it, and it hides the dependency from Nx — which then cannot tell that the importing project is affected when the imported one changes.
+Import internal TypeScript libraries by package name, not by relative cross-project paths. A relative path across a project boundary compiles, so nothing stops it, and it hides the dependency from Nx — which then cannot tell that the importing project is affected when the imported one changes.
+
+Let `goimports` group and order Go imports. Badak Mini production code remains standard-library-only under the [Badak Mini policy](badakmini-cli-policy.md); tool dependencies in its Go module do not authorize runtime imports.
 
 ## Verification
 

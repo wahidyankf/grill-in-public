@@ -3,10 +3,13 @@
     "build": {
       "cache": true
     },
-    "test": {
+    "test:quick": {
       "cache": true
     },
-    "test:quick": {
+    "test:coverage": {
+      "cache": true
+    },
+    "test:unit": {
       "cache": true
     },
     "typecheck": {

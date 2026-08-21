@@ -1,6 +1,7 @@
 package governance
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"strings"
@@ -150,23 +151,173 @@ func TestCheckRequiresGovernanceDirectory(t *testing.T) {
 	}
 }
 
+func TestCheckRejectsDirectoryInPlaceOfInstructionFile(t *testing.T) {
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	if err := os.Mkdir(filepath.Join(root, agentsFile), 0o750); err != nil {
+		t.Fatalf("create directory in place of AGENTS.md: %v", err)
+	}
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "required file is not regular: AGENTS.md") {
+		t.Fatalf("expected a non-regular AGENTS.md error, got %v", err)
+	}
+}
+
+func TestCheckRejectsFileInPlaceOfGovernanceDirectory(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	writeFile(t, filepath.Join(root, governanceDirectory), words(1))
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "required path is not a directory: repo-governance") {
+		t.Fatalf("expected a non-directory governance path error, got %v", err)
+	}
+}
+
+func TestCheckFileReportsReadFailure(t *testing.T) {
+	root := t.TempDir()
+
+	_, err := checkFile(root, "missing.md")
+	if err == nil || !strings.Contains(err.Error(), "read missing.md") {
+		t.Fatalf("expected a document read error, got %v", err)
+	}
+}
+
+func TestHarnessDirectoryReportsInspectionFailure(t *testing.T) {
+	root := t.TempDir()
+	harnessPath := filepath.Join(root, ".claude")
+	if err := os.Symlink(harnessPath, harnessPath); err != nil {
+		t.Fatalf("create cyclic harness symlink: %v", err)
+	}
+
+	_, err := checkHarnessDirectory(root, ".claude")
+	if err == nil || !strings.Contains(err.Error(), "inspect .claude") {
+		t.Fatalf("expected a harness inspection error, got %v", err)
+	}
+}
+
+func TestInstructionCheckReportsDocumentReadFailure(t *testing.T) {
+	root := t.TempDir()
+	if err := os.Symlink("missing.md", filepath.Join(root, agentsFile)); err != nil {
+		t.Fatalf("create broken instruction symlink: %v", err)
+	}
+
+	_, err := checkInstructionFiles(root)
+	if err == nil || !strings.Contains(err.Error(), "read AGENTS.md") {
+		t.Fatalf("expected an instruction read error, got %v", err)
+	}
+}
+
+func TestCheckReportsGovernanceDocumentReadFailure(t *testing.T) {
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	if err := os.Symlink("missing.md", filepath.Join(root, governanceDirectory, "broken.md")); err != nil {
+		t.Fatalf("create broken governance symlink: %v", err)
+	}
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "read repo-governance/broken.md") {
+		t.Fatalf("expected a governance document read error, got %v", err)
+	}
+}
+
+func TestCheckReportsHarnessReadmeReadFailure(t *testing.T) {
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	if err := os.Mkdir(filepath.Join(root, ".agents"), 0o750); err != nil {
+		t.Fatalf("create harness directory: %v", err)
+	}
+	if err := os.Symlink("missing.md", filepath.Join(root, ".agents", readmeFile)); err != nil {
+		t.Fatalf("create broken harness README symlink: %v", err)
+	}
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "read .agents/README.md") {
+		t.Fatalf("expected a harness README read error, got %v", err)
+	}
+}
+
+func TestCheckReportsHarnessInspectionFailure(t *testing.T) {
+	root := newRepositoryFixture(t)
+	writeFile(t, filepath.Join(root, agentsFile), words(1))
+	writeFile(t, filepath.Join(root, claudeFile), words(1))
+	harnessPath := filepath.Join(root, ".claude")
+	if err := os.Symlink(harnessPath, harnessPath); err != nil {
+		t.Fatalf("create cyclic harness symlink: %v", err)
+	}
+
+	_, err := Check(root)
+	if err == nil || !strings.Contains(err.Error(), "inspect .claude") {
+		t.Fatalf("expected a harness inspection error, got %v", err)
+	}
+}
+
+func TestRequiredPathsReportInspectionFailures(t *testing.T) {
+	root := t.TempDir()
+	cyclicPath := filepath.Join(root, "cyclic")
+	if err := os.Symlink(cyclicPath, cyclicPath); err != nil {
+		t.Fatalf("create cyclic path: %v", err)
+	}
+
+	if err := requireFile(cyclicPath, "cyclic-file"); err == nil || !strings.Contains(err.Error(), "inspect cyclic-file") {
+		t.Fatalf("expected a file inspection error, got %v", err)
+	}
+	err := requireDirectory(cyclicPath, "cyclic-directory")
+	if err == nil || !strings.Contains(err.Error(), "inspect cyclic-directory") {
+		t.Fatalf("expected a directory inspection error, got %v", err)
+	}
+}
+
+func TestVisitorsReturnFilesystemWalkErrors(t *testing.T) {
+	walkErr := errors.New("walk failed")
+
+	if err := visitGovernanceDocument("root", "path", nil, walkErr, nil); !errors.Is(err, walkErr) {
+		t.Fatalf("expected governance visitor to return the walk error, got %v", err)
+	}
+	if err := visitHarnessReadme("root", "harness", "path", nil, walkErr, nil); !errors.Is(err, walkErr) {
+		t.Fatalf("expected harness visitor to return the walk error, got %v", err)
+	}
+}
+
+func TestVendoredDirectoryClassification(t *testing.T) {
+	tests := []struct {
+		name     string
+		vendored bool
+	}{
+		{name: "node_modules", vendored: true},
+		{name: ".cache", vendored: true},
+		{name: "agents", vendored: false},
+	}
+
+	for _, test := range tests {
+		if got := isVendoredDirectory(test.name); got != test.vendored {
+			t.Fatalf("isVendoredDirectory(%q) = %t, want %t", test.name, got, test.vendored)
+		}
+	}
+}
+
 func newRepositoryFixture(t *testing.T) string {
 	t.Helper()
 	// Fixtures create only the minimum valid repository shape so individual
 	// tests can remove or alter one prerequisite deliberately.
 	root := t.TempDir()
-	if err := os.Mkdir(filepath.Join(root, governanceDirectory), 0o755); err != nil {
+	err := os.Mkdir(filepath.Join(root, governanceDirectory), 0o750)
+	if err != nil {
 		t.Fatalf("create governance directory: %v", err)
 	}
 	return root
 }
 
-func writeFile(t *testing.T, path string, contents string) {
+func writeFile(t *testing.T, path, contents string) {
 	t.Helper()
-	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(path), 0o750); err != nil {
 		t.Fatalf("create parent directory for %s: %v", path, err)
 	}
-	if err := os.WriteFile(path, []byte(contents), 0o644); err != nil {
+	if err := os.WriteFile(path, []byte(contents), 0o600); err != nil {
 		t.Fatalf("write %s: %v", path, err)
 	}
 }
