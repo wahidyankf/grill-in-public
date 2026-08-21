@@ -1,6 +1,6 @@
 ---
 tldr: "Turns a described change into a validated five-document plan under plans/."
-when_to_use: "Use when application, infrastructure, or substantial rule work needs a plan before anyone starts it."
+when_to_use: "Use only after the owner explicitly requests a plan."
 ---
 
 # Plan Planning
@@ -11,7 +11,7 @@ Turn a described change into a five-document plan that another session could exe
 
 ## When to Use
 
-Use it for application work, infrastructure work, and substantial rule work; the [plans organization policy](../conventions/plans-organization-policy.md) states the trigger and the line below which a rule change skips planning. Do not use it for a drill: practice is tracked in a harness task list, not planned.
+Use it only after the owner explicitly requests a plan. The [plans organization policy](../conventions/plans-organization-policy.md) states that authorization boundary. Do not use it for application work, infrastructure work, substantial rule work, or a drill unless the owner asks for a plan.
 
 ## Prerequisites
 
@@ -37,4 +37,4 @@ The plan is ready when every document exists, every checklist item names a path,
 
 ## Recovery
 
-If the change turns out to be too small for five documents, it did not need a plan: delete the folder, do the work, and track it in the task list. If a decision cannot be resolved, leave the plan in `backlog/` with the open question written into `README.md` rather than guessing past it.
+If an owner-requested plan turns out to need a different shape or scope, ask the owner whether to amend or cancel it rather than deleting it based on an inferred size threshold. If a decision cannot be resolved, leave the plan in `backlog/` with the open question written into `README.md` rather than guessing past it.

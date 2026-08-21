@@ -2,7 +2,7 @@
 
 ## Purpose and Working Style
 
-Grind in Public is a personal lifelong-learning workspace for software engineering. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Track multi-step work in a granular task list, updated as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
+Grind in Public is a personal lifelong-learning workspace for software engineering. Complete drills yourself before using tools for review, formatting, or feedback. Keep each exercise focused on one skill; record reasoning when useful. Before starting any task, create a granular task list and keep it synchronized as each item resolves; see the [task tracking policy](repo-governance/conventions/task-tracking-policy.md). Resolve an open decision by grilling with options, not prose; see the [grilling-with-options policy](repo-governance/conventions/grilling-with-options-policy.md).
 
 ## Reference Repositories
 
@@ -27,7 +27,7 @@ Keep implementation and tests under `src/`; use lowercase-hyphenated project dir
 
 ## Planning
 
-Application, infrastructure, and substantial rule work is planned before it starts; drills are not. A plan is five documents in `plans/`, promoted from an idea in `ideas/` and staged through `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
+Create plan documents only when the owner explicitly requests a plan. A requested plan is five documents in `plans/`, promoted from an idea in `ideas/` and staged through `backlog/`, `in-progress/`, and `done/`; see the [plans organization policy](repo-governance/conventions/plans-organization-policy.md). Author with [plan-planning](repo-governance/workflows/plan-planning.md), validate with [plan-quality-gate](repo-governance/workflows/plan-quality-gate.md), and run with [plan-execution](repo-governance/workflows/plan-execution.md). Plans deliver directly to `main`.
 
 ## Nx and Coding Conventions
 

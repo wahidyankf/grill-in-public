@@ -1,8 +1,0 @@
-{
-  "name": "dummy-app",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "@grind-in-public/dummy-lib": "0.0.0"
-  }
-}

@@ -13,7 +13,7 @@ Integrate a new or changed rule into the correct governance location without dup
 
 Use it when introducing, changing, moving, or removing a rule for contributors, agents, skills, validation, or workflows.
 
-Run it directly for a correction, a clarification, or a rule confined to one document. Substantial rule work, a new policy area or a change landing across several documents, is planned first; the [plans organization policy](../conventions/plans-organization-policy.md) owns that boundary.
+Run it directly for a correction, a clarification, or a rule confined to one document. For work that warrants a plan, create one only when the owner explicitly requests it; the [plans organization policy](../conventions/plans-organization-policy.md) owns that authorization boundary.
 
 ## Automatic Triggers
 

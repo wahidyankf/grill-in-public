@@ -13,7 +13,7 @@ Find and resolve the ways written guidance decays: two documents that contradict
 
 Run it on demand — after a large rule change, when a contradiction is suspected, or periodically to check drift. It is deliberately not mandatory: [rules-propagation](rules-propagation.md) integrates one rule correctly on its own, and gating every one-line edit behind a full corpus review would make small corrections expensive enough to skip.
 
-Running the gate needs no plan, but resolving a finding can. Substantial rule work, a new policy area or a change landing across several documents, is planned first; the [plans organization policy](../conventions/plans-organization-policy.md) owns that boundary and the `rules-fixer` exemption.
+Running the gate needs no plan, but resolving a finding can. Create a plan for a rule change only when the owner explicitly requests one; the [plans organization policy](../conventions/plans-organization-policy.md) owns that authorization boundary and the `rules-fixer` exemption.
 
 ## Prerequisites
 

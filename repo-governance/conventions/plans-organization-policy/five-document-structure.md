@@ -34,6 +34,6 @@ plans/<stage>/<identifier>/
 
 ## No Single-File Exception
 
-Five documents is the only shape. A plan too small for five documents is a plan for work that did not need planning: do it, and track it in the harness task list instead.
+An owner-requested plan uses all five documents. Do not delete or skip a requested plan because its size appears small; ask the owner whether to amend or cancel it instead.
 
 Every `plan-checker` prompt names these documents and requires all five in the imperative, because a subagent prompt has to stand alone. Change them in the same edit, in all three harness copies.

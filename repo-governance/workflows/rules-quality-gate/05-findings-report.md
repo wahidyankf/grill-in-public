@@ -36,7 +36,7 @@ The [survival taxonomy](06-survival-taxonomy.md) owns the line each finding carr
 
 ## Unplanned Changes
 
-Record every document the run created, and every pass that touched several documents. The [plans organization policy](../../conventions/plans-organization-policy.md) would require a plan for that work; `rules-fixer` does it without one, so this report is what makes it auditable.
+Record every document the run created, and every pass that touched several documents. A plan may be created for that work only when the owner explicitly requests one; the [plans organization policy](../../conventions/plans-organization-policy.md) owns that authorization boundary. `rules-fixer` does its work without a plan, so this report is what makes it auditable.
 
 ## What Not to Record
 

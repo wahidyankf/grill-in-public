@@ -15,7 +15,7 @@ ideas/ --promote--> backlog/ --start--> in-progress/ --complete--> done/
 
 ## Promoting an Idea
 
-A ripe two-pager becomes a plan when its open questions are answered. Create `plans/backlog/<identifier>/`, author the five documents through the [plan-planning](../../workflows/plan-planning.md) workflow, delete the idea file, and update both indexes. The idea's prior art and non-goals carry into `brd.md` rather than being rewritten from scratch.
+After the owner explicitly requests a plan and its open questions are answered, create `plans/backlog/<identifier>/`, author the five documents through the [plan-planning](../../workflows/plan-planning.md) workflow, delete the idea file, and update both indexes. The idea's prior art and non-goals carry into `brd.md` rather than being rewritten from scratch.
 
 ## Starting Work
 

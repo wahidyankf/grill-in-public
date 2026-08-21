@@ -1,6 +1,6 @@
 ---
-tldr: "Requires a granular task list for multi-step work, updated as the work happens."
-when_to_use: "Use when planning, executing, or reviewing any change that takes more than one verifiable step."
+tldr: "Requires a granular task list before every task starts, updated as the work happens."
+when_to_use: "Use before planning, executing, or reviewing any task."
 ---
 
 # Task Tracking Policy
@@ -11,7 +11,7 @@ This policy covers the task list kept while work is in progress: when one is req
 
 ## When a List Is Required
 
-Keep a task list for any change that takes more than one verifiable step, including a governance change, a multi-file edit, and an investigation whose findings drive later edits. A single edit with a single check needs no list.
+Before starting any task, create a task list, including work that has only one anticipated verifiable step. Mark its first item in progress before the task's first action. A task may begin with one item and gain more as work is discovered, but it must never begin without a current list.
 
 ## Granularity
 

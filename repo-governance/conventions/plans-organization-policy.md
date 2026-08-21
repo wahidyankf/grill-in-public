@@ -9,9 +9,9 @@ when_to_use: "Use when creating, executing, reviewing, or archiving a plan under
 
 This policy governs `plans/`, the repository's working record of change. A plan explains why work exists, what it depends on, and what evidence proves it finished. Plans are temporary and belong to delivery; `docs/` serves readers and `repo-governance/` holds rules, so neither is a home for a plan. The three plan workflows — [plan-planning](../workflows/plan-planning.md), [plan-quality-gate](../workflows/plan-quality-gate.md), and [plan-execution](../workflows/plan-execution.md) — carry out what this policy defines.
 
-## When a Plan Is Required
+## When a Plan Is Allowed
 
-A plan is required for application work, infrastructure work, and substantial rule work: a new policy area, or a change that lands across several documents. A correction, a clarification, or a rule confined to one document goes through the [rules-propagation](../workflows/rules-propagation.md) workflow alone, because writing a five-document plan to fix a sentence costs more than the sentence. Drills and study are not planned: the owner practices by hand and tracks the session in a harness task list, as the [task tracking policy](task-tracking-policy.md) requires. A drill becomes plan-worthy only when it stops being practice and starts being repository work. `rules-fixer` is exempt inside a [rules quality gate](../workflows/rules-quality-gate.md) run: it may create a receiving document and touch several documents in one pass without a plan, because it records both in the run's [findings report](../workflows/rules-quality-gate/05-findings-report.md).
+Create a plan only when the owner explicitly requests one. Do not infer authorization from the size or kind of work, including application work, infrastructure work, or substantial rule work. When requested, a plan may cover any of those changes. Drills and study are not planned unless the owner asks: the owner practices by hand and tracks the session in a harness task list, as the [task tracking policy](task-tracking-policy.md) requires. `rules-fixer` is exempt inside a [rules quality gate](../workflows/rules-quality-gate.md) run: it may create a receiving document and touch several documents in one pass without a plan, because it records both in the run's [findings report](../workflows/rules-quality-gate/05-findings-report.md).
 
 ## Rules
 
